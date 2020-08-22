@@ -1,0 +1,16 @@
+@host = http://localhost:3000/
+
+###
+POST {{host}}person/create
+Content-Type: application/json
+
+{
+    "firstName":"mike",
+    "secondName":"marold",
+    "lastName":"castrillo",
+    "secondLastName":"maldonado",
+    "marriedName":"jkl",
+    "bornDate":"1997-11-23",
+    "mobilePhone":"231232345",
+    "email":"marold97@outlook.com"
+}
