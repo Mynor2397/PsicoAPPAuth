@@ -1,7 +1,7 @@
 @host = http://localhost:3000/
 
 ###
-POST {{host}}paciente/create
+POST {{host}}person/create
 Content-Type: application/json
 
 {

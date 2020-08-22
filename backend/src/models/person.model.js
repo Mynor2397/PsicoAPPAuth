@@ -1,5 +1,6 @@
 /**
- *
+ * Represent a model of the Person.
+ * 
  * @param {string} uuid varchar(36) PK 
  * @param {string} id varchar(20) 
  * @param {string} firstName text 
@@ -14,7 +15,7 @@
  * @param {string} email varchar(320)
  */
 
-class Patient {
+class Person {
 
     constructor(
         uuid,
@@ -28,7 +29,7 @@ class Patient {
         uuidRole,
         dateNameUpdated,
         mobilePhone,
-        email,
+        email
     ) {
         this.uuid = uuid
         this.id = id
@@ -45,4 +46,4 @@ class Patient {
     }
 }
 
-module.exports = Patient;
+module.exports = Person;
