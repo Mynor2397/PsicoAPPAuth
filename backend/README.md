@@ -3,7 +3,7 @@ ___
 
 > #### Instale node 
 > #### Ejecute el comando: _npm install_
-> #### Configure la base de datos y el servidor dirijiendose a la carpeta config y en el archivo env.config.json modifique las propiedades con las de su base de datos
+> #### Configure la base de datos y el servidor dirijiendose a la carpeta config y en el archivo env.config.json modifique las propiedades con las de su base de datos.
 > #### Ejecute el comando: _npm run dev_
 
 

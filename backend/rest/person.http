@@ -1,7 +1,26 @@
-@host = http://localhost:3000/
+@host = http://localhost:3000/person
 
 ###
-POST {{host}}person/create
+POST {{host}}/create
+Content-Type: application/json
+
+{
+    "firstName":"Mynor",
+    "secondName":"marold",
+    "lastName":3,
+    "secondLastName":"",
+    "marriedName":"jkl",
+    "bornDate":"1997-11-23",
+    "mobilePhone":"231232345",
+    "email":"marold97@outlook.com"
+}
+
+###
+GET {{host}}/2020-PSA25-00001
+Content-Type: application/json
+
+###
+PUT {{host}}/2020-PSA25-00001
 Content-Type: application/json
 
 {
@@ -9,8 +28,11 @@ Content-Type: application/json
     "secondName":"marold",
     "lastName":"castrillo",
     "secondLastName":"maldonado",
-    "marriedName":"jkl",
+    "marriedName":"Mike",
     "bornDate":"1997-11-23",
     "mobilePhone":"231232345",
-    "email":"marold97@outlook.com"
+    "email":"marold97@hotlook.com"
 }
+
+###
+DELETE {{host}}/2020-PSA24-00002

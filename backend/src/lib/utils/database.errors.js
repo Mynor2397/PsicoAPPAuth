@@ -3,5 +3,6 @@ module.exports = errors = {
     ManyConnection: 'DATABASE HAS TO MANY CONNECTION',
     ConnectionRefused: 'ECONNREFUSED',
 
-    ErrDuplicateRegistry: 1062
+    ErrDuplicateRegistry: 1062,
+    ErrColumnNotFound: 1054
 }
