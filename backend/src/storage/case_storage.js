@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../lib/database/database');
-const Case = require('../models/ncase.model');
+const Case = require('../models/case.model');
+const Cases = require('../models/ncase.model');
 const Stage = require('../models/stage.model');
 const PersonU = require('../models/personuser.model');
 const PersonP = require('../models/personpatient.model');
@@ -10,7 +11,7 @@ const PersonP = require('../models/personpatient.model');
 const storageCase = {}
 
 storageCase.create = async (dataCase) => {
-    let cases = new Case()
+    let cases = new Cases()
     cases = dataCase;
 
     return new Promise((resolve, reject) => {
@@ -23,6 +24,23 @@ storageCase.create = async (dataCase) => {
             }
             console.log(results)
             resolve(cases.uuid)
+
+        })
+    })
+}
+storageCase.filter = (query) => {
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err, results, fields) => {
+            if (err) {
+                reject(err.errno)
+                console.log(err)
+            }
+            if(results == undefined || results.length == 0 ){
+                reject(404)
+            }
+            console.log(results)
+            resolve(results)
         })
     })
 }
