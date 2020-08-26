@@ -2,17 +2,18 @@
  * Represent a model of the Person.
  * 
  * @param {string} uuid varchar(36) PK 
- * @param {string} id varchar(20) 
+ * @param {string} id varchar(20) autogenerate
  * @param {string} firstName text 
  * @param {string} secondName text 
  * @param {string} lastName text 
  * @param {string} secondLastName text 
  * @param {string} marriedName text 
- * @param {string} bornDate datetime 
+ * @param {Date} bornDate datetime 
  * @param {string} uuidRole varchar(36) 
  * @param {string} dateNameUpdated datetime 
  * @param {string} mobilePhone varchar(15) 
  * @param {string} email varchar(320)
+ * @param {string} commentary string
  */
 
 class Person {
@@ -29,7 +30,8 @@ class Person {
         uuidRole,
         dateNameUpdated,
         mobilePhone,
-        email
+        email,
+        commentary
     ) {
         this.uuid = uuid
         this.id = id
@@ -43,6 +45,7 @@ class Person {
         this.dateNameUpdated = dateNameUpdated
         this.mobilePhone = mobilePhone
         this.email = email
+        this.commentary = commentary
     }
 }
 
