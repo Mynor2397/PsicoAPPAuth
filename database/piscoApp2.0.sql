@@ -259,7 +259,7 @@ CREATE TABLE `PAC_StageCaseHistory`
   `dateEvent` Datetime NOT NULL,
   `uuidPersonUser` Varchar(36),
   `comment` Varchar(1000),
-  `attachment` Varchar(2,083)
+  `attachment` Varchar(2083)
 )
 ;
 
