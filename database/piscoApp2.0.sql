@@ -259,7 +259,7 @@ CREATE TABLE `PAC_StageCaseHistory`
   `dateEvent` Datetime NOT NULL,
   `uuidPersonUser` Varchar(36),
   `comment` Varchar(1000),
-  `attachment` Varchar(2083)
+  `attachment` Varchar(500)
 )
 ;
 
@@ -282,44 +282,44 @@ CREATE TABLE `PAC_CaseInitialStage`
   `uuid` Varchar(36) NOT NULL,
   `premorbidPersonality` Text
  COMMENT 'almacena html ( 2000 caracteres netos)',
-  `premorbidPersonalityFile` Varchar(2083),
+  `premorbidPersonalityFile` Varchar(500),
   `currentProblem` Text NOT NULL
  COMMENT 'almacena html , 2000 caracteres netos.',
-  `currentProblemFile` Varchar(2083),
+  `currentProblemFile` Varchar(500),
   `healthHistory` Text NOT NULL
  COMMENT 'almacenar html (2000 caracteres netos)',
-  `healthHistoryFile` Varchar(2083),
+  `healthHistoryFile` Varchar(500),
   `sexualHistory` Text NOT NULL
  COMMENT 'Almacena html (2000 caracteres netos)',
-  `sexualHistoryFile` Varchar(2083),
+  `sexualHistoryFile` Varchar(500),
   `growthHistory` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `growthHistoryFile` Varchar(2083),
+  `growthHistoryFile` Varchar(500),
   `perinatalHistory` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `perinatalHistoryFile` Varchar(2083),
+  `perinatalHistoryFile` Varchar(500),
   `familyHistory` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `familyHistoryFile` Varchar(2083),
-  `genogramFile` Varchar(2083) NOT NULL,
+  `familyHistoryFile` Varchar(500),
+  `genogramFile` Varchar(500) NOT NULL,
   `schoolHistory` Text NOT NULL
  COMMENT 'almacena html (2000 campos netos)',
-  `schoolHistoryFile` Varchar(2083),
+  `schoolHistoryFile` Varchar(500),
   `workHistory` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `workHistoryFile` Varchar(2083),
+  `workHistoryFile` Varchar(500),
   `mentalEvaluationTest` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `mentalEvaluationTestFile` Varchar(2083),
+  `mentalEvaluationTestFile` Varchar(500),
   `clinicalInterpretation` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `clinicalInterpretationFile` Varchar(2083),
+  `clinicalInterpretationFile` Varchar(500),
   `interpreationOfEvidence` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `interpreationOfEvidenceFile` Varchar(2083),
+  `interpreationOfEvidenceFile` Varchar(500),
   `therapeuticContract` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `therapeuticContractFile` Varchar(2083)
+  `therapeuticContractFile` Varchar(500)
 )
 ;
 
@@ -333,7 +333,7 @@ CREATE TABLE `PAC_CaseIntermediateStage`
   `uuid` Varchar(36) NOT NULL,
   `therapeuticPlan` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `therapeuticPlanFile` Varchar(2083)
+  `therapeuticPlanFile` Varchar(500)
 )
 ;
 
@@ -389,7 +389,7 @@ CREATE TABLE `PAC_DiagnosedProblems`
   `uuidDSM5` Varchar(36) NOT NULL,
   `descriptionOfProblem` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `descriptionOfProblemFile` Varchar(2083)
+  `descriptionOfProblemFile` Varchar(500)
 )
 ;
 
@@ -410,19 +410,19 @@ CREATE TABLE `PAC_TherapeuticPlanActivity`
   `uuidCaseIntermediateStage` Varchar(36) NOT NULL,
   `aspectToWork` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `aspectToWorkFile` Varchar(2083),
+  `aspectToWorkFile` Varchar(500),
   `objetives` Text
  COMMENT 'almacena html (2000 caracteres netos)',
-  `objetivesFile` Varchar(2083),
+  `objetivesFile` Varchar(500),
   `goals` Text
  COMMENT 'almacena html (2000 caracteres netos)',
-  `goalsFile` Varchar(2083),
+  `goalsFile` Varchar(500),
   `focus` Text
  COMMENT 'almacena html (2000 caracteres netos)',
-  `focusFile` Varchar(2083),
+  `focusFile` Varchar(500),
   `techniques` Text
  COMMENT 'almacena html (2000 caracteres netos)',
-  `techniquesFile` Varchar(2083)
+  `techniquesFile` Varchar(500)
 )
 ;
 
@@ -459,7 +459,7 @@ CREATE TABLE `PAC_TestingApplication`
   `uuidTestType` Varchar(36) NOT NULL,
   `testingApplication` Text NOT NULL
  COMMENT 'almacena html (2000 caracteres netos)',
-  `testingApplicationFile` Varchar(2083)
+  `testingApplicationFile` Varchar(500)
 )
 ;
 
@@ -604,7 +604,7 @@ CREATE TABLE `PAS_PersonHistory`
   `uuidPerson` Varchar(36) NOT NULL,
   `dateEvent` Datetime NOT NULL,
   `comment` Varchar(1000),
-  `attachment` Varchar(2083)
+  `attachment` Varchar(500)
 )
 ;
 
