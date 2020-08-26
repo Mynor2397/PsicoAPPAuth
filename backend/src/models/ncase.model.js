@@ -1,5 +1,5 @@
 /**
- * Represent a model of InitialCaseState.
+ * Represent a model of Create a new case
  *
  * @param {string} uuid varchar(36) PK 
  * @param {string} caseNumber varchar(25) 

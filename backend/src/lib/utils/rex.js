@@ -8,4 +8,17 @@ rex.rexPerson = [
     body('email').isEmail().normalizeEmail()
 ]
 
+
+rex.rexCase = [
+    body('uuidAssignedUser').not().isEmpty().escape(),
+    body('uuidPersonPatient').not().isEmpty().escape(),
+    body('reasonForConsultation').not().isEmpty().escape()
+]
+
+rex.rexUpCase = [
+    body('uuidAssignedUser').not().isEmpty().escape(),
+    body('uuidPersonPatient').not().isEmpty().escape(),
+    body('reasonForConsultation').not().isEmpty().escape(),
+    body('desisted').not().isEmpty().escape(),
+]
 module.exports = rex;

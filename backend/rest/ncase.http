@@ -1,0 +1,43 @@
+POST http://localhost:3000/case/create
+Content-Type: application/json
+
+{
+    "uuidAssignedUser": "",
+    "uuidOwnerUser" : "adfjkghad",
+    "uuidPersonPatient": "adfjkghad",
+    "uuidStage": "stage1",
+    "reasonForConsultation": ""
+}
+
+###
+PUT http://localhost:3000/case/update/0ffcb847-cb08-4ba0-8123-a2bf770711d1
+Content-Type: application/json
+
+{
+    "uuidAssignedUser": "adfjkghad",
+    "uuidOwnerUser" : "adfjkghad",
+    "uuidPersonPatient": "adfjkghad",
+    "uuidStage": "stage2",
+    "reasonForConsultation": "Esto es prueba del update",
+    "desisted": 1
+}
+
+###
+GET http://localhost:3000/case/allcases
+Content-Type: application/json
+
+###
+GET http://localhost:3000/case/viewcase/0ffcb847-cb08-4ba0-8123-a2bf770711d1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/stage/allstages
+Content-Type: application/json
+
+###
+GET http://localhost:3000/personuser
+Content-Type: application/json
+
+###
+GET http://localhost:3000/personpatient
+Content-Type: application/json
