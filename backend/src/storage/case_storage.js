@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../lib/database/database');
-const Case = require('../models/case.model');
+// const Case = require('../models/case.model');
 const Cases = require('../models/ncase.model');
 const Stage = require('../models/stage.model');
 const PersonU = require('../models/personuser.model');
@@ -46,7 +46,7 @@ storageCase.filter = (query) => {
 }
 
 storageCase.update = async (upCase) => {
-    let updata = new Case()
+    let updata = new Cases()
     updata = upCase;
 
     return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ storageCase.update = async (upCase) => {
 }
 
 storageCase.get = async (getCase) => {
-    let allcases = new Case()
+    let allcases = new Cases()
 
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAC_Case', [], (err, results, fields) => {

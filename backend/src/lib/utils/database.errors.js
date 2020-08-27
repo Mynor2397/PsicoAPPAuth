@@ -4,5 +4,6 @@ module.exports = errors = {
     ConnectionRefused: 'ECONNREFUSED',
 
     ErrDuplicateRegistry: 1062,
-    ErrColumnNotFound: 1054
+    ErrColumnNotFound: 1054,
+    ErrForeignKeyViolation: 1452,
 }

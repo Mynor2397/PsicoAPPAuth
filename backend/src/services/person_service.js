@@ -8,10 +8,13 @@ const PersonService = {}
 PersonService.create = async (DataPatient) => {
     var person = new Person()
     person = DataPatient
-    person.uuid = uuid.v4()
+    person.uuidPerson = uuid.v4()
     person.id = await generate('PAS_Person', 'PAS')
-    person.dateNameUpdated = new Date()
     person.uuidRole = 'f773d0e2-6f64-4957-8ad4-179455994849'
+    person.dateNameUpdated = new Date()
+    person.uuidPersonHistory = uuid.v4()
+    person.dateEvent = new Date()
+    person.uuidAddress = uuid.v4()
 
     return await StorePerson.create(person)
 }

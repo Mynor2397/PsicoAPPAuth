@@ -11,17 +11,23 @@ storagePerson.create = (dataPatient) => {
     person = dataPatient;
 
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO PAS_Person VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', [
-            person.uuid, person.id, person.firstName, person.secondName,
-            person.lastName, person.secondLastName, person.marriedName, person.bornDate,
-            person.uuidRole, person.dateNameUpdated, person.mobilePhone, person.email
-        ], (err, results, fields) => {
-            if (err) {
-                console.log(err);
-                reject(err.errno)
-            }
-            resolve(person.id)
-        })
+        pool.query('CALL registerperson (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+            [person.uuidPerson, person.id, person.firstName, person.secondName, person.lastName,
+            person.secondLastName, person.marriedName, person.bornDate, person.uuidRole, person.dateNameUpdated,
+            person.mobilePhone, person.email, person.firstNameFather, person.secondNameFather,
+            person.lastNameFather, person.secondLastName, person.firstNameMother, person.secondNameMother,
+            person.lastNameMother, person.secondLastNameMother, person.firstNameExtra, person.secondNameExtra,
+            person.lastNameExtra, person.secondLastNameExtra, person.uuidReligion, person.uuidPersonHistory,
+            person.dateEvent, person.comment, person.attachment, person.uuidAddress, person.uuidCity,
+            person.addressLine1, person.addressLine2, person.phoneNumber], (err, results, fields) => {
+                if (err) {
+                    reject(err.errno)
+                }
+                if (results[0]) {
+                    reject(results[0][0].Code);
+                }
+                resolve(person.id)
+            })
     })
 }
 

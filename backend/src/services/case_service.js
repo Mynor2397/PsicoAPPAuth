@@ -16,7 +16,7 @@ CaseService.create = async (dataCase) => {
     cases.creationDate = new Date()
     cases.desisted = 1
 
-    console.log(cases)
+    // console.log(cases)
 
     return await StoreCase.create(cases)
     

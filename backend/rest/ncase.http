@@ -1,43 +1,51 @@
-POST http://localhost:3000/case/create
+@host = http://localhost:3000/
+# Hace un post a la tabla PAC_Case
+POST {{host}}case/create
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "adfjkghad",
-    "uuidOwnerUser" : "adfjkghad",
-    "uuidPersonPatient": "adfjkghad",
+    "uuidAssignedUser": "PAC_001",
+    "uuidOwnerUser" : "PAC_001",
+    "uuidPersonPatient": "PAC_001",
     "uuidStage": "stage1",
     "reasonForConsultation": "preuba"
 }
 
 ###
-PUT http://localhost:3000/case/update/0ffcb847-cb08-4ba0-8123-a2bf770711d1
+#Hace una actualización a la tabla en base al uuid
+PUT {{host}}case/update/14f87259-c063-47ba-87eb-073ff1120ea0
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "adfjkghad",
-    "uuidOwnerUser" : "adfjkghad",
-    "uuidPersonPatient": "adfjkghad",
+    "uuidAssignedUser": "PAC_001",
+    "uuidOwnerUser" : "PAC_001",
+    "uuidPersonPatient": "PAC_001",
     "uuidStage": "stage2",
     "reasonForConsultation": "Esto es prueba del update",
     "desisted": 1
 }
 
 ###
-GET http://localhost:3000/case/allcases
+#Get de todos los casos de la tabla pac_case
+GET {{host}}case/allcases
 Content-Type: application/json
 
 ###
-GET http://localhost:3000/case/viewcase/0ffcb847-cb08-4ba0-8123-a2bf770711d1
+#Get en base al uuid de la persona
+GET {{host}}case/viewcase/8e5a821d-973c-420e-9b83-14ccfa631da0
 Content-Type: application/json
 
 ###
-GET http://localhost:3000/stage/allstages
+#GET a todos los estados que puede tener una tabla
+GET {{host}}stage/allstages
 Content-Type: application/json
 
 ###
-GET http://localhost:3000/personuser
+# Get a todos los campos de la tabla personuser
+GET {{host}}personuser
 Content-Type: application/json
 
 ###
-GET http://localhost:3000/personpatient
+#GET a todos los campos de la tabla personpatient 
+GET {{host}}personpatient
 Content-Type: application/json
