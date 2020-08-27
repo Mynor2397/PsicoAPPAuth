@@ -1,22 +1,24 @@
 const { validationResult } = require('express-validator');
 const PersonService = require('../services/person_service')
 const http = require('../lib/utils/status.response')
-const { deleteFromStorage } = require('../services/documents_service')
+const { deleteFromS3 } = require('../middlewares/uploadfile')
 const Person = require('../models/person.model')
 const respondError = require('./respond')
 
 const handPerson = {}
 
 handPerson.create = async (req, res) => {
+
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        deleteFromStorage(req.filename)
+        deleteFromS3(req.filename)
         return res.status(http.StatusBadRequest).json({ errors: errors.array() });
     }
 
     let DataPerson = new Person()
     DataPerson = req.body;
-
+    DataPerson.attachment = req.filename
+    
     try {
         let ress = await PersonService.create(DataPerson)
         return res
@@ -28,7 +30,7 @@ handPerson.create = async (req, res) => {
             })
 
     } catch (error) {
-        deleteFromStorage(req.filename)
+        deleteFromS3(req.filename)
         if (error == errors.ErrDuplicateRegistry) {
             return res
                 .status(http.StatusConflict)

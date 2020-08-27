@@ -1,10 +1,4 @@
-const uuid = require('uuid')
 const StoreCase = require('../storage/case_storage')
-const Case = require('../models/ncase.model')
-
-const nId = require('../lib/utils/uuid_psa')
-const { prototype } = require('../models/case.model')
-
 const CaseService = {}
 
 

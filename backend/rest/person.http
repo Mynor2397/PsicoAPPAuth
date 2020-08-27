@@ -36,3 +36,51 @@ Content-Type: application/json
 
 ###
 DELETE {{host}}/2020-PSA24-00002
+
+###
+POST {{host}}/create
+Content-Type: application/json
+
+{
+
+    "firstName":"",
+    "secondName":"Aroldo",
+    "lastName":"Castrillo",
+    "secondLastName":"Maldonado",
+    "marriedName":"",
+    "bornDate":"1997-11-23",
+    "mobilePhone":"45720194",
+    "email":"marold97@outlook.com",
+    "uuidReligion":"001",
+
+    "firstNameFather":"",
+    "secondNameFather":"",
+    "lastNameFather":"",
+    "secondLastNameFather":"",
+    "firstNameMother":"",
+    "secondNameMother":"",
+    "lastNameMother":"",
+    "secondLastNameMother":"",
+    "firstNameExtra":"",
+    "secondNameExtra":"",
+    "lastNameExtra":"",
+    "secondLastNameExtra":"",
+
+    "uuidAddress":"Jalapa",
+    "uuidCity":"001",
+    "addressLine1":"",
+    "addressLine2":"",
+    "phoneNumber":"36079850",
+
+    "dateEvent":"2000-2-2",
+    "comment":"Ninguno al respecto",
+    "attachment":"image.png"
+}
+
+###
+call psicoapp.registerperson('0902', '2020-PSA-032', 'Danny', 'Rubilio', 'Castrillo', 
+'Maldonado', '', '200-01-12', 'f773d0e2-6f64-4957-8ad4-179455994849', '2020-08-26',
+ '45720194', 'marold@outlook.com', 'Miguel', 'Angel', 'Castrillo', 'López', 'Ana', 
+ 'Obdulia', 'Maldonado', 'Crúz', '', '', '', '', '001', '909', '2020-08-26', 
+ 'Ninguno al respecto',
+ 'http://image.jpg', '0014', '001', 'Jalapa, Jalapa', '', '23456789');

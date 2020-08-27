@@ -1,5 +1,4 @@
 const pool = require('../lib/database/database');
-const Case = require('../models/case.model');
 
 const storageCase = {}
 

@@ -1,3 +1,6 @@
+const Attendant = require('./attendant.model')
+const Address = require('./address.model')
+const HistoryPerson = require('./history.model')
 /**
  * Represent a model of the Person.
  * 
@@ -16,10 +19,10 @@
  * @param {string} commentary string
  */
 
-class Person {
+class Person extends Attendant {
 
     constructor(
-        uuid,
+        uuidPerson,
         id,
         firstName,
         secondName,
@@ -31,9 +34,11 @@ class Person {
         dateNameUpdated,
         mobilePhone,
         email,
-        commentary
+        uuidReligion,
+        active
     ) {
-        this.uuid = uuid
+        super();
+        this.uuid = uuidPerson
         this.id = id
         this.firstName = firstName
         this.secondName = secondName
@@ -45,8 +50,12 @@ class Person {
         this.dateNameUpdated = dateNameUpdated
         this.mobilePhone = mobilePhone
         this.email = email
-        this.commentary = commentary
+
+
+        this.uuidReligion = uuidReligion
+        this.active = active
     }
 }
+
 
 module.exports = Person;
