@@ -3,7 +3,6 @@ const StoreCase = require('../storage/case_storage')
 const Case = require('../models/ncase.model')
 const nId = require('../lib/utils/uuid_psa')
 const storageCase = require('../storage/case_storage')
-const { prototype } = require('../models/case.model')
 
 const CaseService = {}
 
@@ -28,9 +27,7 @@ CaseService.update = async (id, dataUpd) => {
     update_data = dataUpd
 
     update_data.uuid = id
-
-
-    console.log(update_data);
+    
     return await storageCase.update(update_data)
 }
 
@@ -53,7 +50,7 @@ CaseService.getpersonuser = async (getPersonU) =>{
 CaseService.getpersonpatient = async (getPersonP) => {
     return await storageCase.getpersonpatient(getPersonP)
 }
-module.exports = CaseService
+
 CaseService.filter = async (FilterCase)=>{
     let CaseFilter = FilterCase
     

@@ -2,11 +2,11 @@ POST http://localhost:3000/case/create
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "",
+    "uuidAssignedUser": "adfjkghad",
     "uuidOwnerUser" : "adfjkghad",
     "uuidPersonPatient": "adfjkghad",
     "uuidStage": "stage1",
-    "reasonForConsultation": ""
+    "reasonForConsultation": "preuba"
 }
 
 ###

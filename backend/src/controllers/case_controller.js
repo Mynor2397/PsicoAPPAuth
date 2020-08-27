@@ -1,19 +1,17 @@
 const { validationResult } = require('express-validator');
 const CaseService = require('../services/case_service')
-const errors = require('../lib/utils/database.errors')
+// const errors = require('../lib/utils/database.errors')
 const http = require('../lib/utils/status.response')
-const Case = require('../models/ncase.model')
-const RespondError = require('./respond');
-const { response } = require('express');
+// const { response } = require('express');
 const respondError = require('./respond');
 
 
 const handCase = {}
 
 handCase.create = async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(http.StatusBadRequest).json({ errors: errors.array() });
+    const NewCase = validationResult(req)
+    if (!NewCase.isEmpty()) {
+        return res.status(http.StatusBadRequest).json({ errors: NewCase.array() });
     }
 
     try {
@@ -32,9 +30,9 @@ handCase.create = async (req, res) => {
 }
 
 handCase.update = async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(http.StatusBadRequest).json({ errors: errors.array() });
+    const UpdateCase = validationResult(req)
+    if (!UpdateCase.isEmpty()) {
+        return res.status(http.StatusBadRequest).json({ errors: UpdateCase.array() });
     }
 
     try {
@@ -108,7 +106,6 @@ handCase.getstage = async (req, res) => {
                 data: result
             })
     } catch (error) {
-        console.log(error);
         return res
             .status(http.StatusInternalServerError)
             .json({
@@ -127,7 +124,6 @@ handCase.getpersonuser = async (req, res) => {
                 data: result
             })
     } catch (error) {
-        console.log(error);
         return res
             .status(http.StatusInternalServerError)
             .json({
@@ -146,7 +142,6 @@ handCase.getpersonpatient = async (req, res) => {
                 data: result
             })
     } catch (error) {
-        console.log(error);
         return res
             .status(http.StatusInternalServerError)
             .json({

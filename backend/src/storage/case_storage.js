@@ -77,7 +77,7 @@ storageCase.get = async (getCase) => {
                 if (err) {
                     reject(err)
                 }
-                console.log(results);
+                resolve(results);
             })
     })
 }
@@ -108,7 +108,7 @@ storageCase.getstage = async (getStage) => {
                 if (err) {
                     reject(err)
                 }
-                console.log(results);
+                resolve(results);
             })
     })
 }
@@ -122,7 +122,7 @@ storageCase.getpersonuser = async (getpersonuser) => {
                 if (err) {
                     reject(err)
                 }
-                console.log(results);
+                resolve(results);
             })
     })
 }
@@ -136,7 +136,7 @@ storageCase.getpersonpatient = async (getpersonuser) => {
                 if (err) {
                     reject(err)
                 }
-                console.log(results);
+                resolve(results);
             })
     })
 }
