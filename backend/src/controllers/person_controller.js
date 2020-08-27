@@ -3,16 +3,17 @@ const PersonService = require('../services/person_service')
 const http = require('../lib/utils/status.response')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const Person = require('../models/person.model')
-const respondError = require('./respond')
+const respondError = require('./respond');
+const errors = require('../lib/utils/database.errors');
 
 const handPerson = {}
 
 handPerson.create = async (req, res) => {
 
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
+    const errorsrex = validationResult(req)
+    if (!errorsrex.isEmpty()) {
         deleteFromS3(req.filename)
-        return res.status(http.StatusBadRequest).json({ errors: errors.array() });
+        return res.status(http.StatusBadRequest).json({ errorsrex: errorsrex.array() });
     }
 
     let DataPerson = new Person()
@@ -40,6 +41,14 @@ handPerson.create = async (req, res) => {
                 })
         }
 
+        if (error == errors.ErrForeignKeyViolation){
+            return res
+            .status(http.StatusBadRequest)
+            .json({
+                ok: false,
+                message: 'El registro asociado no existe!'
+            })
+        }
 
         respondError(res, error)
         return

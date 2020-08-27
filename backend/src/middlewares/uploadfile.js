@@ -17,10 +17,7 @@ s3.uploadFileS3 = multer({
         s3: S3,
         bucket: 'documentspsicoapp',
         key: function (req, file, cb) {
-            if (file) {
-                console.log(file);
-                cb(null, uuid.v4() + path.extname(file.originalname))
-            }
+            cb(null, uuid.v4() + path.extname(file.originalname))
         }
     })
 })
@@ -35,15 +32,19 @@ s3.deleteFromS3 = (fileName) => {
         };
         console.log(params);
         S3.deleteObject(params, (err, data) => {
-            if (err) console.log('Puto: ', err, err.stack);
+            if (err) console.log(err, err.stack);
             else console.log('delete', data);
         })
     }
 }
 
 s3.uploadFile = (req, res, next) => {
-    req.filename = req.file.key
-    next()
+    if (req.file === undefined || req.file === '') {
+        next()
+    } else {
+        req.filename = req.file.key
+        next()
+    }
 }
 
 module.exports = s3

@@ -16,7 +16,6 @@ PersonService.create = async (DataPatient) => {
     person.dateEvent = new Date()
     person.uuidAddress = uuid.v4()
 
-    return person;
     return await StorePerson.create(person)
 }
 
