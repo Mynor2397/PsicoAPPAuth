@@ -16,26 +16,16 @@ Content-Type: application/json
 }
 
 ###
-GET {{host}}/2020-PSA25-00001
+GET {{host}}/2020-PAS27-00017
 Content-Type: application/json
 
 ###
 PUT {{host}}/2020-PSA25-00001
 Content-Type: application/json
 
-{
-    "firstName":"mike",
-    "secondName":"marold",
-    "lastName":"castrillo",
-    "secondLastName":"maldonado",
-    "marriedName":"Mike",
-    "bornDate":"1997-11-23",
-    "mobilePhone":"231232345",
-    "email":"marold97@hotlook.com"
-}
 
 ###
-DELETE {{host}}/2020-PSA24-00002
+DELETE {{host}}/2020-PAS27-00017
 
 ###
 POST {{host}}/create
@@ -43,12 +33,12 @@ Content-Type: application/json
 
 {
 
-    "firstName":"", --NOT NULL
+    "firstName":"mike",
     "secondName":"Aroldo",
-    "lastName":"Castrillo", --NOT NULL
+    "lastName":"Castrillo",
     "secondLastName":"Maldonado",
     "marriedName":"",
-    "bornDate":"1997-11-23", --NOT NULL
+    "bornDate":"1997-11-23",
     "mobilePhone":"45720194",
     "email":"marold97@outlook.com",
     "uuidReligion":"001",
@@ -66,20 +56,12 @@ Content-Type: application/json
     "lastNameExtra":"",
     "secondLastNameExtra":"",
 
-    "uuidAddress":"Jalapa", --NOT NULL
-    "uuidCity":"001", --NOT NULL
-    "addressLine1":"", --NOT NULL
+    "uuidAddress":"Jalapa", 
+    "uuidCity":"001",
+    "addressLine1":"Jalapa, Jalapa", 
     "addressLine2":"",
-    "phoneNumber":"36079850",--NOT NULL
+    "phoneNumber":"36079850",
 
     "comment":"Ninguno al respecto",
     "attachment":"image.png"
 }
-
-###
-call psicoapp.registerperson('0902', '2020-PSA-032', 'Danny', 'Rubilio', 'Castrillo', 
-'Maldonado', '', '200-01-12', 'f773d0e2-6f64-4957-8ad4-179455994849', '2020-08-26',
- '45720194', 'marold@outlook.com', 'Miguel', 'Angel', 'Castrillo', 'López', 'Ana', 
- 'Obdulia', 'Maldonado', 'Crúz', '', '', '', '', '001', '909', '2020-08-26', 
- 'Ninguno al respecto',
- 'http://image.jpg', '0014', '001', 'Jalapa, Jalapa', '', '23456789');

@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const cleanDeep = require('clean-deep');
 const pool = require('../lib/database/database');
 const Person = require('../models/person.model');
 
@@ -32,8 +33,9 @@ storagePerson.create = (dataPatient) => {
 }
 
 storagePerson.get = async (uuid) => {
+    let person = new Person()
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAS_Person WHERE id = ?;', [uuid], (err, results, fields) => {
+        pool.query('SELECT * FROM getperson WHERE id = ? and active = 1;', [uuid], (err, results, fields) => {
             if (err) {
                 reject(err)
             }
@@ -42,7 +44,8 @@ storagePerson.get = async (uuid) => {
                 reject(404)
             }
 
-            resolve(results)
+            console.log(results);
+            resolve(cleanDeep(results[0]))
         })
     })
 }

@@ -1,10 +1,10 @@
 const { validationResult } = require('express-validator');
 const PersonService = require('../services/person_service')
+const errors = require('../lib/utils/database.errors');
 const http = require('../lib/utils/status.response')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const Person = require('../models/person.model')
 const respondError = require('./respond');
-const errors = require('../lib/utils/database.errors');
 
 const handPerson = {}
 
@@ -19,7 +19,7 @@ handPerson.create = async (req, res) => {
     let DataPerson = new Person()
     DataPerson = req.body;
     DataPerson.attachment = req.filename
-    
+
     try {
         let ress = await PersonService.create(DataPerson)
         return res
@@ -41,13 +41,13 @@ handPerson.create = async (req, res) => {
                 })
         }
 
-        if (error == errors.ErrForeignKeyViolation){
+        if (error == errors.ErrForeignKeyViolation) {
             return res
-            .status(http.StatusBadRequest)
-            .json({
-                ok: false,
-                message: 'El registro asociado no existe!'
-            })
+                .status(http.StatusBadRequest)
+                .json({
+                    ok: false,
+                    message: 'El registro asociado no existe!'
+                })
         }
 
         respondError(res, error)
@@ -64,7 +64,7 @@ handPerson.read = async (req, res) => {
             .status(http.StatusOK)
             .json({
                 ok: true,
-                data: result[0]
+                data: result
             })
 
     } catch (error) {

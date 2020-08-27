@@ -5,7 +5,8 @@ rex.rexPerson = [
     body('lastName').not().isEmpty().trim().escape(),
     body('bornDate').not().isEmpty().trim().escape(),
     body('mobilePhone').isLength({ max: 15 }),
-    body('email').isEmail().normalizeEmail()
+    body('email').isEmail().normalizeEmail(),
+    body('addressLine1').not().isEmpty().trim().escape()
 ]
 
 module.exports = rex;
