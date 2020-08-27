@@ -75,7 +75,7 @@ handCase.getid = async (req, res) => {
             .status(http.StatusOK)
             .json({
                 ok: true,
-                data: result[0]
+                data: result
             })
 
     } catch (error) {
