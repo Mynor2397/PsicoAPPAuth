@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(routes)
 app.use(require('./routes/case.route'))
+app.use(require('./routes/ncase.route'))
 
 //Starting the server
 app.listen(app.get('port'), () => {
