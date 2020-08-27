@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../lib/database/database');
-// const Case = require('../models/case.model');
 const Cases = require('../models/ncase.model');
 const Stage = require('../models/stage.model');
 const PersonU = require('../models/personuser.model');
