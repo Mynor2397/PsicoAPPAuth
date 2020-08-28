@@ -6,16 +6,16 @@
  * @param {string} token text 
  */
 
- class PersonU {
-     constructor(
-         uuid,
-         userName,
-         token
-     ){
-         this.uuid = uuid,
-         this.userName = userName,
-         this.token = token
-     }
- }
+class PersonU {
+    constructor(
+        uuid,
+        userName,
+        token
+    ) {
+        this.uuid = uuid
+        this.userName = userName
+        this.token = token
+    }
+}
 
- module.exports = PersonU
+module.exports = PersonU
