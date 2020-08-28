@@ -89,9 +89,10 @@ handPerson.update = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(http.StatusBadRequest).json({ errors: errors.array() });
     }
-
+    console.log(req.params.id);
     let person = new Person();
     person = req.body;
+    // console.log(person)
     try {
         let results = await PersonService.update(req.params.id, person)
         return res
@@ -172,6 +173,35 @@ handPerson.allPersons = async (req, res) => {
         return
     }
 }
+
+handPerson.personwithfulldata = async (req, res) => {
+    
+    try {
+        let result = await PersonService.personwithfulldata(req.params.id)
+
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: result
+            })
+
+    } catch (error) {
+
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "No hay registros!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
 
 handPerson.religion = async (req, res) => {
     try {

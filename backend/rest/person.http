@@ -8,48 +8,84 @@ Content-Type: application/json
 
 {
 
-    "firstName":"mike",
-    "secondName":"Aroldo",
-    "lastName":"Castrillo",
-    "secondLastName":"Maldonado",
-    "marriedName":"",
-    "bornDate":"1997-11-23",
-    "mobilePhone":"45720194",
-    "email":"marold97@outlook.com",
-    "uuidReligion":"001",
+  "firstName":"firstname",
+  "secondName":"secondname",
+  "lastName":"Castrillo",
+  "secondLastName":"Maldonado",
+  "marriedName":"marriedname",
+  "bornDate":"1997-11-23",
+  "mobilePhone":"45720194",
+  "email":"marold97@outlook.com",
+  "uuidReligion":"",
 
-    "firstNameFather":"",
-    "secondNameFather":"",
-    "lastNameFather":"",
-    "secondLastNameFather":"",
-    "firstNameMother":"",
-    "secondNameMother":"",
-    "lastNameMother":"",
-    "secondLastNameMother":"",
-    "firstNameExtra":"",
-    "secondNameExtra":"",
-    "lastNameExtra":"",
-    "secondLastNameExtra":"",
+  "firstNameFather":"firstNameFather",
+  "secondNameFather":"secondNameFather",
+  "lastNameFather":"lastNameFather",
+  "secondLastNameFather":"secondLastNameFather",
+  "firstNameMother":"firstNameMother",
+  "secondNameMother":"secondNameMother",
+  "lastNameMother":"lastNameMother",
+  "secondLastNameMother":"secondLastNameMother",
+  "firstNameExtra":"firstNameExtra",
+  "secondNameExtra":"secondNameExtra",
+  "lastNameExtra":"lastNameExtra",
+  "secondLastNameExtra":"secondLastNameExtra",
 
-    "uuidCity":"001", 
-    "addressLine1":"Bo, Jalapa", 
-    "addressLine2":"",
-    "phoneNumber":"36079850",
+  "uuidCity":"001", 
+  "addressLine1":"Bo, Jalapa", 
+  "addressLine2":"addressLine2",
+  "phoneNumber":"36079850",
 
-    "comment":"Ninguno al respecto",
-    "attachment":"image.png"
+  "comment":"Otro al respecto",
+  "attachment":"image.png"
 }
 
 
 ###
 # Obtiene un registro por id
-GET {{host}}/2020-PAS27-00019
+GET {{host}}/2020-PAS28-00028
 Content-Type: application/json
 
 ###
+# Esta retorna el full data para poder actualizar el registro
+GET http://localhost:3000/getonly/2020-PAS28-00028
+
+###
 # Actualiza campos de registros
-PUT {{host}}/2020-PAS27-00007
+PUT http://localhost:3000/personupd/2020-PAS28-00028
 Content-Type: application/json
+
+{
+  "uuidPerson": "832d9aa5-6055-4e1c-ae3f-4d62b183dc01",
+  "firstName": "mike el mas pro",
+  "lastName": "Castrillo",
+  "secondLastName": "Maldonado",
+  "marriedName": "",
+  "bornDate": "1997-11-23T06:00:00.000Z",
+  "uuidRole": "f773d0e2-6f64-4957-8ad4-179455994849",
+  "mobilePhone": "45720194",
+  "email": "marold97@outlook.com",
+  "uuidReligion":"",
+  "firstNameFather": "",
+  "secondNameFather": "",
+  "lastNameFather": "",
+  "secondLastNameFather": "",
+  "firstNameMother": "",
+  "secondNameMother": "",
+  "lastNameMother": "",
+  "secondLastNameMother": "",
+  "firstNameExtra": "",
+  "secondNameExtra": "",
+  "lastNameExtra": "",
+  "secondLastNameExtra": "",
+  "attachment": "image.jpg",
+  "comment": "Ninguno al respecto",
+  "uuidCity": "001",
+  "addressLine1": "Bo, Jalapa",
+  "addressLine2": "",
+  "phoneNumber": "4534345",
+  "active": 1
+}
 
 
 ###

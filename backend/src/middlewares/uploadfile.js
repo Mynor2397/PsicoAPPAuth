@@ -47,4 +47,14 @@ s3.uploadFile = (req, res, next) => {
     }
 }
 
+const call = async () => {
+    var params = { Bucket: 'documentspsicoapp', Key: '48d0f7cb-5eff-4b18-a21d-647034c17336.png' };
+    var url = S3.getSignedUrl('getObject', params);
+    console.log('The URL is', url);
+}
+
+const call2 = async () => {
+    await call()
+}
+// call2()
 module.exports = s3

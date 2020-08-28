@@ -10,6 +10,10 @@ const storagePerson = {}
 storagePerson.create = (dataPatient) => {
     let person = new Person()
     person = dataPatient;
+
+    if (person.uuidReligion == '' || person.uuidReligion == undefined) {
+        person.uuidReligion = null
+    }
     return new Promise((resolve, reject) => {
         pool.query('CALL registerperson (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
             [person.uuidPerson, person.id, person.firstName, person.secondName, person.lastName,
@@ -48,25 +52,27 @@ storagePerson.get = async (uuid) => {
     })
 }
 
-storagePerson.update = async (id, data) => {
+storagePerson.update = async (data) => {
     let person = new Person()
     person = data
 
+    if (person.uuidReligion == '' || person.uuidReligion == undefined) {
+        person.uuidReligion = null
+    }
     return new Promise((resolve, reject) => {
-        pool.query(`UPDATE PAS_Person SET firstname = ?, secondname = ?, 
-            lastname = ?, secondlastname = ?, marriedname = ?, borndate = ?, 
-            datenameupdated = ?, mobilephone = ?, email = ? WHERE id = ?;`,
-            [person.firstName, person.secondName, person.lastName,
-            person.secondLastName, person.marriedName, person.bornDate,
-            person.dateNameUpdated, person.mobilePhone, person.email, id], (err, results, fields) => {
+        pool.query(`CALL updateperson(?,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,? ,?,?)`,
+            [person.uuidPerson, person.id, person.firstName, person.secondName, person.lastName,
+            person.secondLastName, person.marriedName, person.bornDate, person.uuidRole, person.dateNameUpdated,
+            person.mobilePhone, person.email, person.uuidReligion, person.firstNameFather, person.secondNameFather,
+            person.lastNameFather, person.secondLastNameFather, person.firstNameMother, person.secondNameMother,
+            person.lastNameMother, person.secondLastNameMother, person.firstNameExtra, person.secondNameExtra,
+            person.lastNameExtra, person.secondLastNameExtra, person.dateEvent, person.comment, person.attachment,
+            person.uuidCity, person.addressLine1, person.addressLine2, person.phoneNumber], (err, results, fields) => {
                 if (err) {
+                    console.log(err);
                     reject(err)
                 }
-                console.log(results);
-                if (results.changedRows == 0) {
-                    reject(404)
-                }
-                resolve(id)
+                resolve(person.id)
             })
     })
 }
@@ -94,7 +100,22 @@ storagePerson.allPersons = () => {
             if (err) {
                 reject(err)
             }
-            console.log(results);
+            if (results == undefined || results.length == 0) {
+                reject(404)
+            }
+
+            resolve(cleanDeep(results))
+        })
+    })
+}
+
+storagePerson.onlywithfulldata = async (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM fulldataperson where id = ? and active = 1;', [id], (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+            
             if (results == undefined || results.length == 0) {
                 reject(404)
             }
