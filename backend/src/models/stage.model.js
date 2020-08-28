@@ -11,9 +11,9 @@ class Stage {
         uuid,
         name,
         r_description
-    ){
-        this.uuid = uuid,
-        this.name = name,
+    ) {
+        this.uuid = uuid
+        this.name = name
         this.r_description = r_description
     }
 }

@@ -1,10 +1,10 @@
 const { validationResult } = require('express-validator');
 const PersonService = require('../services/person_service')
+const errors = require('../lib/utils/database.errors');
 const http = require('../lib/utils/status.response')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const Person = require('../models/person.model')
 const respondError = require('./respond');
-const errors = require('../lib/utils/database.errors');
 
 const handPerson = {}
 
@@ -19,7 +19,7 @@ handPerson.create = async (req, res) => {
     let DataPerson = new Person()
     DataPerson = req.body;
     DataPerson.attachment = req.filename
-    
+
     try {
         let ress = await PersonService.create(DataPerson)
         return res
@@ -41,13 +41,13 @@ handPerson.create = async (req, res) => {
                 })
         }
 
-        if (error == errors.ErrForeignKeyViolation){
+        if (error == errors.ErrForeignKeyViolation) {
             return res
-            .status(http.StatusBadRequest)
-            .json({
-                ok: false,
-                message: 'El registro asociado no existe!'
-            })
+                .status(http.StatusBadRequest)
+                .json({
+                    ok: false,
+                    message: 'El registro asociado no existe!'
+                })
         }
 
         respondError(res, error)
@@ -64,7 +64,7 @@ handPerson.read = async (req, res) => {
             .status(http.StatusOK)
             .json({
                 ok: true,
-                data: result[0]
+                data: result
             })
 
     } catch (error) {
@@ -131,12 +131,13 @@ handPerson.deletePerson = async (req, res) => {
 
     } catch (error) {
 
-        if (error == http.StatusNotFound) {
+        if (error == http.StatusConflict) {
             return res
-                .status(http.StatusNotFound)
+                .status(http.StatusConflict)
                 .json({
                     ok: false,
-                    message: "El registro no ha sido encontrado!"
+                    message: "El registro no puede ser borrado!",
+                    reason: "Casos asociados a este registro"
                 })
         }
 
@@ -145,4 +146,79 @@ handPerson.deletePerson = async (req, res) => {
     }
 }
 
+handPerson.allPersons = async (req, res) => {
+    try {
+        let result = await PersonService.allPersons()
+
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: result
+            })
+
+    } catch (error) {
+
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "No hay registros!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
+handPerson.religion = async (req, res) => {
+    try {
+        let results = await PersonService.religion()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningún registro encontrado!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
+
+handPerson.cities = async (req, res) => {
+    try {
+        let results = await PersonService.cities()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningún registro encontrado!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
 module.exports = handPerson;
