@@ -5,6 +5,7 @@ const http = require('../lib/utils/status.response')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const Person = require('../models/person.model')
 const respondError = require('./respond');
+const s3 = require('../middlewares/uploadfile');
 
 const handPerson = {}
 
@@ -85,22 +86,32 @@ handPerson.read = async (req, res) => {
 }
 
 handPerson.update = async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(http.StatusBadRequest).json({ errors: errors.array() });
+    const errorsrex = validationResult(req)
+    if (!errorsrex.isEmpty()) {
+        deleteFromS3(req.filename)
+        return res.status(http.StatusBadRequest).json({ errorsrex: errorsrex.array() });
     }
-    console.log(req.params.id);
+
     let person = new Person();
     person = req.body;
-    // console.log(person)
+
+    if (req.filename && person.changeFile) {
+        person.attachment = req.filename
+        person.changeFile = person.changeFile
+    } else {
+        person.attachment = person.changeFile
+        person.changeFile = undefined
+    }
+
     try {
         let results = await PersonService.update(req.params.id, person)
+        deleteFromS3(results.fileToDelete)
         return res
             .status(http.StatusOK)
             .json({
                 ok: true,
                 message: "El registro ha sido actualizado correctamente",
-                id: results
+                id: results.id
             })
 
     } catch (error) {
@@ -175,7 +186,7 @@ handPerson.allPersons = async (req, res) => {
 }
 
 handPerson.personwithfulldata = async (req, res) => {
-    
+
     try {
         let result = await PersonService.personwithfulldata(req.params.id)
 
@@ -251,4 +262,24 @@ handPerson.cities = async (req, res) => {
         return
     }
 }
+
+handPerson.downloadnAttachmen = async (req, res) => {
+    if (req.params.filename) {
+        let URL = await s3.getFile(req.params.filename)
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                url: URL
+            })
+    }
+
+    return res
+        .status(http.StatusBadRequest)
+        .json({
+            ok: false,
+            message: 'El nombre de archivo no fue proporcionado o no existe'
+        })
+}
+
 module.exports = handPerson;

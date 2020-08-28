@@ -1,4 +1,4 @@
-@host = http://localhost:3000/person
+@host = http://localhost:4000/person
 
 ###
 # Para crear un registro de person
@@ -7,7 +7,6 @@ POST {{host}}/create
 Content-Type: application/json
 
 {
-
   "firstName":"firstname",
   "secondName":"secondname",
   "lastName":"Castrillo",
@@ -15,8 +14,8 @@ Content-Type: application/json
   "marriedName":"marriedname",
   "bornDate":"1997-11-23",
   "mobilePhone":"45720194",
-  "email":"marold97@outlook.com",
-  "uuidReligion":"",
+  "email":"",
+  "uuidReligion":"", ## es opcional
 
   "firstNameFather":"firstNameFather",
   "secondNameFather":"secondNameFather",
@@ -37,22 +36,23 @@ Content-Type: application/json
   "phoneNumber":"36079850",
 
   "comment":"Otro al respecto",
-  "attachment":"image.png"
+  "attachment":"image.png" ## debe contener archivos multimedia, es opcional
 }
 
 
 ###
-# Obtiene un registro por id
+# Obtiene un registro por id con información necesaria para visualizar
 GET {{host}}/2020-PAS28-00028
 Content-Type: application/json
 
 ###
-# Esta retorna el full data para poder actualizar el registro
-GET http://localhost:3000/getonly/2020-PAS28-00028
+# Esta retorna un registro con full data para poder actualizar el registro
+GET http://localhost:4000/getonly/2020-PAS28-00028
 
 ###
 # Actualiza campos de registros
-PUT http://localhost:3000/personupd/2020-PAS28-00028
+# 
+PUT http://localhost:4000/personupd/2020-PAS28-00028
 Content-Type: application/json
 
 {
@@ -78,13 +78,16 @@ Content-Type: application/json
   "secondNameExtra": "",
   "lastNameExtra": "",
   "secondLastNameExtra": "",
-  "attachment": "image.jpg",
+  "attachment": "image.jpg", ## debe contener un archivo multimedia, es opcional
   "comment": "Ninguno al respecto",
   "uuidCity": "001",
   "addressLine1": "Bo, Jalapa",
   "addressLine2": "",
   "phoneNumber": "4534345",
-  "active": 1
+  "active": 1,
+  "changeFile":"c034d1ca-3a76-4eee-a2d8-b404e7c832c4.sql" ## Esta propieddad siempre debe ir en la peticion
+                                                          ## Debe contener el nombre del archivo renderizado
+                                                          ## que devolvió en la consulta por registro   
 }
 
 
@@ -95,17 +98,17 @@ DELETE {{host}}/2020-PAS27-00018
 
 ###
 # Retorna registros 
-GET http://localhost:3000/persons/all
+GET http://localhost:4000/persons/all
 Content-Type: application/json
 
 ###
 # Retorna todas las religiones para que puedan cargarla en 
 # algun elemento para su posterior selección
-GET http://localhost:3000/religion/all
+GET http://localhost:4000/religion/all
 Content-Type: application/json
 
 ###
 # Retorna todas las ciudades para que puedan cargarla en 
 # algun elemento para su posterior selección
-GET http://localhost:3000/city/all
+GET http://localhost:4000/city/all
 Content-Type: application/json
