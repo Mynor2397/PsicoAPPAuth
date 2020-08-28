@@ -161,4 +161,68 @@ VALUES
 COMMIT;
 
 END $ ----------
-CALL registerperson()
+
+
+
+-- VIEW GETPERSON BY ID
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`%` 
+    SQL SECURITY DEFINER
+VIEW `getperson` AS
+    SELECT 
+        `pe`.`id` AS `id`,
+        `pe`.`firstName` AS `firstName`,
+        `pe`.`lastName` AS `lastName`,
+        `pe`.`mobilePhone` AS `mobilePhone`,
+        `pe`.`email` AS `email`,
+        `adr`.`addressLine1` AS `addressLine1`,
+        `ph`.`attachment` AS `attachment`,
+        `ph`.`comment` AS `comment`,
+        `pe`.`active` AS `active`
+    FROM
+        ((`PAS_Person` `pe`
+        JOIN `PAA_Address` `adr` ON ((`pe`.`uuid` = `adr`.`uuidPerson`)))
+        JOIN `PAS_PersonHistory` `ph` ON ((`pe`.`uuid` = `ph`.`uuidPerson`)))
+
+-- QUERY PARA SABER QUIENES TIENEN CASOS ASIGNADOS
+SELECT COUNT(pc.uuidPersonPatient), pc.uuidPersonPatient, p.firstname, p.secondName, p.lastName, p.secondLastName FROM PAC_Case pc
+INNER JOIN PAS_PersonPatient pp ON pp.uuid = pc.uuidPersonPatient
+INNER JOIN PAS_Person p ON pc.uuidPersonPatient = p.uuid
+WHERE p.uuid = 'uuid1'
+
+-- STORE PROCEDURE PARA PONER EN ESTADO DESACTIVADO EL PACIENTE
+DROP PROCEDURE changestateperson;
+delimiter $
+CREATE PROCEDURE `changestateperson` (
+    IN _id VARCHAR(20)
+)
+BEGIN
+    DECLARE _count INT;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+ BEGIN
+  SHOW ERRORS LIMIT 1;
+ ROLLBACK;
+ END;
+ DECLARE EXIT HANDLER FOR SQLWARNING
+ BEGIN
+ SHOW WARNINGS LIMIT 1;
+ ROLLBACK;
+ END;
+START TRANSACTION;
+    SELECT
+        COUNT(pc.uuidPersonPatient) AS COUNT INTO _count
+    FROM
+        PAC_Case pc
+        INNER JOIN PAS_PersonPatient pp ON pp.uuid = pc.uuidPersonPatient
+        INNER JOIN PAS_Person p ON pc.uuidPersonPatient = p.uuid
+    WHERE id = _id;
+
+    IF _count = 0 THEN
+        UPDATE PAS_Person SET active = 0 WHERE id = _id;
+        SELECT '200' AS ErrorCode;
+    ELSE
+		SELECT '409' AS ErrorCode;
+	END IF;
+COMMIT;
+END $

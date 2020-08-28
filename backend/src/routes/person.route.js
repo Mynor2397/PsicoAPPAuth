@@ -1,12 +1,16 @@
 const router = require('express').Router()
 const { rexPerson } = require('../lib/utils/rex')
-const {uploadFileS3, uploadFile} = require('../middlewares/uploadfile')
-const { create, read, update, deletePerson } = require('../controllers/person_controller')
+const { uploadFileS3, uploadFile } = require('../middlewares/uploadfile')
+const pController = require('../controllers/person_controller')
 
-router.post('/person/create', uploadFileS3.single('attachment'), uploadFile, rexPerson, create)
-router.get('/person/:uuid', read)
-router.put('/person/:id', rexPerson, update)
-router.delete('/person/:id', deletePerson)
+router.post('/person/create', uploadFileS3.single('attachment'), uploadFile, rexPerson, pController.create)
+router.get('/person/:uuid', pController.read)
+router.put('/person/:id', rexPerson, pController.update)
+router.delete('/person/:id', pController.deletePerson)
+router.get('/persons/all', pController.allPersons)
+
+router.get('/religion/all', pController.religion)
+router.get('/city/all', pController.cities)
 
 module.exports = router;
 

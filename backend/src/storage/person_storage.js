@@ -10,20 +10,20 @@ const storagePerson = {}
 storagePerson.create = (dataPatient) => {
     let person = new Person()
     person = dataPatient;
-
     return new Promise((resolve, reject) => {
-        pool.query('CALL registerperson (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+        pool.query('CALL registerperson (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
             [person.uuidPerson, person.id, person.firstName, person.secondName, person.lastName,
             person.secondLastName, person.marriedName, person.bornDate, person.uuidRole, person.dateNameUpdated,
-            person.mobilePhone, person.email, person.firstNameFather, person.secondNameFather,
-            person.lastNameFather, person.secondLastName, person.firstNameMother, person.secondNameMother,
+            person.mobilePhone, person.email, person.uuidReligion, person.firstNameFather, person.secondNameFather,
+            person.lastNameFather, person.secondLastNameFather, person.firstNameMother, person.secondNameMother,
             person.lastNameMother, person.secondLastNameMother, person.firstNameExtra, person.secondNameExtra,
-            person.lastNameExtra, person.secondLastNameExtra, person.uuidReligion, person.uuidPersonHistory,
+            person.lastNameExtra, person.secondLastNameExtra, person.uuidPersonHistory,
             person.dateEvent, person.comment, person.attachment, person.uuidAddress, person.uuidCity,
             person.addressLine1, person.addressLine2, person.phoneNumber], (err, results, fields) => {
                 if (err) {
                     reject(err.errno)
                 }
+                console.log(results)
                 if (results[0]) {
                     reject(results[0][0].Code);
                 }
@@ -33,7 +33,6 @@ storagePerson.create = (dataPatient) => {
 }
 
 storagePerson.get = async (uuid) => {
-    let person = new Person()
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM getperson WHERE id = ? and active = 1;', [uuid], (err, results, fields) => {
             if (err) {
@@ -44,7 +43,6 @@ storagePerson.get = async (uuid) => {
                 reject(404)
             }
 
-            console.log(results);
             resolve(cleanDeep(results[0]))
         })
     })
@@ -75,14 +73,64 @@ storagePerson.update = async (id, data) => {
 
 storagePerson.delete = async (id) => {
     return new Promise((resolve, reject) => {
-        pool.query('DELETE FROM PAS_Person WHERE id = ?;', [id], (err, results, fields) => {
+        pool.query('CALL changestateperson(?);', [id], (err, results, fields) => {
             if (err) {
                 reject(err)
             }
-            if (results.affectedRows == 0) {
+            if (results) {
+                if (results[0][0].ErrorCode == 200) {
+                    resolve(id)
+                } else {
+                    reject(results[0][0].ErrorCode)
+                }
+            }
+        })
+    })
+}
+
+storagePerson.allPersons = () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM getperson WHERE active = 1;', (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+            console.log(results);
+            if (results == undefined || results.length == 0) {
                 reject(404)
             }
-            resolve(id)
+
+            resolve(cleanDeep(results))
+        })
+    })
+}
+
+storagePerson.religion = async () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT uuid, name FROM PAS_Religion;', (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+            if (results == undefined || results.length == 0) {
+                reject(404)
+            }
+
+            resolve(results)
+        })
+    })
+}
+
+storagePerson.cities = async () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT uuid, name FROM PAA_City;', (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+
+            if (results == undefined || results.length == 0) {
+                reject(404)
+            }
+
+            resolve(results)
         })
     })
 }

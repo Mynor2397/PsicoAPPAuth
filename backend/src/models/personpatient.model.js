@@ -5,14 +5,14 @@
  * @param {string} patientNumber varchar(25) 
  */
 
- class PersonP {
-     constructor(
-         uuid,
-         patientNumber
-     ){
-         this.uuid = uuid,
-         this.patientNumber = patientNumber
-     }
- }
+class PersonP {
+    constructor(
+        uuid,
+        patientNumber
+    ) {
+        this.uuid = uuid
+        this.patientNumber = patientNumber
+    }
+}
 
- module.exports = PersonP;
+module.exports = PersonP;

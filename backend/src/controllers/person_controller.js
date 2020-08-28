@@ -131,12 +131,13 @@ handPerson.deletePerson = async (req, res) => {
 
     } catch (error) {
 
-        if (error == http.StatusNotFound) {
+        if (error == http.StatusConflict) {
             return res
-                .status(http.StatusNotFound)
+                .status(http.StatusConflict)
                 .json({
                     ok: false,
-                    message: "El registro no ha sido encontrado!"
+                    message: "El registro no puede ser borrado!",
+                    reason: "Casos asociados a este registro"
                 })
         }
 
@@ -145,4 +146,79 @@ handPerson.deletePerson = async (req, res) => {
     }
 }
 
+handPerson.allPersons = async (req, res) => {
+    try {
+        let result = await PersonService.allPersons()
+
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: result
+            })
+
+    } catch (error) {
+
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "No hay registros!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
+handPerson.religion = async (req, res) => {
+    try {
+        let results = await PersonService.religion()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningún registro encontrado!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
+
+handPerson.cities = async (req, res) => {
+    try {
+        let results = await PersonService.cities()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningún registro encontrado!"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
 module.exports = handPerson;

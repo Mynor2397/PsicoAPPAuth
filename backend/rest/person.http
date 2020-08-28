@@ -1,33 +1,8 @@
 @host = http://localhost:3000/person
 
 ###
-POST {{host}}/create
-Content-Type: application/json
-
-{
-    "firstName":"Mynor",
-    "secondName":"marold",
-    "lastName":3,
-    "secondLastName":"",
-    "marriedName":"jkl",
-    "bornDate":"1997-11-23",
-    "mobilePhone":"231232345",
-    "email":"marold97@outlook.com"
-}
-
-###
-GET {{host}}/2020-PAS27-00017
-Content-Type: application/json
-
-###
-PUT {{host}}/2020-PSA25-00001
-Content-Type: application/json
-
-
-###
-DELETE {{host}}/2020-PAS27-00017
-
-###
+# Para crear un registro de person
+# En este caso  necesita consultas auxiliares, que estan más abajo
 POST {{host}}/create
 Content-Type: application/json
 
@@ -56,12 +31,45 @@ Content-Type: application/json
     "lastNameExtra":"",
     "secondLastNameExtra":"",
 
-    "uuidAddress":"Jalapa", 
-    "uuidCity":"001",
-    "addressLine1":"Jalapa, Jalapa", 
+    "uuidCity":"001", 
+    "addressLine1":"Bo, Jalapa", 
     "addressLine2":"",
     "phoneNumber":"36079850",
 
     "comment":"Ninguno al respecto",
     "attachment":"image.png"
 }
+
+
+###
+# Obtiene un registro por id
+GET {{host}}/2020-PAS27-00019
+Content-Type: application/json
+
+###
+# Actualiza campos de registros
+PUT {{host}}/2020-PAS27-00007
+Content-Type: application/json
+
+
+###
+# Unicamente lo cambia de estao activo a inactivo como forma de auditoria
+DELETE {{host}}/2020-PAS27-00018
+
+
+###
+# Retorna registros 
+GET http://localhost:3000/persons/all
+Content-Type: application/json
+
+###
+# Retorna todas las religiones para que puedan cargarla en 
+# algun elemento para su posterior selección
+GET http://localhost:3000/religion/all
+Content-Type: application/json
+
+###
+# Retorna todas las ciudades para que puedan cargarla en 
+# algun elemento para su posterior selección
+GET http://localhost:3000/city/all
+Content-Type: application/json

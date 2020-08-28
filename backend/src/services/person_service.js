@@ -35,4 +35,15 @@ PersonService.delete = async (_id) => {
     return await StorePerson.delete(_id)
 }
 
+PersonService.allPersons= async() =>{
+    return await StorePerson.allPersons()
+}
+
+PersonService.religion = async () => {
+    return await StorePerson.religion()
+}
+
+PersonService.cities = async () => {
+    return await StorePerson.cities()
+}
 module.exports = PersonService;
