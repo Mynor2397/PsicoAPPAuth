@@ -5,6 +5,7 @@ const path = require('path')
 const uuid = require('uuid')
 
 const database = require('../lib/utils/env.config')
+const { rejects } = require('assert')
 const s3 = {}
 var S3 = new aws.S3({
     accessKeyId: database.accesskey,
@@ -21,6 +22,18 @@ s3.uploadFileS3 = multer({
         }
     })
 })
+
+s3.getFile = async (filename) => {
+
+    var params = {
+        Bucket: 'documentspsicoapp',
+        Key: filename,
+        Expires: 60
+    };
+
+    var url = S3.getSignedUrl('getObject', params);
+    return url;
+}
 
 
 s3.deleteFromS3 = (fileName) => {
@@ -46,5 +59,7 @@ s3.uploadFile = (req, res, next) => {
         next()
     }
 }
+
+
 
 module.exports = s3

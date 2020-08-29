@@ -35,7 +35,8 @@ class Person extends Attendant {
         mobilePhone,
         email,
         uuidReligion,
-        active
+        active,
+        changeFile
     ) {
         super();
         this.uuid = uuidPerson
@@ -54,6 +55,7 @@ class Person extends Attendant {
 
         this.uuidReligion = uuidReligion
         this.active = active
+        this.changeFile = changeFile
     }
 }
 

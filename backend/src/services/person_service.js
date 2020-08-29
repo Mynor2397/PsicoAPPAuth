@@ -2,6 +2,7 @@ const uuid = require('uuid')
 const StorePerson = require('../storage/person_storage')
 const { generate } = require('../lib/utils/uuid_psa')
 const Person = require('../models/person.model')
+const storagePerson = require('../storage/person_storage')
 
 const PersonService = {}
 
@@ -26,17 +27,23 @@ PersonService.get = async (_uuid) => {
 PersonService.update = async (_id, Data) => {
     var person = new Person()
     person = Data;
+    person.id = _id
     person.dateNameUpdated = new Date()
-
-    return await StorePerson.update(_id, person)
+    person.dateEvent = new Date()
+    // console.log(person);
+    return await StorePerson.update(person)
 }
 
 PersonService.delete = async (_id) => {
     return await StorePerson.delete(_id)
 }
 
-PersonService.allPersons= async() =>{
+PersonService.allPersons = async () => {
     return await StorePerson.allPersons()
+}
+
+PersonService.personwithfulldata = async (id) => {
+    return await StorePerson.onlywithfulldata(id)
 }
 
 PersonService.religion = async () => {

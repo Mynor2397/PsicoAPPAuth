@@ -1,0 +1,4 @@
+@host = http://localhost:4000
+
+###
+GET {{host}}/attachment/2eb276cd-ebb1-4767-b0a5-3744d8517f99.sql
