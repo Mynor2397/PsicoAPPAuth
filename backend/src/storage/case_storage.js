@@ -14,7 +14,7 @@ storageCase.create = async (dataCase) => {
     cases = dataCase;
 
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO pac_case VALUES (?,?,?,?,?,?,?,?,?)', [
+        pool.query('INSERT INTO PAC_Case VALUES (?,?,?,?,?,?,?,?,?)', [
             cases.uuid, cases.caseNumber, cases.uuidAssignedUser, cases.uuidOwnerUser, cases.uuidPersonPatient,
             cases.creationDate, cases.uuidStage, cases.reasonForConsultation, cases.desisted
         ], (err, results, fields) => {
