@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Edad(FechaNacimiento) {
@@ -101,116 +102,152 @@ const Pantient = () => {
     // }, [input])
 
     return (
+        <div class="container">
+            <h4>Datos del Paciente</h4>
+            <form onSubmit={(e) => handleSubmit(e)} >
+                <div class="bloqueiz">
+                    <div class="form-group">
+                        <label htmlFor="firstName">Primer Nombre:</label>
+                        <input id="firstName" type="text" name="firstName" placeholder="Primer Nombre" class="form-control-file" />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="lastName">Primer Apellido</label>
+                        <input id="lastName" type="text" name="lastName" placeholder="Primer Apellido" class="form-control-file" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label htmlFor="marriedName">Apellido de Casada</label>
+                        <input id="marriedName" type="text" name="marriedName" class="form-control-file" placeholder="Apellido de Casada"  />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="bornDate">Fecha de Nacimiento</label>
+                        <input id="bornDate" type="date" class="form-control-file" onChange={(e) => setFechaNacimiento(e.target.value) } />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input id="email" type="email" name="email22" class="form-control-file" placeholder="Email"  />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="addressLine1">Direccion 1</label>
+                        <input id="ddressLine1" type="text" name="addressLine1" class="form-control-file" />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="uuidReligion">Religion</label>
+                        <select  name="uuidReligion" class="form-control-file">
+                            <option value="0">Seleccionar un valor</option>
+                            <option value="001">Valor 1</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="bloquede">
+                <div class="form-group">
+                    <label htmlFor="secondName">Segundo Nombre</label>
+                    <input id="secondName" type="text" name="secondName" placeholder="Segundo Nombre Nombre" class="form-control-file"  />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="secondLastName">Segundo Apellido</label>
+                        <input id="secondLastName" type="text" name="secondLastName" placeholder="Segundo Apellido" class="form-control-file" />
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div class="form-group" >
+                        <label htmlFor="mobilePhone">Numero de Telefono Movil</label>
+                        <input id="mobilePhone" type="text" name="mobilePhone" class="form-control-file" placeholder="Numero de Telefono" />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="addressLine2">Direccion 2</label>
+                        <input id="addressLine2" type="text" name="addressLine2" class="form-control-file" />
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="uuidCity">Ciudad</label>
+                        <select  name="uuidCity" class="form-control-file">
+                            <option value="0">Seleccionar un valor</option>
+                            <option value="001">Valor 1</option>
+                        </select>
+                    </div>
+                </div>
+                <hr></hr>
+                <div class="bloqueiz2">
+                    
+                    <div class="form-group">
+                        <label htmlFor="phoneNumber">Numero de Telefono</label>
+                        <input id="phoneNumber" type="text" name="phoneNumber" class="form-control-file"  />
+                    </div>
+                    
 
-        <form onSubmit={(e) => handleSubmit(e)} >
+                    <CKEditor
+                            editor={ ClassicEditor }
+                            data="<p>Escriba un Comentario por favor</p>"
+                            onInit={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!', editor );
+                            } }
+                            onChange={ ( event, editor ) => {
+                                const data = editor.getData();
 
-            <label htmlFor="firstName">firstName</label>
-            <input id="firstName" type="text" name="firstName"  />
-    
-            <label htmlFor="secondName">secondName</label>
-            <input id="secondName" type="text" name="secondName"  />
-    
-            <label htmlFor="lastName">lastName</label>
-            <input id="lastName" type="text" name="lastName"  />
-    
-            <label htmlFor="secondLastName">secondLastName</label>
-            <input id="secondLastName" type="text" name="secondLastName"  />
-    
-            <label htmlFor="marriedName">marriedName</label>
-            <input id="marriedName" type="text" name="marriedName"  />
-    
-            <label htmlFor="bornDate">bornDate</label>
-            <input id="bornDate" type="date" onChange={(e) => setFechaNacimiento(e.target.value) } />
-    
-            <label htmlFor="mobilePhone">mobilePhone</label>
-            <input id="mobilePhone" type="text" name="mobilePhone"  />
-    
-            <label htmlFor="email">email</label>
-            <input id="email" type="email" name="email22"  />
+                                setCkeditorComment(data)
+                            } }
+                        />
 
-            <label htmlFor="uuidReligion">uuidReligion</label>
-            <select  name="uuidReligion">
-                <option value="0">Seleccionar un valor</option>
-                <option value="001">Valor 1</option>
-            </select>
-            {
-                Mostrar 
-                ? <div>
-                <label htmlFor="firstNameFather">firstNameFather</label>
-                <input id="email" type="text" name="firstNameFather"  />
+                    <label htmlFor="attachment">Archivo</label>
+                    <input id="email" type="file" class="form-control-file" onChange={(e)=>setImage(e.target.files[0])} />
+                </div>       
+                <br></br>
+                <div>
+                    {
+                        Mostrar 
+                        ? <div>
+                        <label htmlFor="firstNameFather">Primer Nombre del Padre</label>
+                        <input id="firstNameFather" type="text" name="firstNameFather" placeholder="Primer Nombre del Padre" class="form-control-file" />
 
-                <label htmlFor="secondNameFather">secondNameFather</label>
-                <input id="email" type="text" name="secondNameFather"  />
+                        <label htmlFor="secondNameFather">Segundo Nombre del Padre</label>
+                        <input id="secondNameFather" type="text" name="secondNameFather" placeholder="Segundo Nombre del Padre" class="form-control-file" />
 
-                <label htmlFor="lastNameFather">lastNameFather</label>
-                <input id="email" type="text" name="lastNameFather"  />
+                        <label htmlFor="lastNameFather">lastNameFather</label>
+                        <input id="email" type="text" name="lastNameFather" class="form-control-file"  />
 
-                <label htmlFor="secondLastNameFather">secondLastNameFather</label>
-                <input id="email" type="text" name="secondLastNameFather"  />
+                        <label htmlFor="secondLastNameFather">secondLastNameFather</label>
+                        <input id="email" type="text" name="secondLastNameFather" class="form-control-file"  />
 
-                <label htmlFor="firstNameMother">firstNameMother</label>
-                <input id="email" type="text" name="firstNameMother"  />
+                        <label htmlFor="firstNameExtra">firstNameExtra</label>
+                        <input id="email" type="text" name="firstNameExtra" class="form-control-file"  />
 
-                <label htmlFor="secondNameMother">secondNameMother</label>
-                <input id="email" type="text" name="secondNameMother"  />
+                        <label htmlFor="lastNameExtra">lastNameExtra</label>
+                        <input id="email" type="text" name="lastNameExtra" class="form-control-file"  />
+                        
+                        <label htmlFor="firstNameMother">firstNameMother</label>
+                        <input id="email" type="text" name="firstNameMother" class="form-control-file"  />
 
-                <label htmlFor="lastNameMother">lastNameMother</label>
-                <input id="email" type="text" name="lastNameMother"  />
+                        <label htmlFor="secondNameMother">secondNameMother</label>
+                        <input id="email" type="text" name="secondNameMother" class="form-control-file" />
 
-                <label htmlFor="secondLastNameMother">secondLastNameMother</label>
-                <input id="email" type="text" name="secondLastNameMother"  />
+                        <label htmlFor="lastNameMother">lastNameMother</label>
+                        <input id="email" type="text" name="lastNameMother" class="form-control-file" />
 
-                <label htmlFor="firstNameExtra">firstNameExtra</label>
-                <input id="email" type="text" name="firstNameExtra"  />
+                        <label htmlFor="secondLastNameMother">secondLastNameMother</label>
+                        <input id="email" type="text" name="secondLastNameMother" class="form-control-file" />
 
-                <label htmlFor="secondNameExtra">secondNameExtra</label>
-                <input id="email" type="text" name="secondNameExtra"  />
+                        <label htmlFor="secondNameExtra">secondNameExtra</label>
+                        <input id="email" type="text" name="secondNameExtra" class="form-control-file" />
 
-                <label htmlFor="lastNameExtra">lastNameExtra</label>
-                <input id="email" type="text" name="lastNameExtra"  />
+                        <label htmlFor="secondLastNameExtra">secondLastNameExtra</label>
+                        <input id="email" type="text" name="secondLastNameExtra" class="form-control-file" />
 
-                <label htmlFor="secondLastNameExtra">secondLastNameExtra</label>
-                <input id="email" type="text" name="secondLastNameExtra"  />
-            </div>
-            : <h1></h1>
+                        
+                    </div>
+                    : <h1></h1>
 
-            }
-           
+                    }
+                
+                </div>    
+                
 
-            <label htmlFor="uuidCity">uuidCity</label>
-            <select  name="uuidCity">
-                <option value="0">Seleccionar un valor</option>
-                <option value="001">Valor 1</option>
-            </select>
-
-            <label htmlFor="addressLine1">addressLine1</label>
-            <input id="email" type="text" name="addressLine1"  />
-
-            <label htmlFor="addressLine2">addressLine2</label>
-            <input id="email" type="text" name="addressLine2"  />
-
-            <label htmlFor="phoneNumber">phoneNumber</label>
-            <input id="email" type="text" name="phoneNumber"  />
-
-            <CKEditor
-                    editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
-                    onInit={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-
-                        setCkeditorComment(data)
-                    } }
-                />
-
-            <label htmlFor="attachment">attachment</label>
-            <input id="email" type="file" onChange={(e)=>setImage(e.target.files[0])} />
-
-            <button type="submit">Guardar Paciente</button>
-        </form>
+                <button type="submit">Guardar Paciente</button>
+            </form>
+        </div>
+        
     )
 }
 
