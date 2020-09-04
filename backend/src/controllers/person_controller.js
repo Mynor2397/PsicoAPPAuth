@@ -10,7 +10,7 @@ const s3 = require('../middlewares/uploadfile');
 const handPerson = {}
 
 handPerson.create = async (req, res) => {
-
+    console.log(req.body);
     const errorsrex = validationResult(req)
     if (!errorsrex.isEmpty()) {
         deleteFromS3(req.filename)
