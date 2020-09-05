@@ -39,3 +39,11 @@ Content-Type: application/json
     "testingApplication": "",
     "testingApplicationFile": ""
 }
+
+###
+POST {{host}}/caseinitial/create/uuid6
+Content-Type: application/json
+
+{
+    "currentProblemFile": "holgaa10"
+}

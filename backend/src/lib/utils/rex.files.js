@@ -1,4 +1,6 @@
-const filesCaseInitial = [
+const rexFiles = {}
+
+rexFiles.filesCaseInitial = [
     { name: 'premorbidPersonalityFile', maxCount: 1 },
     { name: 'currentProblemFile', maxCount: 1 },
     { name: 'healthHistoryFile', maxCount: 1 },
@@ -16,4 +18,42 @@ const filesCaseInitial = [
     { name: 'testingApplicationFile', maxCount: 1 }
 ]
 
-module.exports = filesCaseInitial
+rexFiles.fieldsForQuery = [
+    'uuidCaseInitialStage',
+    'premorbidPersonality',
+    'premorbidPersonalityFile',
+    'currentProblem',
+    'currentProblemFile',
+    'healthHistory',
+    'healthHistoryFile',
+    'sexualHistory',
+    'sexualHistoryFile',
+    'growthHistory',
+    'growthHistoryFile',
+    'perinatalHistory',
+    'perinatalHistoryFile',
+    'familyHistory',
+    'familyHistoryFile',
+    'genogramFile',
+    'schoolHistory',
+    'schoolHistoryFile',
+    'workHistory',
+    'workHistoryFile',
+    'mentalEvaluationTest',
+    'mentalEvaluationTestFile',
+    'clinicalInterpretation',
+    'clinicalInterpretationFile',
+    'interpreationOfEvidence',
+    'interpreationOfEvidenceFile',
+    'therapeuticContract',
+    'therapeuticContractFile',
+    'uuidTestingApplication',
+    'uuidTestType',
+    'testingApplication',
+    'testingApplicationFile'
+]
+
+if (rexFiles.fieldsForQuery.includes('testingApplicationFile')){
+    console.log(true);
+}
+module.exports = rexFiles;

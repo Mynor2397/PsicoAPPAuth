@@ -15,7 +15,7 @@ var S3 = new aws.S3({
 s3.uploadFileS3 = multer({
     storage: multerS3({
         s3: S3,
-        bucket: 'documentspsicoapp',
+        bucket: 'pruebaforlogical',
         key: function (req, file, cb) {
             cb(null, uuid.v4() + path.extname(file.originalname))
         }
@@ -25,7 +25,7 @@ s3.uploadFileS3 = multer({
 s3.uploadFieldsFilesS3 = multer({
     storage: multerS3({
         s3: S3,
-        bucket: 'documentspsicoapp',
+        bucket: 'pruebaforlogical',
         key: function (req, file, cb) {
             cb(null, uuid.v4() + path.extname(file.originalname))
         }
@@ -35,7 +35,7 @@ s3.uploadFieldsFilesS3 = multer({
 s3.getFile = async (filename) => {
 
     var params = {
-        Bucket: 'documentspsicoapp',
+        Bucket: 'pruebaforlogical',
         Key: filename,
         Expires: 60
     };
@@ -49,7 +49,7 @@ s3.deleteFromS3 = (fileName) => {
     if (fileName == undefined || fileName == '') {
     } else {
         var params = {
-            Bucket: 'documentspsicoapp',
+            Bucket: 'pruebaforlogical',
             Key: fileName
         };
         S3.deleteObject(params, (err, data) => {
