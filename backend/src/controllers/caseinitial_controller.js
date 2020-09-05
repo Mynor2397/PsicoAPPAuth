@@ -1,11 +1,8 @@
-const caseInitialStage = require('../models/caseinitial.model')
 const http = require('../lib/utils/status.response')
-const CaseInitialStage = require('../models/caseinitial.model')
-const rexFiles = require('../lib/utils/rex.files')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const respondError = require('./respond');
-
 const CaseInitialService = require('../services/caseinitial_service')
+
 const handCaseInitial = {}
 
 handCaseInitial.create = async (req, res) => {
