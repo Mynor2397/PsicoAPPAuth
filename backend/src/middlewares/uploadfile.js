@@ -5,7 +5,6 @@ const path = require('path')
 const uuid = require('uuid')
 
 const database = require('../lib/utils/env.config')
-const { rejects } = require('assert')
 const s3 = {}
 var S3 = new aws.S3({
     accessKeyId: database.accesskey,
@@ -16,7 +15,17 @@ var S3 = new aws.S3({
 s3.uploadFileS3 = multer({
     storage: multerS3({
         s3: S3,
-        bucket: 'documentspsicoapp',
+        bucket: 'pruebaforlogical',
+        key: function (req, file, cb) {
+            cb(null, uuid.v4() + path.extname(file.originalname))
+        }
+    })
+})
+
+s3.uploadFieldsFilesS3 = multer({
+    storage: multerS3({
+        s3: S3,
+        bucket: 'pruebaforlogical',
         key: function (req, file, cb) {
             cb(null, uuid.v4() + path.extname(file.originalname))
         }
@@ -26,7 +35,7 @@ s3.uploadFileS3 = multer({
 s3.getFile = async (filename) => {
 
     var params = {
-        Bucket: 'documentspsicoapp',
+        Bucket: 'pruebaforlogical',
         Key: filename,
         Expires: 60
     };
@@ -40,10 +49,9 @@ s3.deleteFromS3 = (fileName) => {
     if (fileName == undefined || fileName == '') {
     } else {
         var params = {
-            Bucket: 'documentspsicoapp',
+            Bucket: 'pruebaforlogical',
             Key: fileName
         };
-        console.log(params);
         S3.deleteObject(params, (err, data) => {
             if (err) console.log(err, err.stack);
             else console.log('delete', data);
@@ -60,6 +68,24 @@ s3.uploadFile = (req, res, next) => {
     }
 }
 
+s3.multipleUploadFile = (req, res, next) => {
+    let files = req.files
+    console.log(req.files);
+    if (files == undefined || Object.keys(files).length === 0) {
+        next()
+    } else {
+
+        let filesData = JSON.parse(JSON.stringify(req.files))
+        let fieldName = Object.keys(filesData)[0]
+        let value = `${filesData[`${fieldName}`][0].key}`
+
+        const bodyFiles = `{ "${fieldName}" : "${value}" }`
+        
+        req.datafiles = JSON.parse(bodyFiles)
+        next()
+    }
+
+}
 
 
 module.exports = s3

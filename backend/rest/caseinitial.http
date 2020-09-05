@@ -1,0 +1,49 @@
+@host = http://localhost:4000
+
+
+###
+POST {{host}}/caseinitial/create
+Content-Type: application/json
+
+{
+    "premorbidPersonality": " help me",
+    "premorbidPersonalityFile": "ayuda",
+    "currentProblem": "",
+    "currentProblemFile": "",
+    "healthHistory": "",
+    "healthHistoryFile": "",
+    "sexualHistory": "",
+    "sexualHistoryFile": "",
+    "growthHistory": "",
+    "growthHistoryFile": "",
+    "perinatalHistory": "",
+    "perinatalHistoryFile": "",
+    "familyHistory": "",
+    "familyHistoryFile": "",
+    "genogramFile": "",
+    "schoolHistory": "",
+    "schoolHistoryFile": "",
+    "workHistory": "",
+    "workHistoryFile": "",
+    "mentalEvaluationTest": "",
+    "mentalEvaluationTestFile": "",
+    "clinicalInterpretation": "",
+    "clinicalInterpretationFile": "",
+    "interpreationOfEvidence": "",
+    "interpreationOfEvidenceFile": "",
+    "therapeuticContract": "",
+    "therapeuticContractFile": "",
+    
+    "uuidTestingApplication": "",
+    "uuidTestType": "",
+    "testingApplication": "",
+    "testingApplicationFile": ""
+}
+
+###
+POST {{host}}/caseinitial/create/uuid6
+Content-Type: application/json
+
+{
+    "currentProblemFile": "holgaa10"
+}
