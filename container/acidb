@@ -31,4 +31,5 @@ az container create --resource-group $ACI_PERS_RESOURCE_GROUP --name $ACI_PERS_D
 az container delete --name $ACI_PERS_DBDEV --resource-group  $ACI_PERS_RESOURCE_GROUP
 
 
+azure container registry
 
