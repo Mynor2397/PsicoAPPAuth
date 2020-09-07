@@ -36,5 +36,13 @@ CaseInitialService.generateQuery = async (DataForQuery, id) => {
         })
 }
 
+CaseInitialService.getAll = async () => {
+    return await StorageCaseInitial.getAll();
+}
+
+CaseInitialService.getOnly = async (ID) => {
+    return await StorageCaseInitial.getOnly(ID)
+}
+
 module.exports = CaseInitialService;
 

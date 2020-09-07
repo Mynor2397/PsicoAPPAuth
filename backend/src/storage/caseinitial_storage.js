@@ -21,6 +21,32 @@ StorageCaseInitial.update = async (Query, Value, ID, NameFile) => {
     })
 }
 
+StorageCaseInitial.getAll = async () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAC_CaseInitialStage;', (err, results, fields) => {
+            if (err) reject(err);
+
+            resolve(results)
+        })
+    })
+}
+
+
+StorageCaseInitial.getOnly = async (UUID) => {
+    
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAC_CaseInitialStage WHERE uuid = ?;', [UUID], (err, results, fields) => {
+            if (err) reject(err);
+            
+            if(results.length == 0){
+                reject(404)
+            }
+            
+            resolve(results)
+        })
+    })
+}
+
 StorageCaseInitial.extractFieldFile = async (Query, NameFile, ID) => {
     return new Promise((resolve, reject) => {
         pool.query(Query, [ID], (err, results, fields) => {

@@ -41,6 +41,15 @@ Content-Type: application/json
 }
 
 ###
+GET {{host}}/caseinitial/all
+Content-Type: application/json
+
+###
+GET {{host}}/caseinitial/only/uuid6
+Content-Type: application/json
+
+
+###
 POST {{host}}/caseinitial/create/uuid6
 Content-Type: application/json
 

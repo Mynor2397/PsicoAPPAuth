@@ -53,7 +53,4 @@ rexFiles.fieldsForQuery = [
     'testingApplicationFile'
 ]
 
-if (rexFiles.fieldsForQuery.includes('testingApplicationFile')){
-    console.log(true);
-}
 module.exports = rexFiles;
