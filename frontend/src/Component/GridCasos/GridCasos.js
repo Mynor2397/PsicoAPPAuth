@@ -38,20 +38,22 @@ const GridCasos = () => {
     console.log(Data)
     return (
         <>
-            <section className="header-grid">
+            <section type="head" className="header-grid">
+            </section>
+            <section className="input">
                     <div className="ed-container">
                     <div className="ed-item s-30 lg-100">
                         <div className="ed-grid s-grid-6">
-                            <div className="s-cols-3">
+                            <div className="s-cols-3 ">
                                  <fieldset>
-                            <input type="search"  placeholder="Buscar Caso"  onChange={(e) => handleSearch(e)} />
+                                    <input type="search" placeholder="Buscar Casos" onChange={(e) => handleSearch(e)} />
                                 <button type="submit">
                                     <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                                  </button>
                              </fieldset>
                          </div>
              <div className= "s-x-6">
-                     <button type="button" className="btn btn-dark" style={{ background: '#FF00FF' }} onClick={() => "CreateCasos/CreateCasos.js"}>Crear Casos</button>
+                                <button type="button" className="btn btn-dark" style={{ background: '#2B3AF2' }} onClick={() => "CreateCasos/CreateCasos.js"}>Crear Casos</button>
              </div>
          </div>
      </div>
@@ -62,13 +64,13 @@ const GridCasos = () => {
                     <div className="ed-item s-30 lg-50">
                     <div className="ed-grid s-grid-3">
             <div className="card">
-                            <button type="button" className="btn btn-dark" style={{ background: '#FF00FF' }} onClick={() => setFilter(2)}>Fecha</button>
+                        <button type="button" className="btn btn-dark" style={{ background: '#2B3AF2' }} onClick={() => setFilter(2)}>Fecha</button>
                         </div>
             <div className="card">
-                            <button type="button" className="btn btn-dark" style={{ background: '#FF00FF' }} onClick={() => setFilter(4)} >Desistidos</button>
+                        <button type="button" className="btn btn-dark" style={{ background: '#2B3AF2' }} onClick={() => setFilter(4)} >Desistidos</button>
                         </div>
             <div className="card">
-                <button type="button" className="btn btn-dark" style={{ background: '#FF00FF' }} onClick={()=> setFilter(1)} >Edad</button>
+                        <button type="button" className="btn btn-dark" style={{ background: '#2B3AF2' }} onClick={()=> setFilter(1)} >Edad</button>
              </div>
             <div className="ed-container">
             <div className="ed-item s-90 lg-100">

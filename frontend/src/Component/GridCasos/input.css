@@ -1,5 +1,4 @@
 body{
-    padding-top:  3%;
     font-family: cursive;
     font-size: large
 }
@@ -12,31 +11,31 @@ input[type="search"], button[type="submit"]
 }
 input[type="search"]
 {
-       width:486px;
+       width:470px;
        border: none;
        z-index:2;
 
 }
 fieldset {
-    background: #FF00FF;
+    background: #2B3AF2;
     border: 1px solid #333;
     border-radius: 5px;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 30px;
 }
 li {
-    border: 1px solid#FF00FF;
+    border: 1px solid#2B3AF2;
     border-radius: 5px;
 }
 button[type="submit"]
 {
     width: 60px;
     border: none;
-    background: #FF00FF;
+    background: #2B3AF2;
     transform: translate(-50px,0);
     transition-duration: .3s;
 }
 .fa-search{
-    color: hsl(0, 100%, 99%);
+    color: hsl(0, 24%, 96%);
 }
 input[type="search"]:focus {
     outline: none;
@@ -44,4 +43,12 @@ input[type="search"]:focus {
 input[type="search"]:focus + button[type="submit"]{
     transform: translate(0,0);
     transition-duration: .3s;
+}
+input[type="search"]:focus + button[type="submit"] .fa {
+    transform: translate(0,0);
+    transition: all .1s ease-in-out;
+}
+section[type="head"]{
+    height: 55px;
+    background: #2B3AF2;
 }
