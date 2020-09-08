@@ -1,0 +1,47 @@
+body{
+    padding-top:  3%;
+    font-family: cursive;
+    font-size: large
+}
+input[type="search"], button[type="submit"]
+{
+    position: relative;
+    width: 110px;
+    height: 40px;
+    padding: 0;
+}
+input[type="search"]
+{
+       width:486px;
+       border: none;
+       z-index:2;
+
+}
+fieldset {
+    background: #FF00FF;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 0 0 0 20px;
+}
+li {
+    border: 1px solid#FF00FF;
+    border-radius: 5px;
+}
+button[type="submit"]
+{
+    width: 60px;
+    border: none;
+    background: #FF00FF;
+    transform: translate(-50px,0);
+    transition-duration: .3s;
+}
+.fa-search{
+    color: hsl(0, 100%, 99%);
+}
+input[type="search"]:focus {
+    outline: none;
+}
+input[type="search"]:focus + button[type="submit"]{
+    transform: translate(0,0);
+    transition-duration: .3s;
+}
