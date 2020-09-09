@@ -39,7 +39,7 @@ handCase.update = async (req, res) => {
             .status(http.StatusOK)
             .json({
                 ok: true,
-                message: "Actualización exitosa",
+                message: "El registro ha sido actualizado correctamente",
                 data: result
             })
     } catch (error) {
