@@ -1,9 +1,7 @@
-const { validationResult } = require('express-validator');
 const DiagnosticSer = require('../services/DiagnosedProblems_service')
 const DiagnosedProblems = require('../models/DiagnosedProblems.model')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const respondError = require('./respond');
-const http = require('../lib/utils/status.response')
 const handDiagnosedProblem = {}
 
 handDiagnosedProblem.create = async (req, res) => {
