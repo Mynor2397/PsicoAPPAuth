@@ -6,6 +6,7 @@ const ServiceTestingApplication = {}
 
 ServiceTestingApplication.create = async (DataTesting, IDCaseInitial) => {
     let testAppData = new CaseInitialStage()
+    console.log(DataTesting);
     testAppData = DataTesting;
     testAppData.uuidTestingApplication = uuid.v4()
     testAppData.uuidCaseInitialStage = IDCaseInitial;
