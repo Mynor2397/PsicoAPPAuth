@@ -17,9 +17,9 @@ app.use(require('./routes/person.route'))
 app.use(require('./routes/case.route'))
 app.use(require('./routes/ncase.route'))
 app.use(require('./routes/caseinitial.route'))
-app.use(require('./routes/testingapp.route'))
+app.use('/psicoapp/v1', require('./routes/routes'))
 
 //Starting the server
 app.listen(app.get('port'), () => {
-    console.log(`Listen and server on port: ${ app.get('port')}`);
+    console.log(`Listen and server on port: ${app.get('port')}`);
 });
