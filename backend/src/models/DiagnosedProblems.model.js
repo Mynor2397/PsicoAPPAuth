@@ -11,19 +11,17 @@
 
 class Diagnosedproblems {
     constructor(
-        uuid,
+        uuidDiagnosedProblems,
+        uuidCaseDiagnosticStage,
         uuidDSM5,
         descriptionOfProblem,
         descriptionOfProblemFile,
-
-        uuidCaseDiagnosticStage
     ) {
-        this.uuid = uuid
+        this.uuidDiagnosedProblems = uuidDiagnosedProblems
+        this.uuidDiagnosticStage = uuidCaseDiagnosticStage
         this.uuidDSM5 = uuidDSM5
         this.descriptionOfProblem = descriptionOfProblem
         this.descriptionOfProblemFile = descriptionOfProblemFile
-
-        this.uuidDiagnosticStage = uuidCaseDiagnosticStage
     }
 }
 

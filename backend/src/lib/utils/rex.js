@@ -24,7 +24,6 @@ rex.rexUpCase = [
 
 rex.rexNewDiagnostic = [
     body('uuidDSM5').not().isEmpty().escape(),
-    body('descriptionOfProblem').not().isEmpty().escape(),
-    body('descriptionOfProblemFile').not().isEmpty().escape()
+    body('descriptionOfProblem').not().isEmpty().escape()
 ]
 module.exports = rex;
