@@ -92,7 +92,6 @@ handDiagnosedProblem.update = async (req, res) => {
 }
 
 
-
 handDiagnosedProblem.getAll = async (req, res) => {
     try {
         let results = await DiagnosticSer.getall()

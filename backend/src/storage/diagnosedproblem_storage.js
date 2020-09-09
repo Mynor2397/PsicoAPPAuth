@@ -17,6 +17,9 @@ StorageDiagnosedProblem.create = async (DataDiagnostic) => {
                 })
             }
 
+            // console.log(resulst);
+            // console.log(err);
+
             resolve(newDiag)
         })
     })
