@@ -17,9 +17,6 @@ StorageDiagnosedProblem.create = async (DataDiagnostic) => {
                 })
             }
 
-            // console.log(resulst);
-            // console.log(err);
-
             resolve(newDiag)
         })
     })
@@ -76,6 +73,30 @@ StorageDiagnosedProblem.getNameFile = async (UUID, NameFile) => {
 
         })
 
+    })
+}
+
+StorageDiagnosedProblem.getall = async () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAC_DiagnosedProblems;', (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+
+            resolve(results)
+        })
+    })
+}
+
+StorageDiagnosedProblem.getdsm = async () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAC_DSM5;', (err, results, fields) => {
+            if (err) {
+                reject(err)
+            }
+
+            resolve(results)
+        })
     })
 }
 module.exports = StorageDiagnosedProblem;

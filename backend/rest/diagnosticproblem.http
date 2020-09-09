@@ -6,6 +6,15 @@ Content-Type: application/json
 
 {
     "uuidDSM5":"T001",
-    "descriptionOfProblem":"",
+    "descriptionOfProblem":"hola",
     "descriptionOfProblemFile":"bye"
 }
+
+
+###
+GET {{host}}/diagnostic/get
+Content-Type: application/json
+
+###
+GET {{host}}/diagnostic/getdsm
+Content-Type: application/json

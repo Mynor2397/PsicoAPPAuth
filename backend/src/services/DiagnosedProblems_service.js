@@ -26,8 +26,12 @@ ServiceDiagnosedProblem.update = async (DataUpdate, UUID) => {
         })
 }
 
-ServiceDiagnosedProblem.datadiag = async () => {
-    return await StorageDiagnosedProblem.dataDiag()
+ServiceDiagnosedProblem.getall = async () => {
+    return await StorageDiagnosedProblem.getall()
+}
+
+ServiceDiagnosedProblem.getdsm = async () => {
+    return await StorageDiagnosedProblem.getdsm()
 }
 
 module.exports = ServiceDiagnosedProblem;
