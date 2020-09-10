@@ -13,9 +13,13 @@ Content-Type: application/json
 }
 
 ###
-PUT {{host}}/therapeuticplan/update/1d071545-66b3-4bdb-968e-688db9d24ef8/uuid6
+PUT {{host}}/therapeuticplan/update/uuid6/1d071545-66b3-4bdb-968e-688db9d24ef8
 Content-Type: application/json
 
 {
-    "aspectToWork": "Escritura"
+    "aspectToWork": "Escrituras"
 }
+
+###
+GET {{host}}/therapeuticplan/getmany
+Content-Type: application/json

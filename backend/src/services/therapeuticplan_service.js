@@ -27,7 +27,8 @@ TherapeuticPlanService.generateQuery = async (therapeuticbody, therapeuticfiles,
 
 
 
-TherapeuticPlanService.update = async (DataForQuery, uuidCaseIntermediateStage,  id) => {
+TherapeuticPlanService.update = async (DataForQuery, uuidCaseIntermediateStage, id) => {
+    console.log(`uuidCaseintermedial: ${uuidCaseIntermediateStage}, uuid: ${id}`);
     var count = 0;
     var Query = `UPDATE `
     var QuerySelect = `SELECT `
@@ -51,7 +52,7 @@ TherapeuticPlanService.update = async (DataForQuery, uuidCaseIntermediateStage, 
         }
     }
 
-    return await StorageTherapeuticPlan.extractFieldFile(QuerySelect, value, uuidCaseIntermediateStage, id)
+    return await StorageTherapeuticPlan.extractFieldFile(QuerySelect, uuidCaseIntermediateStage, id)
         .then((NameFile) => {
             return StorageTherapeuticPlan.update(Query, value, uuidCaseIntermediateStage, id, NameFile)
         })
@@ -60,5 +61,9 @@ TherapeuticPlanService.update = async (DataForQuery, uuidCaseIntermediateStage, 
         })
 }
 
+
+TherapeuticPlanService.getManyTherapeutics = async () => {
+    return await StorageTherapeuticPlan.getManyTherapeutics()
+}
 
 module.exports = TherapeuticPlanService;
