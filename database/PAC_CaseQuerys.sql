@@ -74,6 +74,8 @@ INSERT INTO PAS_Role VALUES
 'Permisos de Usuario'
 );
 
+SELECT * FROM PAC_Stage;
+
 INSERT INTO PAC_Stage VALUES
 (
 'stage1',
@@ -96,9 +98,9 @@ INSERT INTO PAC_Stage VALUES
 'Fase sin confirmación'
 );
 
-SELECT * FROM PAS_Personpatient;
+SELECT * FROM PAS_PersonPatient;
 
-INSERT INTO PAS_Personpatient VALUES
+INSERT INTO PAS_PersonPatient VALUES
 (
 'PAC_001',
 '1'
@@ -106,7 +108,7 @@ INSERT INTO PAS_Personpatient VALUES
 
 SELECT * FROM PAC_Case;
 
-SELECT * FROM PAC_Case WHERE uuid = '14f87259-c063-47ba-87eb-073ff1120ea0' ; 
+SELECT * FROM PAC_Case WHERE uuid = '719d7e58-35a5-4ac3-a18a-ac73575dcbb1' ; 
 
 INSERT INTO PAC_Case VALUES 
 (
@@ -121,14 +123,14 @@ INSERT INTO PAC_Case VALUES
 '1'
 );
 
-INSERT INTO PAS_Personuser VALUES
+SELECT * FROM PAS_PersonUser;
+
+INSERT INTO PAS_PersonUser VALUES
 (
 'PAC_001',
 'JoseAlter',
 'sdf456'
 );
 
-SELECT * FROM PAC_Stage;
 
-SELECT * FROM PAS_Personpatient;
 

@@ -1,0 +1,16 @@
+@host = http://localhost:4000/psicoapp/v1/
+
+###
+POST {{host}}/testingapplication/uuid6
+Content-Type: application/json
+
+{
+    "uuidTestType":"testType1",
+    "testingApplication":"Este es un text application",
+    "testingApplicationFile":"hello"
+}
+
+###
+GET {{host}}testtypes/all
+Content-Type: application/json
+

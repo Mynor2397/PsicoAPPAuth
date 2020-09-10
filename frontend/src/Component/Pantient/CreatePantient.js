@@ -160,9 +160,15 @@ const CreatePantient = () => {
 
 
 					}
+<<<<<<< HEAD
 				</div>
 				<div className="ed-item ed-container">
 					<button onClick={()=>handleSubmit()} type="button" className="button1">guardar Cambios</button>
+=======
+
+						<button onClick={()=>handleSubmit()} type="button">guardar Cambios</button>
+						
+>>>>>>> master
 				</div>
 			</div>
 		</>

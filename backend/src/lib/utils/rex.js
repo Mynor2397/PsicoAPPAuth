@@ -21,4 +21,9 @@ rex.rexUpCase = [
     body('reasonForConsultation').not().isEmpty().escape(),
     body('desisted').not().isEmpty().escape(),
 ]
+
+rex.rexNewDiagnostic = [
+    body('uuidDSM5').not().isEmpty().escape(),
+    body('descriptionOfProblem').not().isEmpty().escape()
+]
 module.exports = rex;

@@ -1,0 +1,11 @@
+@host = http://localhost:4000
+
+###
+POST {{host}}/diagnostic/create/uuid6
+Content-Type: application/json
+
+{
+    "uuidDSM5":"T001",
+    "descriptionOfProblem":"Este es el texto asociado al archivo",
+    "descriptionOfProblemFile":"Y esto es el archivo"
+}
