@@ -74,7 +74,7 @@ const Step2 = ({handlerStesp2}) => {
 
     const data = localStorage.getItem('step2')
     if(data) {
-      if(data, firstNameFather) {
+      if(firstNameFather) {
         aguardarStadoActual()
       }else {
         obtenerEstadoActual()

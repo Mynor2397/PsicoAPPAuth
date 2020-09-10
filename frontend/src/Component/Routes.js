@@ -15,7 +15,7 @@ const Routes  = () => {
                 <Route path='/gridcasos' component={GridCasos}  />
                 <Route path='/pantient' component={Pantient}  />
                 <Route path='/createcasos' component={CreateCasos}  />
-                <Route path='/Etapainicial' component={EtapaInicial}  />
+                <Route path='/etapainicial' component={EtapaInicial}  />
                 <Route path='/createpantient' component={CreatePantient}  />
                 <Route path='/updatepantient/:idpantients' component={UpdatePantient}  />
                 <Route path="/" > 

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import './Style.step.scss'
 
-const Step1 = ({handlerStesp1}) => {
+const Step1 = ({handlerStesp1,pantient}) => {
 
+  console.log(pantient)
+  
   const [firstName, setFirstName] = useState('')
   const [secondName, setSecondName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -12,9 +14,10 @@ const Step1 = ({handlerStesp1}) => {
   const [mobilePhone, setMobilePhone] = useState('')
   const [email, setEmail] = useState('')
   const [uuidReligion, setUuidReligion] = useState('')
+  
+	const [religion, setReligion] = useState([])
 
-
-
+  
   const aguardarStadoActual = () => {
     const step1Data = {
       firstName,
@@ -27,9 +30,22 @@ const Step1 = ({handlerStesp1}) => {
       email,
       uuidReligion
     }
-
+    
     localStorage.setItem('step1', JSON.stringify(step1Data))
   }
+  const aguardarStadoActual2 = () => {
+    console.log('hola',pantient)
+    setFirstName(pantient.firstName)
+    setSecondName(pantient.secondName)
+    setLastName(pantient.lastName)
+    setSecondLastName(pantient.secondLastName)
+    setMarriedName(pantient.marriedName)
+    setFechaNacimiento(pantient.FechaNacimiento)
+    setMobilePhone( pantient.mobilePhone)
+    setEmail(pantient.email)
+    setUuidReligion(pantient.uuidReligion)
+  }
+  
 
   const obtenerEstadoActual = () => {
     const {
@@ -58,7 +74,7 @@ const Step1 = ({handlerStesp1}) => {
   useEffect(() => {
     const data = localStorage.getItem('step1')
     if(data) {
-      if(data, firstName) {
+      if(firstName) {
         aguardarStadoActual()
       }else {
         obtenerEstadoActual()
@@ -66,7 +82,6 @@ const Step1 = ({handlerStesp1}) => {
     }else {
       aguardarStadoActual()
     }
-    
     if(firstName) {
       handlerStesp1({
         firstName,
@@ -80,8 +95,6 @@ const Step1 = ({handlerStesp1}) => {
         uuidReligion
       })
     }
-
-
   }, [
     firstName,
     secondName, 
@@ -95,6 +108,18 @@ const Step1 = ({handlerStesp1}) => {
     handlerStesp1,
     aguardarStadoActual
   ])
+
+  useEffect(()=> {
+    fetch('http://localhost:4000/religion/all')
+			.then(res => res.json())
+			.then(data => setReligion(data.data))
+      .catch(err => console.log(err))
+
+    if(pantient) {
+      return () =>aguardarStadoActual2()
+    }
+  },[])
+
 
   return (
     <div className ="ed-container">
@@ -275,8 +300,12 @@ const Step1 = ({handlerStesp1}) => {
         name="uuidReligion" 
         onChange={(env)=> setUuidReligion(env.target.value)}
       >
-        <option value="0">Seleccionar un valor</option>
-        <option value="001">Valor 1</option>
+        <option value="">Seleccionar un valor</option>
+        {
+          religion.map(({uuid,name}) => (
+            <option key={uuid} value={uuid}>{name}</option>
+          ))
+        }
       </select>
 
     </div>
