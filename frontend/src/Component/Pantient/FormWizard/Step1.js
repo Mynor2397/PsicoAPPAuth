@@ -1,4 +1,8 @@
 import React, {useState, useEffect} from 'react'
+<<<<<<< HEAD
+import './Style.step.scss'
+=======
+>>>>>>> master
 
 const Step1 = ({handlerStesp1}) => {
 
@@ -97,6 +101,109 @@ const Step1 = ({handlerStesp1}) => {
 
   return (
     <div className ="ed-container">
+<<<<<<< HEAD
+      <div className="ed-item ed-container">
+        <div className="ed-item s-50">
+          <label htmlFor="firstName">Primer Nombre</label>
+          <input placeholder="Primer Nombre"
+          id="firstName" 
+          type="text" 
+          name="firstName"  
+          onChange={(env)=> setFirstName(env.target.value)} 
+          value={firstName}
+          />
+        </div>
+  
+        <div className="ed-item s-50">
+        <label htmlFor="secondName">Segundo Nombre</label>
+        <input placeholder="Segundo Nombre"
+          id="secondName" 
+          type="text" 
+          name="secondName" 
+          onChange={(env)=> setSecondName(env.target.value)} 
+          value={secondName}
+        />
+        </div>
+      </div>
+        
+      <div className="ed-item ed-container">
+        <div className="ed-item s-50">
+          <label htmlFor="lastName">Primer Apellido</label>
+          <input placeholder="Primer Apellido"
+            id="lastName" 
+            type="text" 
+            name="lastName" 
+            onChange={(env)=> setLastName(env.target.value)} 
+            value={lastName}
+          />
+        </div>
+        <div className="ed-item s-50">
+          <label htmlFor="secondLastName">Segundo Apellido</label>
+          <input placeholder="Segundo Apellido"
+            id="secondLastName" 
+            type="text" name="secondLastName" 
+            onChange={(env)=> setSecondLastName(env.target.value)} 
+            value={secondLastName}
+          />
+        </div>
+      </div>
+
+      <div className="ed-item ed-container">
+        <div className="ed-item s-50">
+          <label htmlFor="marriedName">Apllido de Casada</label>
+          <input placeholder="Apellido de Casada"
+            id="marriedName" 
+            type="text" 
+            name="marriedName" 
+            onChange={(env)=> setMarriedName(env.target.value)} 
+            value={marriedName}
+          />
+        </div>
+        <div className="ed-item s-50">
+          <label htmlFor="bornDate">Fecha de Nacimiento</label>
+          <input 
+            id="bornDate" 
+            type="date" 
+            onChange={(env)=> setFechaNacimiento(env.target.value)}  
+            value={FechaNacimiento}
+          />
+        </div>
+      </div>
+
+      <div className="ed-item ed-container">
+        <div className="ed-item s-50">
+          <label htmlFor="mobilePhone">Número de Teléfono</label>
+          <input placeholder="Número de Teléfono"
+            id="mobilePhone" 
+            type="text" 
+            name="mobilePhone" 
+            onChange={(env) => setMobilePhone(env.target.value)} 
+            value={mobilePhone}
+          />
+        </div>
+        <div className="ed-item s-50">
+          <label htmlFor="email">Dirección de Email</label>
+          <input placeholder="Email"
+            id="email" 
+            type="email" 
+            name="email22" 
+            onChange={(env) => setEmail(env.target.value)} 
+            value={email}
+          />
+        </div>
+        <div className="ed-item s-50">
+          <label htmlFor="uuidReligion" >Religion </label>
+          <select class="select-css"
+            value={uuidReligion} 
+            name="uuidReligion" 
+            onChange={(env)=> setUuidReligion(env.target.value)}
+          >
+            <option value="0">Seleccionar un valor</option>
+            <option value="001">Valor 1</option>
+          </select>
+        </div>
+      </div>
+=======
       <label htmlFor="firstName">firstName</label>
       <input 
         id="firstName" 
@@ -177,6 +284,7 @@ const Step1 = ({handlerStesp1}) => {
         <option value="001">Valor 1</option>
       </select>
 
+>>>>>>> master
     </div>
   )
 }
