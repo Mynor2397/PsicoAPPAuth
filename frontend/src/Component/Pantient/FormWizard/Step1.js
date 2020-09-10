@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react'
-<<<<<<< HEAD
 import './Style.step.scss'
-=======
->>>>>>> master
 
 const Step1 = ({handlerStesp1}) => {
 
@@ -101,7 +98,6 @@ const Step1 = ({handlerStesp1}) => {
 
   return (
     <div className ="ed-container">
-<<<<<<< HEAD
       <div className="ed-item ed-container">
         <div className="ed-item s-50">
           <label htmlFor="firstName">Primer Nombre</label>
@@ -203,7 +199,6 @@ const Step1 = ({handlerStesp1}) => {
           </select>
         </div>
       </div>
-=======
       <label htmlFor="firstName">firstName</label>
       <input 
         id="firstName" 
@@ -284,7 +279,6 @@ const Step1 = ({handlerStesp1}) => {
         <option value="001">Valor 1</option>
       </select>
 
->>>>>>> master
     </div>
   )
 }
