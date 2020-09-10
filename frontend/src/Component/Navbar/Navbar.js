@@ -9,7 +9,7 @@ const Navbar = () => {
     <header className="ed-header s-bg-grey s-py-2">
       <div className="ed-grid lg-grid-5">
         <div className="s-cross-center s-main-center lg-main-start">
-          <img className="logo" src="https://ed.team/static/images/logo.svg" />
+          <img className="logo" src="https://ed.team/static/images/logo.svg" alt='Logo'/>
         </div>
         <nav className="nav lg-cols-4 s-cross-center ed-grid full">
           <ul className="menu s-main-distribute lg-to-right s-mb-0 s-pl-0 s-py-1">

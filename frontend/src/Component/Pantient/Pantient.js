@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom'
 
 const Pantient = () => {
 
+	localStorage.removeItem('step1')
+	localStorage.removeItem('step2')
+	localStorage.removeItem('step3')
+
 	const [pantient, setPantient] = useState([])
 
 	useEffect(()=> {
@@ -63,7 +67,7 @@ const Pantient = () => {
 									</div>
 								</div>
 								<footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
-									<p className="s-10" className="">{ active === 1 ? 'Activo' : 'Inactivo'}</p>
+									<p className="s-10">{ active === 1 ? 'Activo' : 'Inactivo'}</p>
 									<Link to={'/updatepantient/'+id} className="button s-to-right">Editar</Link>
 								</footer>
 							</article>

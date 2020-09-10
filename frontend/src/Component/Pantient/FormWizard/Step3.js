@@ -10,6 +10,7 @@ const Step3 = ({handlerStesp3}) => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [CkeditorComment, setCkeditorComment] = useState('')
   const [Image, setImage] = useState('')
+  const [city, setCity] = useState([])
 
   const aguardarStadoActual = () => {
     const step3Data = {
@@ -44,7 +45,7 @@ const Step3 = ({handlerStesp3}) => {
 
     const data = localStorage.getItem('step3')
     if(data) {
-      if(data, uuidCity) {
+      if(uuidCity) {
         aguardarStadoActual()
       }else {
         obtenerEstadoActual()
@@ -72,6 +73,13 @@ const Step3 = ({handlerStesp3}) => {
     Image
   ])
 
+  useEffect(()=> {
+    fetch('http://localhost:4000/city/all')
+    .then(res => res.json())
+    .then(data => setCity(data.data))
+    .catch(err => console.log(err))
+  },[])
+
 
 
 
@@ -83,8 +91,12 @@ const Step3 = ({handlerStesp3}) => {
       value={uuidCity}
       onChange={(env) => setUuidCity(env.target.value)}
       >
-        <option value="0">Seleccionar un valor</option>
-        <option value="001">Valor 1</option>
+        <option value=" ">Seleccionar un valor</option>
+        {
+          city.map(({uuid, name}) => (
+            <option key={uuid} value={uuid}>{name}</option>
+          ))
+        }
       </select>
 
       <label htmlFor="addressLine1">addressLine1</label>
