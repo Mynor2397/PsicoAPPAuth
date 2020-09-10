@@ -78,16 +78,14 @@ Content-Type: application/json
   "secondNameExtra": "",
   "lastNameExtra": "",
   "secondLastNameExtra": "",
-  "attachment": "image.jpg", ## debe contener un archivo multimedia, es opcional
+  "attachment": "image.jpg", 
   "comment": "Ninguno al respecto",
   "uuidCity": "001",
   "addressLine1": "Bo, Jalapa",
   "addressLine2": "",
   "phoneNumber": "4534345",
   "active": 1,
-  "changeFile":"c034d1ca-3a76-4eee-a2d8-b404e7c832c4.sql" ## Esta propieddad siempre debe ir en la peticion
-                                                          ## Debe contener el nombre del archivo renderizado
-                                                          ## que devolvió en la consulta por registro   
+  "changeFile":"c034d1ca-3a76-4eee-a2d8-b404e7c832c4.sql" 
 }
 
 

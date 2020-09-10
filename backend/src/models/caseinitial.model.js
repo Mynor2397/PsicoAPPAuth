@@ -102,7 +102,7 @@ class CaseInitialStage {
             this.interpreationOfEvidenceFile = interpreationOfEvidenceFile,
             this.therapeuticContract = therapeuticContract,
             this.therapeuticContractFile = therapeuticContractFile,
-            /** */
+            
             this.uuidTestingApplication = uuidTestingApplication,
             this.uuidTestType = uuidTestType,
             this.testingApplication = testingApplication,
