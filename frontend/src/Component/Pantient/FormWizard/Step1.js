@@ -90,7 +90,9 @@ const Step1 = ({handlerStesp1}) => {
     FechaNacimiento,
     mobilePhone,
     email,
-    uuidReligion
+    uuidReligion,
+    handlerStesp1,
+    aguardarStadoActual
   ])
 
   return (
