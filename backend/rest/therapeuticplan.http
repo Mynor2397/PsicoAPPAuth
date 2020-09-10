@@ -1,5 +1,6 @@
 @host = http://localhost:4000
 
+###
 POST {{host}}/therapeuticplan/create/uuid6
 Content-Type: application/json
 
@@ -9,4 +10,12 @@ Content-Type: application/json
     "goals": "Que el niño escriba",
     "focus": "Introductorio",
     "techniques": "Aprestamiento"
+}
+
+###
+PUT {{host}}/therapeuticplan/update/1d071545-66b3-4bdb-968e-688db9d24ef8/uuid6
+Content-Type: application/json
+
+{
+    "aspectToWork": "Escritura"
 }
