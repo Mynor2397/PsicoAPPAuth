@@ -41,7 +41,7 @@ handCaseIntermediate.create = async (req, res) => {
                 .status(http.StatusBadRequest)
                 .json({
                     ok: false,
-                    error: error.error
+                    error: 'Ningun registro encontrado!'
                 })
         }
 
@@ -54,7 +54,7 @@ handCaseIntermediate.create = async (req, res) => {
                 })
         }
 
-        respondError(w, error)
+        respondError(res, error)
         return
     }
 
