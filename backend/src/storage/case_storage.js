@@ -14,7 +14,7 @@ storageCase.create = async (dataCase) => {
     cases = dataCase;
 
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO PAC_Case VALUES (?,?,?,?,?,?,?,?,?)', [
+        pool.query('CALL newcase (?,?,?,?,?,?,?,?,?)', [
             cases.uuid, cases.caseNumber, cases.uuidAssignedUser, cases.uuidOwnerUser, cases.uuidPersonPatient,
             cases.creationDate, cases.uuidStage, cases.reasonForConsultation, cases.desisted
         ], (err, results, fields) => {
@@ -35,7 +35,7 @@ storageCase.filter = (query) => {
                 reject(err.errno)
                 console.log(err)
             }
-            if(results == undefined || results.length == 0 ){
+            if (results == undefined || results.length == 0) {
                 reject(404)
             }
             console.log(results)
@@ -49,18 +49,12 @@ storageCase.update = async (upCase) => {
     updata = upCase;
 
     return new Promise((resolve, reject) => {
-        pool.query(`UPDATE PAC_Case SET uuidAssignedUser = ?, 
-                    uuidOwnerUser = ?, uuidPersonPatient = ?, uuidStage = ?,
-                    reasonForConsultation = ?, desisted = ? WHERE uuid = ?;`, [
-            updata.uuidAssignedUser, updata.uuidOwnerUser,
+        pool.query(`CALL updatecase(?,?,?,?,?,?,?)`, [
+            updata.uuid, updata.uuidAssignedUser, updata.uuidOwnerUser,
             updata.uuidPersonPatient, updata.uuidStage,
-            updata.reasonForConsultation, updata.desisted, updata.uuid], (err, results, fields) => {
+            updata.reasonForConsultation, updata.desisted], (err, results, fields) => {
                 if (err) {
                     reject(err)
-                }
-                console.log(results)
-                if (results.affectedRows == 0) {
-                    reject(404)
                 }
                 resolve(updata.uuid)
             })
@@ -73,26 +67,26 @@ storageCase.get = async (getCase) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAC_Case', [], (err, results, fields) => {
 
-                if (err) {
-                    reject(err)
-                }
-                resolve(results);
-            })
+            if (err) {
+                reject(err)
+            }
+            resolve(results);
+        })
     })
 }
 
 storageCase.getid = async (uuid) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM PAC_Case WHERE uuid = ?`, [uuid], 
+        pool.query(`SELECT * FROM PAC_Case WHERE uuid = ?`, [uuid],
             (err, results, fields) => {
                 if (err) {
                     reject(err)
                 }
-    
+
                 if (results == undefined || results.length == 0) {
                     reject(404)
                 }
-    
+
                 resolve(results)
             })
     })
@@ -104,11 +98,11 @@ storageCase.getstage = async (getStage) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAC_Stage', [], (err, results, fields) => {
 
-                if (err) {
-                    reject(err)
-                }
-                resolve(results);
-            })
+            if (err) {
+                reject(err)
+            }
+            resolve(results);
+        })
     })
 }
 
@@ -118,11 +112,11 @@ storageCase.getpersonuser = async (getpersonuser) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAS_PersonUser', [], (err, results, fields) => {
 
-                if (err) {
-                    reject(err)
-                }
-                resolve(results);
-            })
+            if (err) {
+                reject(err)
+            }
+            resolve(results);
+        })
     })
 }
 
@@ -132,11 +126,11 @@ storageCase.getpersonpatient = async (getpersonuser) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAS_PersonPatient', [], (err, results, fields) => {
 
-                if (err) {
-                    reject(err)
-                }
-                resolve(results);
-            })
+            if (err) {
+                reject(err)
+            }
+            resolve(results);
+        })
     })
 }
 

@@ -33,16 +33,16 @@ handCaseInitial.create = async (req, res) => {
 
     } catch (error) {
         deleteFromS3(error.fileToDelete)
-        if (error == 404) {
+        if (error.error == 404) {
             return res
-                .status(http.StatusBadRequest)
+                .status(http.StatusNotFound)
                 .json({
                     ok: false,
                     error: error.error
                 })
         }
 
-        if (error == 401) {
+        if (error.error == 401) {
             return res
                 .status(http.StatusBadRequest)
                 .json({
@@ -51,10 +51,61 @@ handCaseInitial.create = async (req, res) => {
                 })
         }
 
-        respondError(w, error)
+        respondError(res, error)
         return
     }
 
 }
+
+handCaseInitial.getAll = async (req, res) => {
+    try {
+        let results = await CaseInitialService.getAll()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        respondError(res, error)
+        return
+    }
+}
+
+handCaseInitial.getOnly = async (req, res) => {
+    let uuid = req.params.uuid
+    console.log(uuid);
+    if (uuid == undefined || uuid == null) {
+        return res
+            .status(http.StatusBadRequest)
+            .json({
+                ok: false
+            })
+    }
+
+    try {
+        let results = await CaseInitialService.getOnly(uuid)
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+
+        if (error == 404) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    error: 'Ningún registro encontrado!'
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
 
 module.exports = handCaseInitial;

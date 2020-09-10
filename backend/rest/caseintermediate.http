@@ -1,0 +1,8 @@
+
+@host = http://localhost:4000
+POST {{host}}/caseintermediate/create/uuid6
+Content-Type: application/json
+
+{
+    "therapeuticPlanFile": "plan terapeutico"
+}

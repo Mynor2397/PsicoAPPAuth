@@ -4,25 +4,25 @@ POST {{host}}case/create
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "uuid7",
+    "uuidAssignedUser": "uuid4",
     "uuidOwnerUser" : "uuid5",
     "uuidPersonPatient": "uuid3",
     "uuidStage": "stage1",
-    "reasonForConsultation": "hola"
+    "reasonForConsultation": "hola desde back"
 }
 
 ###
 #Hace una actualización a la tabla en base al uuid
-PUT {{host}}case/update/719d7e58-35a5-4ac3-a18a-ac73575dcbb1
+PUT {{host}}case/update/uuidcase3
 Content-Type: application/json
 
 {
     "uuidAssignedUser": "uuid7",
     "uuidOwnerUser" : "uuid5",
     "uuidPersonPatient": "uuid3",
-    "uuidStage": "stage2",
-    "reasonForConsultation": "Actualización en la nube",
-    "desisted": 1
+    "uuidStage": "stage3",
+    "reasonForConsultation": "Adios",
+    "desisted": 0
 }
 
 ###
@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ###
 #Get en base al uuid de la persona
-GET {{host}}case/viewcase/5092b08d-d4bb-4900-b31c-059006d5faab
+GET {{host}}case/viewcase/uuidcase3
 Content-Type: application/json
 
 ###
