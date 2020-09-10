@@ -17,6 +17,8 @@ app.use(require('./routes/person.route'))
 app.use(require('./routes/case.route'))
 app.use(require('./routes/ncase.route'))
 app.use(require('./routes/caseinitial.route'))
+app.use(require('./routes/caseintermediate.route'))
+app.use(require('./routes/therapeuticplan.route'))
 
 //Starting the server
 app.listen(app.get('port'), () => {

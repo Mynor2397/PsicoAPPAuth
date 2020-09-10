@@ -3,6 +3,7 @@ const multer = require('multer')
 const aws = require('aws-sdk')
 const path = require('path')
 const uuid = require('uuid')
+const {fieldsForQuery} = require('../lib/utils/rextherapeuticplan.file')
 
 const database = require('../lib/utils/env.config')
 const s3 = {}
@@ -82,6 +83,41 @@ s3.multipleUploadFile = (req, res, next) => {
         const bodyFiles = `{ "${fieldName}" : "${value}" }`
         
         req.datafiles = JSON.parse(bodyFiles)
+        next()
+    }
+
+}
+
+s3.manyUploadFile = (req, res, next) => {
+    let files = req.files
+    if (files == undefined || Object.keys(files).length === 0) {
+        next()
+    } else {
+
+        let filesData = JSON.parse(JSON.stringify(req.files))
+        let bodyFiles = {
+
+        }
+
+        for(var element in filesData){
+            if(element=='aspectToWorkFile'){
+                bodyFiles.aspectToWorkFile =filesData[element][0].key
+            }
+            if(element=='objetivesFile'){
+                bodyFiles.objetivesFile =filesData[element][0].key
+            }
+            if(element=='goalsFile'){
+                bodyFiles.goalsFile =filesData[element][0].key
+            }
+            if(element=='focusFile'){
+                bodyFiles.focusFile =filesData[element][0].key
+            }
+            if(element=='techniquesFile'){
+                bodyFiles.techniquesFile =filesData[element][0].key
+            }
+        }
+
+        req.datafiles = bodyFiles
         next()
     }
 
