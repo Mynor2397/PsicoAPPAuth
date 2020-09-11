@@ -12,6 +12,7 @@ const CreatePantient = () => {
 	
 	const history = useHistory()
 	const [edad, setEdad] = useState(18)
+
 	
 	const formData = new FormData()
 
@@ -111,17 +112,7 @@ const CreatePantient = () => {
  	}
 	 
 
-	 const steps = [
-		 { name: '1', component: <Step1 handlerStesp1={handlerStesp1} /> },
-		 { name: '2', component: <Step2 handlerStesp2={handlerStesp2} /> },
-		 { name: '3', component: <Step3 handlerStesp3={handlerStesp3} /> }
-	 ];
-
-	 const steps18 = [
-		{ name: '1', component: <Step1 handlerStesp1={handlerStesp1} /> },
-		{ name: '3', component: <Step3 handlerStesp3={handlerStesp3} /> }
-	];
-
+	 
 	 const handleSubmit = ()=> {
 		 fetch('http://localhost:4000/person/create', {
 			 method: 'POST',
@@ -134,17 +125,28 @@ const CreatePantient = () => {
 				localStorage.removeItem('steps2')
 				localStorage.removeItem('steps3')
 				history.push('/pantient')
-
-		})
-		.catch(err => console.log(err))
-		console.log('asdfsadfasdf')
-	}
-	const prevStyle = {'background': '#33c3f0', 'border': ['2px','solid', '#00000']}
-	const nextStyle = {'background': '#33c3f0',  'border': ['2px','solid', '#00000']} 
-
-	useEffect(() => {
+				
+			})
+			.catch(err => console.log(err))
+			console.log('asdfsadfasdf')
+		}
+		const prevStyle = {'background': '#33c3f0', 'border': ['2px','solid', '#00000']}
+		const nextStyle = {'background': '#33c3f0',  'border': ['2px','solid', '#00000']} 
 		
-	}, [setEdad])
+		useEffect(() => {
+			
+		}, [setEdad])
+		
+		const steps = [
+			{ name: '1', component: <Step1 handlerStesp1={handlerStesp1} /> },
+			{ name: '2', component: <Step2 handlerStesp2={handlerStesp2} /> },
+			{ name: '3', component: <Step3 handlerStesp3={handlerStesp3} /> }
+		];
+ 
+		const steps18 = [
+		 { name: '1', component: <Step1 handlerStesp1={handlerStesp1} /> },
+		 { name: '3', component: <Step3 handlerStesp3={handlerStesp3} /> }
+		];
 
 	return (
 		<>
@@ -160,15 +162,9 @@ const CreatePantient = () => {
 
 
 					}
-<<<<<<< HEAD
 				</div>
 				<div className="ed-item ed-container">
 					<button onClick={()=>handleSubmit()} type="button" className="button1">guardar Cambios</button>
-=======
-
-						<button onClick={()=>handleSubmit()} type="button">guardar Cambios</button>
-						
->>>>>>> master
 				</div>
 			</div>
 		</>

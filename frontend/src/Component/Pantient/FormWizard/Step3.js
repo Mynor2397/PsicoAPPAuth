@@ -10,6 +10,7 @@ const Step3 = ({handlerStesp3}) => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [CkeditorComment, setCkeditorComment] = useState('')
   const [Image, setImage] = useState('')
+  const [city, setCity] = useState([])
 
   const aguardarStadoActual = () => {
     const step3Data = {
@@ -44,7 +45,7 @@ const Step3 = ({handlerStesp3}) => {
 
     const data = localStorage.getItem('step3')
     if(data) {
-      if(data, uuidCity) {
+      if(!uuidCity) {
         aguardarStadoActual()
       }else {
         obtenerEstadoActual()
@@ -63,6 +64,8 @@ const Step3 = ({handlerStesp3}) => {
         Image
       })
     }
+
+    return () => false
   },[
     uuidCity,
     addressLine1,
@@ -72,33 +75,34 @@ const Step3 = ({handlerStesp3}) => {
     Image
   ])
 
+  useEffect(()=> {
+    fetch('http://localhost:4000/city/all')
+    .then(res => res.json())
+    .then(data => setCity(data.data))
+    .catch(err => console.log(err))
+  },[])
+
 
 
 
   return (
     <div>
-<<<<<<< HEAD
       <label htmlFor="uuidCity">Ciudad</label>
       <select class="select-css"
-=======
-      <label htmlFor="uuidCity">uuidCity</label>
-      <select 
->>>>>>> master
       name="uuidCity"
       value={uuidCity}
       onChange={(env) => setUuidCity(env.target.value)}
       >
-        <option value="0">Seleccionar un valor</option>
-        <option value="001">Valor 1</option>
+        <option value=" ">Seleccionar un valor</option>
+        {
+          city.map(({uuid, name}) => (
+            <option key={uuid} value={uuid}>{name}</option>
+          ))
+        }
       </select>
 
-<<<<<<< HEAD
       <label htmlFor="addressLine1">Dirección Principal</label>
       <input placeholder="Dirección Principal"
-=======
-      <label htmlFor="addressLine1">addressLine1</label>
-      <input 
->>>>>>> master
         id="addressLine1" 
         type="text" 
         name="addressLine1"
@@ -106,13 +110,8 @@ const Step3 = ({handlerStesp3}) => {
         onChange={(env)=> setAddressLine1(env.target.value)} 
       />
 
-<<<<<<< HEAD
       <label htmlFor="addressLine2">Dirección Secundaria</label>
       <input placeholder="Dirección Secundaria"
-=======
-      <label htmlFor="addressLine2">addressLine2</label>
-      <input 
->>>>>>> master
         id="addressLine2" 
         type="text" 
         name="addressLine2" 
@@ -120,24 +119,15 @@ const Step3 = ({handlerStesp3}) => {
         onChange={(env) => setAddressLine2(env.target.value)}
       />
 
-<<<<<<< HEAD
       <label htmlFor="phoneNumber">Número de Teléfono</label>
       <input placeholder="Número de Teléfono"
-=======
-      <label htmlFor="phoneNumber">phoneNumber</label>
-      <input 
->>>>>>> master
         id="phoneNumber" 
         type="text" 
         name="phoneNumber" 
         value={phoneNumber}
         onChange={(env)=> setPhoneNumber(env.target.value)}
       />
-<<<<<<< HEAD
       <label>Comentario </label>
-=======
-
->>>>>>> master
       <CKEditor
         editor={ClassicEditor}
         data={CkeditorComment}
@@ -149,15 +139,11 @@ const Step3 = ({handlerStesp3}) => {
         }}
       />
 
-<<<<<<< HEAD
       <label htmlFor="attachment">Seleccione Archivo</label>
-=======
-      <label htmlFor="attachment">attachment</label>
->>>>>>> master
       <input 
         id="attachment" 
         type="file" 
-        onChange={(env) => setImage(env.target.value)}
+        onChange={(env) => setImage(env.target.files[0])}
       />
     </div>
   )
