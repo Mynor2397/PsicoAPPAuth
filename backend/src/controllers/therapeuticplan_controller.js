@@ -41,6 +41,7 @@ handTherapeuticplan.update = async (req, res) => {
     let DataQuery;
     let uuid = req.params.uuid
     let uuidCaseinitial = req.params.uuidCaseinitial
+
     if (uuidCaseinitial == undefined || uuidCaseinitial == null || uuid == undefined || uuid == null) {
         return res
             .status(http.StatusBadRequest)
@@ -84,6 +85,22 @@ handTherapeuticplan.update = async (req, res) => {
                 })
         }
 
+        respondError(res, error)
+        return
+    }
+}
+
+handTherapeuticplan.getManyTherapeutics = async (req, res) => {
+    try {
+        let results = await TherapeuticPlanService.getManyTherapeutics()
+        return res
+        .status(http.StatusOK)
+        .json({
+            ok: true, 
+            data: results
+        })
+
+    } catch (error) {
         respondError(res, error)
         return
     }

@@ -99,8 +99,8 @@ console.log(ownerUser)
 						<select className="select-css" name="uuidPersonPatient" id="">
 							<option value="0">Selecione Estado</option>
 							{
-								personPatient.map(({uuid,patientNumber}) => (
-									<option key={uuid} value={uuid}>{patientNumber}</option>
+								personPatient.map(({uuid,name}) => (
+									<option key={uuid} value={uuid}>{name}</option>
 								))
 							}
 						</select>

@@ -158,8 +158,8 @@ export default class UpdateCasos extends Component {
               >
                 <option value="0">Selecione Estado</option>
                 {
-                  this.state.personPatient.map(({uuid,patientNumber}) => (
-                    <option key={uuid} value={uuid}>{patientNumber}</option>
+                  this.state.personPatient.map(({uuid,name}) => (
+                    <option key={uuid} value={uuid}>{name}</option>
                   ))
                 }
               </select>

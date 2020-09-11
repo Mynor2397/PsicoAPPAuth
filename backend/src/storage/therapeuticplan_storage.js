@@ -25,14 +25,13 @@ StorageTherapeuticPlan.create = async (therapeuticplan) => {
 }
 
 
-StorageTherapeuticPlan.update = async (Query, Value,  ID, uuidCaseinitial, NameFile) => {
-    
+StorageTherapeuticPlan.update = async (Query, Value, uuidCaseinitial, ID, NameFile) => {
     return new Promise((resolve, reject) => {
-        pool.query(Query, [Value, ID, uuidCaseinitial], (err, results, fields) => {
+        pool.query(Query, [Value, uuidCaseinitial, ID], (err, results, fields) => {
             if (err) {
                 reject(err)
             }
-    
+
             if (results.affectedRows < 1) {
                 reject({
                     error: 404,
@@ -47,20 +46,34 @@ StorageTherapeuticPlan.update = async (Query, Value,  ID, uuidCaseinitial, NameF
     })
 }
 
-StorageTherapeuticPlan.extractFieldFile = async (Query, NameFile, uuidCaseinitial, ID) => {
-    
+StorageTherapeuticPlan.extractFieldFile = async (Query, uuidCaseinitial, ID) => {
+
     return new Promise((resolve, reject) => {
         pool.query(Query, [uuidCaseinitial, ID], (err, results, fields) => {
             if (err) {
                 reject(err)
             }
-            console.log();
+
             if (results.length == 0) {
                 resolve(null)
             }
             resolve(results[0])
 
         })
+    })
+}
+
+StorageTherapeuticPlan.getManyTherapeutics = async () => {
+    return new Promise((resolve, reject)=>{
+        pool.query('SELECT * FROM PAC_TherapeuticPlanActivity;', (err, results, fields)=>{
+
+            if (err) {
+                reject(err)
+            }
+
+            resolve(results)
+        })
+
     })
 }
 module.exports = StorageTherapeuticPlan;

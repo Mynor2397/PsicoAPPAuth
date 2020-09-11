@@ -121,10 +121,9 @@ storageCase.getpersonuser = async (getpersonuser) => {
 }
 
 storageCase.getpersonpatient = async (getpersonuser) => {
-    let personuser = new PersonP()
-
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAS_PersonPatient', [], (err, results, fields) => {
+        pool.query(`SELECT pap.uuid, ppa.patientNumber, pap.firstName AS name FROM PAS_Person pap
+                    INNER JOIN PAS_PersonPatient ppa ON pap.uuid = ppa.uuid;`, (err, results, fields) => {
 
             if (err) {
                 reject(err)
