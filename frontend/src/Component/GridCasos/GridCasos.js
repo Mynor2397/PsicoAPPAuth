@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "ed-grid/src/css/ed-grid.css"
-import './input.css'
+import './estilos.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
