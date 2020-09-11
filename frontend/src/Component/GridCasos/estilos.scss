@@ -1,8 +1,6 @@
-body{
-    font-family: cursive;
-    font-size: 16px;
-}
+
 @import "~ed-grid/ed-grid";
+
 input[type="search"], button[type="submit"]
 {
     position: relative;
@@ -24,10 +22,8 @@ fieldset {
     border: 1px solid #333;
     border-radius: 5px;
 }
-li {
-    border: 1px solid#2B3AF2;
-    border-radius: 5px;
-}
+
+
 button[type="submit"]
 {
     width: 20%;
