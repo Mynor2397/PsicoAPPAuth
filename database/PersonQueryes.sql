@@ -160,6 +160,14 @@ VALUES
 
 COMMIT;
 
+INSERT INTO 
+    PAS_PersonPatient
+VALUES
+    (
+        _uuidPerson,
+        _uuidPerson
+    )
+
 END $ ----------
 
 
