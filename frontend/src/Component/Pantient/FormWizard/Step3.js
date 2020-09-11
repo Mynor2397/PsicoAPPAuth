@@ -45,7 +45,7 @@ const Step3 = ({handlerStesp3}) => {
 
     const data = localStorage.getItem('step3')
     if(data) {
-      if(uuidCity) {
+      if(!uuidCity) {
         aguardarStadoActual()
       }else {
         obtenerEstadoActual()
@@ -64,6 +64,8 @@ const Step3 = ({handlerStesp3}) => {
         Image
       })
     }
+
+    return () => false
   },[
     uuidCity,
     addressLine1,
@@ -141,7 +143,7 @@ const Step3 = ({handlerStesp3}) => {
       <input 
         id="attachment" 
         type="file" 
-        onChange={(env) => setImage(env.target.value)}
+        onChange={(env) => setImage(env.target.files[0])}
       />
     </div>
   )

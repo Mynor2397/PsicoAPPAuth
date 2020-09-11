@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import './Casos.scss'
 
 const CreateCasos = () => {
 	const history = useHistory()
@@ -27,17 +28,46 @@ const CreateCasos = () => {
 
 		fetch(`http://localhost:4000/case/create`, {
 			method: 'POST',
-			body: caso
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(caso)
 		}) 
 		.then(rest => rest.json())
 		.then(data => {
 			console.log(data)
-			history.push('/etapainicial')
+			if ( data.data.ok ) {
+				history.push('/etapainicial')
+			}
 		} )
 		.catch(err => console.error(err))
 	}
 	
+	useEffect(() => {
+		fetch('http://localhost:4000/personuser')
+		.then(rest => rest.json())
+		.then(data => setOwnerUser(data.data))
+		.catch(err => console.log(err))
 
+		fetch('http://localhost:4000/stage/allstages')
+		.then(rest => rest.json())
+		.then(data => setStage(data.data))
+		.catch(err => console.log(err))
+
+		
+	}, [])
+		
+	useEffect(() => {
+		fetch('http://localhost:4000/personpatient')
+		.then(rest => rest.json())
+		.then(data => setPersonPatient(data.data))
+		.catch(err => console.log(err))
+	}, [])
+	
+
+
+console.log(personPatient)
+console.log(ownerUser)
 	return (
 		<>
 		<Navbar />
@@ -52,13 +82,13 @@ const CreateCasos = () => {
 						<label htmlFor="">
 							OwnerUser
 							</label>
-							<select name="uuidOwnerUser" id="">
-							<option value="0">Selecione Estado</option>
-							{
-								ownerUser.map(() => (
-									<option value=''></option>
-								))
-							}
+							<select name="uuidOwnerUser" className="select-css" id="">
+								<option value="0">Selecione Estado</option>
+								{
+									ownerUser.map(({uuid,userName}) => (
+										<option key={uuid} value={uuid}>{userName}</option>
+									))
+								}
 						</select>
 							
 					</div>
@@ -66,11 +96,11 @@ const CreateCasos = () => {
 						<label htmlFor="">
 							PersonPatient
 						</label>
-						<select name="uuidOwnerUser" id="">
+						<select className="select-css" name="uuidPersonPatient" id="">
 							<option value="0">Selecione Estado</option>
 							{
-								personPatient.map(() => (
-									<option value=''></option>
+								personPatient.map(({uuid,patientNumber}) => (
+									<option key={uuid} value={uuid}>{patientNumber}</option>
 								))
 							}
 						</select>
@@ -79,11 +109,11 @@ const CreateCasos = () => {
 						<label htmlFor="">
 							Stage
 						</label>
-						<select name="uuidStage" id="">
+						<select className="select-css" name="uuidStage" id="">
 							<option value="0">Selecione Estado</option>
 							{
-								stage.map(() => (
-									<option value=''></option>
+								stage.map(({uuid, name}) => (
+									<option key={uuid} value={uuid}>{name}</option>
 								))
 							}
 						</select>
@@ -107,7 +137,7 @@ const CreateCasos = () => {
 					</div>
 
 					<div className="ed-item">
-						<button type='submit'>Crear Caso</button>
+						<button className="button1 mt-1" type='submit'>Crear Caso</button>
 					</div>
 				</form>
 			</div>

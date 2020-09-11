@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from '../Navbar/Navbar'
+import { Link } from 'react-router-dom'
+import './Styles.pantient.scss'
 
 
 const Pantient = () => {

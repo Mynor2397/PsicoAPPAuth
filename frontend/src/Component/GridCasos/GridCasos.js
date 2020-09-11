@@ -5,32 +5,50 @@ const GridCasos = () => {
 
     const [Radio, setRadio] = useState(1)
     const [Filter, setFilter] = useState(0)
-    const [Data, setData] = useState([])
+    const [pantient, setPantien] = useState([])
 
     const handleSearch = (e) => {
-        console.log(e.target.value)
-    } 
+
+        const newPantient = pantient.filter(p => p.caseNumber.indexOf(e.target.value) !== -1)
+
+        setPantien(newPantient)
+
+        if( pantient.length == 0) {
+            data()
+        }
+    }
+
+    useEffect(() => {
+        data()
+    }, [])
+
+    const data = () => {
+        fetch('http://localhost:4000/persons/all')
+        .then(res => res.json())
+        .then(data =>  setPantien(data.data))
+        .catch(err => console.log(err))
+    }
     
     useEffect(() => {
         let url = ''
         if(Filter === 0 || Filter === 4) {
             url = `http://localhost:4000/case/filter/${Filter}`
         }
-
+        
         if(Filter === 1 || Filter === 2) {
             url = `http://localhost:4000/case/filter/${Filter}/${Radio}`
         }
-
+        
         console.log(url)
-
+        
         fetch(url)
         .then(res => res.json())
-        .then(data => setData(data.data))
+        .then(data => setPantien(data.data))
 
     }, [Filter,Radio])
 
-    
-    console.log(Data)
+
+
     return (
         <>
         <section className="header-grid">
@@ -59,8 +77,8 @@ const GridCasos = () => {
         </section>
         <section>
             {
-                Data.map((data, index) => (
-                <h1 key={index}>{data.caseNumber}</h1>
+                pantient.map((data, index) => (
+                    <h1 key={index}>{data.caseNumber}</h1>
                 ))
             }
         </section>
