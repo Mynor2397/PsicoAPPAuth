@@ -2,7 +2,6 @@ const uuid = require('uuid')
 const StorePerson = require('../storage/person_storage')
 const { generate } = require('../lib/utils/uuid_psa')
 const Person = require('../models/person.model')
-const storagePerson = require('../storage/person_storage')
 
 const PersonService = {}
 

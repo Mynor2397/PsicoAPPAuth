@@ -1,28 +1,28 @@
-@host = http://localhost:3000/
+@host = http://localhost:4000/
 # Hace un post a la tabla PAC_Case
 POST {{host}}case/create
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "PAC_001",
-    "uuidOwnerUser" : "PAC_001",
-    "uuidPersonPatient": "PAC_001",
+    "uuidAssignedUser": "uuid4",
+    "uuidOwnerUser" : "uuid5",
+    "uuidPersonPatient": "uuid3",
     "uuidStage": "stage1",
-    "reasonForConsultation": "preuba"
+    "reasonForConsultation": "hola desde back"
 }
 
 ###
 #Hace una actualización a la tabla en base al uuid
-PUT {{host}}case/update/14f87259-c063-47ba-87eb-073ff1120ea0
+PUT {{host}}case/update/uuidcase3
 Content-Type: application/json
 
 {
-    "uuidAssignedUser": "PAC_001",
-    "uuidOwnerUser" : "PAC_001",
-    "uuidPersonPatient": "PAC_001",
-    "uuidStage": "stage2",
-    "reasonForConsultation": "Esto es prueba del update",
-    "desisted": 1
+    "uuidAssignedUser": "uuid7",
+    "uuidOwnerUser" : "uuid5",
+    "uuidPersonPatient": "uuid3",
+    "uuidStage": "stage3",
+    "reasonForConsultation": "Adios",
+    "desisted": 0
 }
 
 ###
@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ###
 #Get en base al uuid de la persona
-GET {{host}}case/viewcase/8e5a821d-973c-420e-9b83-14ccfa631da0
+GET {{host}}case/viewcase/uuidcase3
 Content-Type: application/json
 
 ###

@@ -72,7 +72,10 @@ storagePerson.update = async (data) => {
                     console.log(err);
                     reject(err)
                 }
-                resolve(person.id)
+                resolve({
+                    id: person.id,
+                    fileToDelete: person.changeFile
+                })
             })
     })
 }
@@ -115,7 +118,7 @@ storagePerson.onlywithfulldata = async (id) => {
             if (err) {
                 reject(err)
             }
-            
+
             if (results == undefined || results.length == 0) {
                 reject(404)
             }

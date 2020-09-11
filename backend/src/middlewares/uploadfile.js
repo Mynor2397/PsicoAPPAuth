@@ -3,6 +3,7 @@ const multer = require('multer')
 const aws = require('aws-sdk')
 const path = require('path')
 const uuid = require('uuid')
+const {fieldsForQuery} = require('../lib/utils/rextherapeuticplan.file')
 
 const database = require('../lib/utils/env.config')
 const s3 = {}
@@ -22,6 +23,29 @@ s3.uploadFileS3 = multer({
     })
 })
 
+s3.uploadFieldsFilesS3 = multer({
+    storage: multerS3({
+        s3: S3,
+        bucket: 'documentspsicoapp',
+        key: function (req, file, cb) {
+            cb(null, uuid.v4() + path.extname(file.originalname))
+        }
+    })
+})
+
+s3.getFile = async (filename) => {
+    console.log(filename);
+    var params = {
+        Bucket: 'documentspsicoapp',
+        Key: filename,
+        Expires: 60
+    };
+    console.log(params);
+
+    var url = S3.getSignedUrl('getObject', params);
+    return url;
+}
+
 
 s3.deleteFromS3 = (fileName) => {
     if (fileName == undefined || fileName == '') {
@@ -30,7 +54,6 @@ s3.deleteFromS3 = (fileName) => {
             Bucket: 'documentspsicoapp',
             Key: fileName
         };
-        console.log(params);
         S3.deleteObject(params, (err, data) => {
             if (err) console.log(err, err.stack);
             else console.log('delete', data);
@@ -47,14 +70,59 @@ s3.uploadFile = (req, res, next) => {
     }
 }
 
-const call = async () => {
-    var params = { Bucket: 'documentspsicoapp', Key: '48d0f7cb-5eff-4b18-a21d-647034c17336.png' };
-    var url = S3.getSignedUrl('getObject', params);
-    console.log('The URL is', url);
+s3.multipleUploadFile = (req, res, next) => {
+    let files = req.files
+    console.log(req.files);
+    if (files == undefined || Object.keys(files).length === 0) {
+        next()
+    } else {
+
+        let filesData = JSON.parse(JSON.stringify(req.files))
+        let fieldName = Object.keys(filesData)[0]
+        let value = `${filesData[`${fieldName}`][0].key}`
+
+        const bodyFiles = `{ "${fieldName}" : "${value}" }`
+
+        req.datafiles = JSON.parse(bodyFiles)
+        next()
+    }
+
 }
 
-const call2 = async () => {
-    await call()
+s3.manyUploadFile = (req, res, next) => {
+    let files = req.files
+    if (files == undefined || Object.keys(files).length === 0) {
+        next()
+    } else {
+
+        let filesData = JSON.parse(JSON.stringify(req.files))
+        let bodyFiles = {
+
+        }
+
+        for(var element in filesData){
+            if(element=='aspectToWorkFile'){
+                bodyFiles.aspectToWorkFile =filesData[element][0].key
+            }
+            if(element=='objetivesFile'){
+                bodyFiles.objetivesFile =filesData[element][0].key
+            }
+            if(element=='goalsFile'){
+                bodyFiles.goalsFile =filesData[element][0].key
+            }
+            if(element=='focusFile'){
+                bodyFiles.focusFile =filesData[element][0].key
+            }
+            if(element=='techniquesFile'){
+                bodyFiles.techniquesFile =filesData[element][0].key
+            }
+        }
+
+        req.datafiles = bodyFiles
+        next()
+    }
+
 }
-// call2()
+
+
 module.exports = s3
