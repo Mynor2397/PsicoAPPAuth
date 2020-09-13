@@ -5,8 +5,6 @@ import Pantient from './Pantient/Pantient'
 import CreateCasos from './CreateCasos/CreateCasos'
 import UpdateCasos from './CreateCasos/UpdateCasos'
 import EtapaInicial from './EtapaInicial/EtapaInicial'
-// import CreatePantient from './Pantient/CreatePantient'
-import UpdatePantient from './Pantient/UpdatePantiet'
 import CreatePantientv1 from './Pantient/CreatePantientv1'
 
 const Routes  = () => {
@@ -19,7 +17,7 @@ const Routes  = () => {
                 <Route path='/updatecasos/:idcases' component={UpdateCasos}  />
                 <Route path='/etapainicial' component={EtapaInicial}  />
                 <Route path='/createpantient' component={CreatePantientv1}  />
-                <Route path='/updatepantient/:idpantients' component={UpdatePantient}  />
+                <Route path='/updatepantient/:idpantients' component={CreatePantientv1}  />
                 <Route path="/" > 
                     <Redirect to="/pantient" />
                 </Route>

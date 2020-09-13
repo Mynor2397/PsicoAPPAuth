@@ -11,6 +11,9 @@ export default class MasterForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      IdPantient: this.props.match.params.idpantients  || '1',
+      uuidPerson: '',
+      active: '',
       currentStep: 1,
       firstName: '',
       secondName: '',
@@ -55,6 +58,46 @@ export default class MasterForm extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ Religion: data.data }))
       .catch(err => console.log(err))
+
+    if(this.state.IdPantient !== '1') {
+      fetch(`http://localhost:4000/getonly/${this.state.IdPantient}`)
+      .then(res => res.json())
+      .then(data =>{
+        console.log(data.data[0].lastName)
+       this.setState({
+        uuidPerson: data.data[0].uuidPerson,
+        id: data.data[0].id,    
+        firstName: data.data[0].firstName,    
+        lastName: data.data[0].lastName,    
+        secondLastName: data.data[0].secondLastName,    
+        marriedName: data.data[0].marriedName,    
+        bornDate: data.data[0].bornDate,    
+        uuidRole: data.data[0].uuidRole,    
+        mobilePhone: data.data[0].mobilePhone,   
+        email: data.data[0].email,    
+        uuidReligion: data.data[0].uuidReligion, 
+        firstNameFather: data.data[0].firstNameFather,    
+        secondNameFather: data.data[0].secondNameFather,    
+        lastNameFather: data.data[0].lastNameFather,    
+        secondLastNameFather: data.data[0].secondLastNameFather,    
+        firstNameMother: data.data[0].firstNameMother,    
+        secondNameMother: data.data[0].secondNameMother,    
+        lastNameMother: data.data[0].lastNameMother,    
+        secondLastNameMother: data.data[0].secondLastNameMother,    
+        firstNameExtra: data.data[0].firstNameExtra,    
+        secondNameExtra: data.data[0].secondNameExtra,   
+        lastNameExtra: data.data[0].lastNameExtra,    
+        secondLastNameExtra: data.data[0].secondLastNameExtra,    
+        attachment: data.data[0].attachment, 
+        comment: data.data[0].comment,  
+        uuidCity: data.data[0].uuidCity,    
+        addressLine1: data.data[0].addressLine1,     
+        addressLine2: data.data[0].addressLine2,   
+        phoneNumber: data.data[0].phoneNumber,  
+        active: data.data[0].active
+      })})
+      .catch(err => console.log(err))
+    }  
   }
 
   handleChange = event => {
@@ -191,7 +234,7 @@ export default class MasterForm extends React.Component {
         <button
           className="btn btn-secondary"
           type="button" onClick={this._prev}>
-          Previous
+          Regresar
         </button>
       )
     }
@@ -205,7 +248,7 @@ export default class MasterForm extends React.Component {
         <button
           className="btn btn-primary float-right"
           type="button" onClick={this._next}>
-          Next
+          Siguiente
         </button>
       )
     }
@@ -213,16 +256,23 @@ export default class MasterForm extends React.Component {
   }
 
   render() {
+    console.log(this.state.lastName)
     return (
       <React.Fragment>
         <Navbar />
-        <div className="ed-grid mt-6 mb-6">
+        <div className="ed-container mt-6">
           <div className="ed-item">
-            <h1>React Wizard Form 🧙‍♂️</h1>
-            <p>Step {this.state.currentStep} </p>
+            <h1>Crear pacientes</h1>
+            {
+              this.state.Edad >= 18 
+              ?
+                <p>Etapa {this.state.currentStep-1} </p>  
+              :
+                <p>Etapa {this.state.currentStep} </p>
+            }
           </div>
-          <div className="ed-item">
-            <form onSubmit={this.handleSubmit}>
+        </div>
+            <form className="ed-container mb-6" onSubmit={this.handleSubmit}>
               <Step1
                 Religion={this.state.Religion}
                 currentStep={this.state.currentStep}
@@ -271,8 +321,6 @@ export default class MasterForm extends React.Component {
 
             </form>
 
-          </div>
-        </div>
 
       </React.Fragment>
     );
@@ -297,13 +345,11 @@ function Step1({
     return null
   }
   return (
-    <div className="form-group">
-      <div className="ed-container">
+    <>
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="firstName">Primer Nombre</label>
             <input
-              className="form-control"
               id="firstName"
               name="firstName"
               type="text"
@@ -313,7 +359,7 @@ function Step1({
             />
           </div>
 
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondName">Segundo Nombre</label>
             <input placeholder="Segundo Nombre"
               id="secondName"
@@ -326,7 +372,7 @@ function Step1({
         </div>
 
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="lastName">Primer Apellido</label>
             <input placeholder="Primer Apellido"
               id="lastName"
@@ -336,7 +382,7 @@ function Step1({
               value={lastName}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastName">Segundo Apellido</label>
             <input placeholder="Segundo Apellido"
               id="secondLastName"
@@ -348,7 +394,7 @@ function Step1({
         </div>
 
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="marriedName">Apllido de Casada</label>
             <input placeholder="Apellido de Casada"
               id="marriedName"
@@ -358,7 +404,7 @@ function Step1({
               value={marriedName}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="bornDate">Fecha de Nacimiento</label>
             <input
               id="bornDate"
@@ -371,7 +417,7 @@ function Step1({
         </div>
 
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="mobilePhone">Número de Teléfono</label>
             <input placeholder="Número de Teléfono"
               id="mobilePhone"
@@ -381,7 +427,7 @@ function Step1({
               value={mobilePhone}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="email">Dirección de Email</label>
             <input placeholder="Email"
               id="email"
@@ -391,7 +437,7 @@ function Step1({
               onChange={handleChange}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="uuidReligion" >Religion </label>
             <select className="select-css"
               value={uuidReligio}
@@ -407,8 +453,7 @@ function Step1({
             </select>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
 
@@ -438,7 +483,7 @@ function Step2({
 
       <div className="ed-container">
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameFather">Primer Nombre del Padre</label>
             <input placeholder="Primer Nombre del Padre"
               id="firstNameFather"
@@ -449,7 +494,7 @@ function Step2({
               value={firstNameFather}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameFather">Segundo Nombre del Padre</label>
             <input placeholder="Segundo Nombre del Padre"
               id="secondNameFather"
@@ -462,7 +507,7 @@ function Step2({
           </div>
         </div>
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameFather">Primer Apellido del Padre</label>
             <input placeholder="Primer Apellido del Padre"
               id="lastNameFather"
@@ -473,7 +518,7 @@ function Step2({
               value={lastNameFather}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameFather">Segundo Apellido del Padre</label>
             <input placeholder="Segundo Apellido del Padre"
               id="secondLastNameFather"
@@ -487,7 +532,7 @@ function Step2({
         </div>
 
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameMother">Primer Nombre de la Madre</label>
             <input placeholder="Primer Nombre de la Madre"
               id="firstNameMother"
@@ -498,7 +543,7 @@ function Step2({
               value={firstNameMother}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameMother">Segundo Nombre de la Madre </label>
             <input placeholder="Segundo Nombre de la Madre"
               id="secondNameMother"
@@ -511,7 +556,7 @@ function Step2({
           </div>
         </div>
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameMother">Primer Apellido de la Madre</label>
             <input placeholder="Primer Apellido de la Madre"
               id="lastNameMother"
@@ -522,7 +567,7 @@ function Step2({
               value={lastNameMother}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameMother">Segundo Apellido de la Madre</label>
             <input placeholder="Segundo Apellido de la Madre"
               id="secondLastNameMother"
@@ -535,7 +580,7 @@ function Step2({
           </div>
         </div>
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameExtra">Primer Nombre Extra</label>
             <input placeholder="Primer Nombre Extra"
               id="firstNameExtra"
@@ -546,7 +591,7 @@ function Step2({
               value={firstNameExtra}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameExtra">Segundo Nombre Extra</label>
             <input placeholder="Segundo Nombre Extra"
               id="secondNameExtra"
@@ -560,7 +605,7 @@ function Step2({
         </div>
 
         <div className="ed-item ed-container">
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameExtra">Primer Apellido Extra</label>
             <input placeholder="Primer Apellido Extra"
               id="lastNameExtra"
@@ -571,7 +616,7 @@ function Step2({
               value={lastNameExtra}
             />
           </div>
-          <div className="ed-item s-50">
+          <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameExtra">Segundo Apellido Extra </label>
             <input placeholder="Segundo Apellido Extra"
               id="secondLastNameExtra"
@@ -677,7 +722,7 @@ const Step3 = ({
           </div>
         </div>
       </div>
-      <button className="btn btn-success btn-block">Sign up</button>
+      <button className="btn btn-success btn-block form1">Crear Pacientes</button>
     </React.Fragment>
   );
 }
