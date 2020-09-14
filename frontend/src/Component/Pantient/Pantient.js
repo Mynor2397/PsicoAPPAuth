@@ -23,12 +23,28 @@ const Pantient = () => {
 		.catch( err => console.error(err))
 	}
 
+	const handleDelete = (id,e) => {
+		console.log(id)
+		const url = `http://localhost:4000/person/${id}`
+		fetch(url , {
+			method: 'DELETE'
+		})
+			.then(res => res.json())
+			.then( data => {
+				console.log(data)
+				if(data.ok) {
+					getPantient()
+				}
+			})
+			.catch( err => console.error(err))
+	}
+
 	return (
 		<>	
 			<Navbar />
 			<section className="ed-container mt-6">
 				<div className="ed-item ed-container">
-					<div className="ed-item s-50 flex flex-center">
+					<div className="ed-item s-50">
 						<h1 className="pantient-title">Pacientes</h1>
 					</div>
 					<div className="ed-item s-50 flex flex-right flex-center">
@@ -56,7 +72,7 @@ const Pantient = () => {
 			<div className="ed-container">
 		    {
 					pantient.map(({id, mobilePhone, addressLine1, email, active}) => (
-						<div key={id} className="ed-item">
+						<div key={id} className="ed-item m-50 l-1-3">
 							<article className="s-shadow-bottom">
 								<div className="ed-grid m-grid-5 s-gap-2 m-pxy-2 s-bg-white s-radius-tl s-radius-tr">
 									<div className="s-pxy-2 m-pxy-0 m-cols-3">
@@ -67,7 +83,7 @@ const Pantient = () => {
 									</div>
 								</div>
 								<footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
-									<p className="s-10">{ active === 1 ? 'Activo' : 'Inactivo'}</p>
+									<button className="button color-red" onClick={ (e)=>handleDelete(id, e) }>Borrar</button>
 									<Link to={'/updatepantient/'+id} className="button s-to-right">Editar</Link>
 								</footer>
 							</article>

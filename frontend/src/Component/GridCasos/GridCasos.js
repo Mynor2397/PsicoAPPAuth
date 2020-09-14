@@ -19,7 +19,7 @@ const GridCasos = () => {
 
         setPantien(newPantient)
 
-        if (pantient.length == 0) {
+        if (pantient.length === 0) {
             data()
         }
     }
