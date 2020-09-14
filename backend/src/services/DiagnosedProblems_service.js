@@ -24,10 +24,21 @@ ServiceDiagnosedProblem.update = async (DataUpdate, UUID) => {
         .catch(err => {
             return new Promise((resolve, reject) => reject(err))
         })
+<<<<<<< HEAD
+}
+
+ServiceDiagnosedProblem.getall = async () => {
+    return await StorageDiagnosedProblem.getall()
+}
+
+ServiceDiagnosedProblem.getdsm = async () => {
+    return await StorageDiagnosedProblem.getdsm()
+=======
 }
 
 ServiceDiagnosedProblem.datadiag = async () => {
     return await StorageDiagnosedProblem.dataDiag()
+>>>>>>> 643d7b479a48ba81a3a31f1f1fe342415a52e417
 }
 
 module.exports = ServiceDiagnosedProblem;

@@ -91,4 +91,34 @@ handDiagnosedProblem.update = async (req, res) => {
     }
 }
 
+
+handDiagnosedProblem.getAll = async (req, res) => {
+    try {
+        let results = await DiagnosticSer.getall()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        respondError(res, error)
+        return
+    }
+}
+
+handDiagnosedProblem.getdsm = async (req, res) => {
+    try {
+        let results = await DiagnosticSer.getdsm()
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        respondError(res, error)
+        return
+    }
+}
 module.exports = handDiagnosedProblem;
