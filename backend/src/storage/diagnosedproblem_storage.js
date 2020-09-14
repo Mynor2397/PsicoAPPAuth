@@ -1,5 +1,5 @@
 const pool = require('../lib/database/database');
-const DiagnosticProblem = require('../models/DiagnosedProblems.model')
+const DiagnosticProblem = require('../models/diagnosedproblems.model')
 const StorageDiagnosedProblem = {};
 
 StorageDiagnosedProblem.create = async (DataDiagnostic) => {
