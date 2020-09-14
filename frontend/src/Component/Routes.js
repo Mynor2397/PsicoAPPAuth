@@ -1,9 +1,11 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import GridCasos from './GridCasos/GridCasos'
 import Pantient from './Pantient/Pantient'
 import CreateCasos from './CreateCasos/CreateCasos'
-import EtapaInicial from './EtapaInicial/EtapaInicial'
+import UpdateCasos from './CreateCasos/UpdateCasos'
+import CreatePantientv1 from './Pantient/CreatePantientv1'
+import Etapas from './Etapas/Etapas'
 
 const Routes  = () => {
     return (
@@ -12,7 +14,13 @@ const Routes  = () => {
                 <Route path='/gridcasos' component={GridCasos}  />
                 <Route path='/pantient' component={Pantient}  />
                 <Route path='/createcasos' component={CreateCasos}  />
-                <Route path='/Etapainicial' component={EtapaInicial}  />
+                <Route path='/updatecasos/:idcases' component={UpdateCasos}  />
+                <Route path='/etapas/:idCasos' component={Etapas}  />
+                <Route path='/createpantient' component={CreatePantientv1}  />
+                <Route path='/updatepantient/:idpantients' component={CreatePantientv1}  />
+                <Route path="/" > 
+                    <Redirect to="/createcasos" />
+                </Route>
             </Switch>
         </BrowserRouter>
     )

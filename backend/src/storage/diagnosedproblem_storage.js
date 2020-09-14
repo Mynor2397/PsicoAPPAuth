@@ -17,9 +17,6 @@ StorageDiagnosedProblem.create = async (DataDiagnostic) => {
                 })
             }
 
-            // console.log(resulst);
-            // console.log(err);
-
             resolve(newDiag)
         })
     })
@@ -39,8 +36,7 @@ StorageDiagnosedProblem.update = async (UpData, UUID, NameFileFromDB) => {
                     fileToDelete: update.descriptionOfProblemFile
                 })
             }
-            console.log(err);
-            console.log(results);
+
             
             if (results.affectedRows < 1) {
                 reject({
@@ -67,10 +63,6 @@ StorageDiagnosedProblem.getNameFile = async (UUID, NameFile) => {
                 })
             }
 
-            // if (results.length > 0) {
-            //     let fileFromDB = results[0]
-            //     resolve(Object.values(fileFromDB)[0])
-            // }
 
             resolve(results[0])
 

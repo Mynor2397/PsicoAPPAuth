@@ -1,0 +1,25 @@
+@host = http://localhost:4000
+
+###
+POST {{host}}/therapeuticplan/create/uuid6
+Content-Type: application/json
+
+{
+    "aspectToWork": "Escritura",
+    "objetives": "Aprender a Escribir",
+    "goals": "Que el niño escriba",
+    "focus": "Introductorio",
+    "techniques": "Aprestamiento"
+}
+
+###
+PUT {{host}}/therapeuticplan/update/uuid6/1d071545-66b3-4bdb-968e-688db9d24ef8
+Content-Type: application/json
+
+{
+    "aspectToWork": "Escrituras"
+}
+
+###
+GET {{host}}/therapeuticplan/getmany
+Content-Type: application/json

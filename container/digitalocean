@@ -1,0 +1,2 @@
+
+docker run --name psicoapp-db -p 3306:3306 -v /root/psicoapp/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=xxxx -d mysql:8.0.21
