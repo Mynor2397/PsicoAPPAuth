@@ -47,7 +47,7 @@ Content-Type: application/json
 
 ###
 # Esta retorna un registro con full data para poder actualizar el registro
-GET http://localhost:4000/getonly/2020-PAS9-00042
+GET http://localhost:4000/getonly/2020-PAS28-00028
 
 ###
 # Actualiza campos de registros
@@ -56,38 +56,41 @@ PUT http://localhost:4000/personupd/2020-PAS28-00028
 Content-Type: application/json
 
 {
-  "uuidPerson": "832d9aa5-6055-4e1c-ae3f-4d62b183dc01",
-  "firstName": "mike el mas pro",
-  "lastName": "Castrillo",
-  "secondLastName": "Maldonado",
-  "marriedName": "",
-  "bornDate": "1997-11-23T06:00:00.000Z",
+  "uuidPerson": "743562b1-3bf5-4972-b031-ef6e24a65e28",
+  "id": "2020-PAS9-00042",
+  "firstName": "Heraldo ",
+  "secondName": "Cervantes",
+  "lastName": "asdfsda",
+  "secondLastName": "sdafasd",
+  "marriedName": "asdfsadf",
+  "bornDate": "2013-06-12",
   "uuidRole": "f773d0e2-6f64-4957-8ad4-179455994849",
-  "mobilePhone": "45720194",
-  "email": "marold97@outlook.com",
-  "uuidReligion":"",
-  "firstNameFather": "",
-  "secondNameFather": "",
-  "lastNameFather": "",
-  "secondLastNameFather": "",
-  "firstNameMother": "",
-  "secondNameMother": "",
-  "lastNameMother": "",
-  "secondLastNameMother": "",
-  "firstNameExtra": "",
-  "secondNameExtra": "",
-  "lastNameExtra": "",
-  "secondLastNameExtra": "",
-  "attachment": "image.jpg", 
-  "comment": "Ninguno al respecto",
+  "mobilePhone": "asdf",
+  "email": "asdf",
+  "uuidReligion": null,
+  "firstNameFather": "asdfasd",
+  "secondNameFather": "asdfasdf",
+  "lastNameFather": "asdf",
+  "secondLastNameFather": "asdf",
+  "firstNameMother": "asdf",
+  "secondNameMother": "asdf",
+  "lastNameMother": "asdf",
+  "secondLastNameMother": "asdf",
+  "firstNameExtra": "asdf",
+  "secondNameExtra": "asdf",
+  "lastNameExtra": "asdf",
+  "secondLastNameExtra": "asdf",
+  "attachment": null,
+  "comment": "<p>asdfsadfassdf</p>",
   "uuidCity": "001",
-  "addressLine1": "Bo, Jalapa",
-  "addressLine2": "",
-  "phoneNumber": "4534345",
-  "active": 1,
-  "changeFile":"c034d1ca-3a76-4eee-a2d8-b404e7c832c4.sql" 
+  "addressLine1": "Pueblo Abajo, Sansare, El progreso",
+  "addressLine2": "12",
+  "phoneNumber": "47241772",
+  "changeFile":"werwer.txt",
+  "active": 1
 }
-
+###
+80a34667-500d-4175-8a75-d431b008b18d.txt
 
 ###
 # Unicamente lo cambia de estao activo a inactivo como forma de auditoria
