@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Redirect } from 'react-router-dom';
 import './Styles.pantient.scss'
 import './Style.step.scss'
 import Navbar from '../Navbar/Navbar';
+import { Redirect } from 'react-router-dom';
 
 export default class MasterForm extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      IdPantient: this.props.match.params.idpantients  || '1',
+      IdPantient: props.match.params.idpantients  || '1',
       uuidPerson: '',
       active: '',
       currentStep: 1,
@@ -42,6 +42,7 @@ export default class MasterForm extends React.Component {
       phoneNumber: '',
       comment: '',
       attachment: '',
+      changeFile:'',
       Edad: 9,
       City: [],
       Religion: []
@@ -63,16 +64,30 @@ export default class MasterForm extends React.Component {
       fetch(`http://localhost:4000/getonly/${this.state.IdPantient}`)
       .then(res => res.json())
       .then(data =>{
-        console.log(data.data[0].lastName)
+
+        const bornDateParser = new Date(data.data[0].bornDate)
+
+        const dia = bornDateParser.getDate()
+        const mes = bornDateParser.getMonth() + 1
+        const anio = bornDateParser.getFullYear()
+
+        const newBornDate = `${anio}-${mes}-${dia}`
+
+        console.log(newBornDate)
+
+        this.setState({ Edad: this.EdadF(newBornDate) })
+
+        // "Día: "+fecha.getDate()+"\nMes: "+(fecha.getMonth()+1)+"\nAño: "+fecha.getFullYear());
        this.setState({
+        idSuccess: '',
         uuidPerson: data.data[0].uuidPerson,
         id: data.data[0].id,    
-        firstName: data.data[0].firstName,    
+        firstName: data.data[0].firstName, 
+        secondName: data.data[0].secondName,   
         lastName: data.data[0].lastName,    
         secondLastName: data.data[0].secondLastName,    
         marriedName: data.data[0].marriedName,    
-        bornDate: data.data[0].bornDate,    
-        uuidRole: data.data[0].uuidRole,    
+        bornDate: newBornDate,        
         mobilePhone: data.data[0].mobilePhone,   
         email: data.data[0].email,    
         uuidReligion: data.data[0].uuidReligion, 
@@ -94,7 +109,8 @@ export default class MasterForm extends React.Component {
         addressLine1: data.data[0].addressLine1,     
         addressLine2: data.data[0].addressLine2,   
         phoneNumber: data.data[0].phoneNumber,  
-        active: data.data[0].active
+        active: data.data[0].active,
+        changeFile: data.data[0].attachment
       })})
       .catch(err => console.log(err))
     }  
@@ -130,11 +146,7 @@ export default class MasterForm extends React.Component {
           [name]: value
         })
       }
-
-  
-  
     }
-    
   }
 
   EdadF(FechaNacimiento) {
@@ -186,19 +198,38 @@ export default class MasterForm extends React.Component {
     formData.append('comment',this.state.comment)
     formData.append('attachment',this.state.attachment)
 
-    fetch('http://localhost:4000/person/create', {
-      method: 'POST',
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data.ok)
-        
-        if(data.ok){
-          return <Redirect to="/pantient" />
-        }
-    })
-    .catch(err => console.log(err))
+    if(this.state.IdPantient !== '1') {
+      formData.append('uuidPerson',this.state.uuidPerson)
+      formData.append('active',this.state.active)
+      formData.append('changeFile',this.state.changeFile)
+
+      fetch(`http://localhost:4000/personupd/${this.state.IdPantient}`, {
+        method: 'PUT',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data)
+          if (data.ok) {
+            alert(data.message)
+            this.setState({idSuccess:true})
+          }
+      })
+      .catch(err => console.log(err))
+    }else {
+      fetch('http://localhost:4000/person/create', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+          if(data.ok) {
+            alert(data.message)
+            this.setState({idSuccess:true})
+          }
+      })
+      .catch(err => console.log(err))
+    }
 
   }
 
@@ -256,7 +287,6 @@ export default class MasterForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.lastName)
     return (
       <React.Fragment>
         <Navbar />
@@ -285,7 +315,7 @@ export default class MasterForm extends React.Component {
                 bornDate={this.state.bornDate}
                 mobilePhone={this.state.mobilePhone}
                 email={this.state.email}
-                uuidReligio={this.state.uuidReligio}
+                uuidReligion={this.state.uuidReligion}
               />
 
               <Step2
@@ -307,6 +337,7 @@ export default class MasterForm extends React.Component {
 
               <Step3
                 currentStep={this.state.currentStep}
+                idSuccess={this.state.idSuccess}
                 handleChange={this.handleChange}
                 City={this.state.City}
                 uuidCity={this.state.uuidCity}
@@ -339,7 +370,7 @@ function Step1({
   bornDate,
   mobilePhone,
   email,
-  uuidReligio
+  uuidReligion
 }) {
   if (currentStep !== 1) {
     return null
@@ -440,7 +471,7 @@ function Step1({
           <div className="ed-item s-100 m-50">
             <label htmlFor="uuidReligion" >Religion </label>
             <select className="select-css"
-              value={uuidReligio}
+              value={uuidReligion || 0}
               name="uuidReligion"
               onChange={handleChange}
             >
@@ -634,6 +665,7 @@ function Step2({
 }
 
 const Step3 = ({
+  idSuccess,
   City,
   currentStep,
   handleChange,
@@ -712,17 +744,30 @@ const Step3 = ({
               }}
             />
 
-            <label htmlFor="attachment">Seleccione Archivo</label>
-            <input
-              id="attachment"
-              type="file"
-              name='attachment'
-              onChange={handleChange}
-            />
+            <div className="input-group mb-3">
+              <div className="custom-file">
+                <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
+                  name='attachment'
+                  onChange={handleChange}
+                />
+                <label className="custom-file-label" htmlFor="inputGroupFile01">
+                  {
+                    attachment 
+                    ? attachment.name || attachment
+                    :'Selecciones archivo' 
+                  }
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <button className="btn btn-success btn-block form1">Crear Pacientes</button>
+      {
+        idSuccess
+        ? <Redirect to="/pantient" />
+        : null
+      }
     </React.Fragment>
   );
 }
