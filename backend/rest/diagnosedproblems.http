@@ -9,3 +9,11 @@ Content-Type: application/json
     "descriptionOfProblem":"Este es el texto asociado al archivo",
     "descriptionOfProblemFile":"Y esto es el archivo"
 }
+
+###
+GET {{host}}/diagnostic/get
+Content-Type: application/json
+
+###
+GET {{host}}/diagnostic/getdsm
+Content-Type: application/json
