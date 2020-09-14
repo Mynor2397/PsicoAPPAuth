@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useHistory } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './Casos.scss'
 

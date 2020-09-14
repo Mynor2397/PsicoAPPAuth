@@ -380,7 +380,7 @@ function Step1({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="firstName">Primer Nombre</label>
-            <input
+            <input className="INPUT"
               id="firstName"
               name="firstName"
               type="text"
@@ -392,7 +392,7 @@ function Step1({
 
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondName">Segundo Nombre</label>
-            <input placeholder="Segundo Nombre"
+            <input className="INPUT" placeholder="Segundo Nombre"
               id="secondName"
               type="text"
               name="secondName"
@@ -405,7 +405,7 @@ function Step1({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="lastName">Primer Apellido</label>
-            <input placeholder="Primer Apellido"
+            <input className="INPUT" placeholder="Primer Apellido"
               id="lastName"
               type="text"
               name="lastName"
@@ -415,7 +415,7 @@ function Step1({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastName">Segundo Apellido</label>
-            <input placeholder="Segundo Apellido"
+            <input className="INPUT" placeholder="Segundo Apellido"
               id="secondLastName"
               type="text" name="secondLastName"
               onChange={handleChange}
@@ -427,7 +427,7 @@ function Step1({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="marriedName">Apllido de Casada</label>
-            <input placeholder="Apellido de Casada"
+            <input className="INPUT" placeholder="Apellido de Casada"
               id="marriedName"
               type="text"
               name="marriedName"
@@ -437,7 +437,7 @@ function Step1({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="bornDate">Fecha de Nacimiento</label>
-            <input
+            <input className="INPUT"
               id="bornDate"
               type="date"
               name="bornDate"
@@ -450,7 +450,7 @@ function Step1({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="mobilePhone">Número de Teléfono</label>
-            <input placeholder="Número de Teléfono"
+            <input className="INPUT" placeholder="Número de Teléfono"
               id="mobilePhone"
               type="text"
               name="mobilePhone"
@@ -460,7 +460,7 @@ function Step1({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="email">Dirección de Email</label>
-            <input placeholder="Email"
+            <input className="INPUT" placeholder="Email"
               id="email"
               type="email"
               name="email"
@@ -516,9 +516,8 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameFather">Primer Nombre del Padre</label>
-            <input placeholder="Primer Nombre del Padre"
+            <input className="INPUT" placeholder="Primer Nombre del Padre"
               id="firstNameFather"
-              className="form-control"
               type="text"
               onChange={handleChange}
               name="firstNameFather"
@@ -527,10 +526,9 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameFather">Segundo Nombre del Padre</label>
-            <input placeholder="Segundo Nombre del Padre"
+            <input className="INPUT" placeholder="Segundo Nombre del Padre"
               id="secondNameFather"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="secondNameFather"
               value={secondNameFather}
@@ -540,10 +538,9 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameFather">Primer Apellido del Padre</label>
-            <input placeholder="Primer Apellido del Padre"
+            <input className="INPUT" placeholder="Primer Apellido del Padre"
               id="lastNameFather"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="lastNameFather"
               value={lastNameFather}
@@ -551,10 +548,9 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameFather">Segundo Apellido del Padre</label>
-            <input placeholder="Segundo Apellido del Padre"
+            <input className="INPUT" placeholder="Segundo Apellido del Padre"
               id="secondLastNameFather"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="secondLastNameFather"
               value={secondLastNameFather}
@@ -565,10 +561,9 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameMother">Primer Nombre de la Madre</label>
-            <input placeholder="Primer Nombre de la Madre"
+            <input className="INPUT" placeholder="Primer Nombre de la Madre"
               id="firstNameMother"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="firstNameMother"
               value={firstNameMother}
@@ -576,9 +571,8 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameMother">Segundo Nombre de la Madre </label>
-            <input placeholder="Segundo Nombre de la Madre"
+            <input className="INPUT" placeholder="Segundo Nombre de la Madre"
               id="secondNameMother"
-              className="form-control"
               type="text"
               onChange={handleChange}
               name="secondNameMother"
@@ -589,10 +583,9 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameMother">Primer Apellido de la Madre</label>
-            <input placeholder="Primer Apellido de la Madre"
+            <input className="INPUT" placeholder="Primer Apellido de la Madre"
               id="lastNameMother"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="lastNameMother"
               value={lastNameMother}
@@ -600,10 +593,9 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameMother">Segundo Apellido de la Madre</label>
-            <input placeholder="Segundo Apellido de la Madre"
+            <input className="INPUT" placeholder="Segundo Apellido de la Madre"
               id="secondLastNameMother"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="secondLastNameMother"
               value={secondLastNameMother}
@@ -613,10 +605,9 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="firstNameExtra">Primer Nombre Extra</label>
-            <input placeholder="Primer Nombre Extra"
+            <input className="INPUT" placeholder="Primer Nombre Extra"
               id="firstNameExtra"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="firstNameExtra"
               value={firstNameExtra}
@@ -624,10 +615,9 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondNameExtra">Segundo Nombre Extra</label>
-            <input placeholder="Segundo Nombre Extra"
+            <input className="INPUT" placeholder="Segundo Nombre Extra"
               id="secondNameExtra"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="secondNameExtra"
               value={secondNameExtra}
@@ -638,10 +628,9 @@ function Step2({
         <div className="ed-item ed-container">
           <div className="ed-item s-100 m-50">
             <label htmlFor="lastNameExtra">Primer Apellido Extra</label>
-            <input placeholder="Primer Apellido Extra"
+            <input className="INPUT" placeholder="Primer Apellido Extra"
               id="lastNameExtra"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="lastNameExtra"
               value={lastNameExtra}
@@ -649,10 +638,9 @@ function Step2({
           </div>
           <div className="ed-item s-100 m-50">
             <label htmlFor="secondLastNameExtra">Segundo Apellido Extra </label>
-            <input placeholder="Segundo Apellido Extra"
+            <input className="INPUT" placeholder="Segundo Apellido Extra"
               id="secondLastNameExtra"
               type="text"
-              className="form-control"
               onChange={handleChange}
               name="secondLastNameExtra"
               value={secondLastNameExtra}
@@ -702,7 +690,7 @@ const Step3 = ({
             </select>
 
             <label htmlFor="addressLine1">Dirección Principal</label>
-            <input placeholder="Dirección Principal"
+            <input className="INPUT" placeholder="Dirección Principal"
               id="addressLine1"
               type="text"
               name="addressLine1"
@@ -711,7 +699,7 @@ const Step3 = ({
             />
 
             <label htmlFor="addressLine2">Dirección Secundaria</label>
-            <input placeholder="Dirección Secundaria"
+            <input className="INPUT" placeholder="Dirección Secundaria"
               id="addressLine2"
               type="text"
               name="addressLine2"
@@ -720,7 +708,7 @@ const Step3 = ({
             />
 
             <label htmlFor="phoneNumber">Número de Teléfono</label>
-            <input placeholder="Número de Teléfono"
+            <input className="INPUT" placeholder="Número de Teléfono"
               id="phoneNumber"
               type="text"
               name="phoneNumber"

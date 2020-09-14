@@ -4,7 +4,7 @@ label, input {
 
 }
 
-input, .INPUT {
+.INPUT {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -14,29 +14,29 @@ input, .INPUT {
   display: inline-block;  
 }
 
-input[type="file"]#attachment {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-  }
+// input[type="file"]#attachment {
+//   width: 0.1px;
+//   height: 0.1px;
+//   opacity: 0;
+//   overflow: hidden;
+//   position: absolute;
+//   z-index: -1;
+//   }
 
-label[for="attachment"] {
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  background-color: var(--color);
-  display: inline-block;
-  transition: all .5s;
-  cursor: pointer;
-  padding: 15px 40px !important;
-  text-transform: uppercase;
-  width: fit-content;
-  text-align: center;
-  border-radius: 10px;
-  }
+// label[for="attachment"] {
+//   font-size: 14px;
+//   font-weight: 600;
+//   color: #fff;
+//   background-color: var(--color);
+//   display: inline-block;
+//   transition: all .5s;
+//   cursor: pointer;
+//   padding: 15px 40px !important;
+//   text-transform: uppercase;
+//   width: fit-content;
+//   text-align: center;
+//   border-radius: 10px;
+//   }
 
   .select-css {
     display: block;
@@ -80,5 +80,7 @@ label[for="attachment"] {
    .select-css option {
     font-weight:normal;
    }
+
+   
 
 

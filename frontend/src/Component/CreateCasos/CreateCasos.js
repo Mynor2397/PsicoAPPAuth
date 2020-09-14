@@ -24,8 +24,6 @@ const CreateCasos = () => {
 			reasonForConsultation: ckeditorComment
 		}
 
-		console.log(caso)
-
 		fetch(`http://localhost:4000/case/create`, {
 			method: 'POST',
 			headers: {
@@ -36,8 +34,8 @@ const CreateCasos = () => {
 		.then(rest => rest.json())
 		.then(data => {
 			console.log(data)
-			if ( data.data.ok ) {
-				history.push('/etapainicial')
+			if ( data.ok ) {
+				history.push(`/etapas/${data.data}`)
 			}
 		} )
 		.catch(err => console.error(err))

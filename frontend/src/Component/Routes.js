@@ -4,8 +4,8 @@ import GridCasos from './GridCasos/GridCasos'
 import Pantient from './Pantient/Pantient'
 import CreateCasos from './CreateCasos/CreateCasos'
 import UpdateCasos from './CreateCasos/UpdateCasos'
-import EtapaInicial from './EtapaInicial/EtapaInicial'
 import CreatePantientv1 from './Pantient/CreatePantientv1'
+import Etapas from './Etapas/Etapas'
 
 const Routes  = () => {
     return (
@@ -15,11 +15,11 @@ const Routes  = () => {
                 <Route path='/pantient' component={Pantient}  />
                 <Route path='/createcasos' component={CreateCasos}  />
                 <Route path='/updatecasos/:idcases' component={UpdateCasos}  />
-                <Route path='/etapainicial' component={EtapaInicial}  />
+                <Route path='/etapas/:idCasos' component={Etapas}  />
                 <Route path='/createpantient' component={CreatePantientv1}  />
                 <Route path='/updatepantient/:idpantients' component={CreatePantientv1}  />
                 <Route path="/" > 
-                    <Redirect to="/pantient" />
+                    <Redirect to="/createcasos" />
                 </Route>
             </Switch>
         </BrowserRouter>
