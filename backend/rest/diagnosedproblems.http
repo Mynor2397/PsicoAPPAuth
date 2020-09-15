@@ -11,6 +11,16 @@ Content-Type: application/json
 }
 
 ###
+PUT {{host}}/diagnostic/update/uuid6
+Content-Type: application/json
+
+{
+    "uuidDSM5":"T002",
+    "descriptionOfProblem":"Esta es una actualización del texto",
+    "descriptionOfProblemFile":"Y esto es una actualización del archivo"
+}
+
+###
 GET {{host}}/diagnostic/get
 Content-Type: application/json
 
