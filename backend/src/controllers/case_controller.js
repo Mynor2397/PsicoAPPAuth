@@ -175,7 +175,6 @@ handCase.getpersonpatient = async (req, res) => {
 handCase.filter = async (req, res) => {
     dataFilter = req.params
     try {
-        console.log(dataFilter)
         let result = await CaseService.filter(dataFilter)
         return res
             .status(http.StatusOK)

@@ -21,7 +21,7 @@ storageCase.create = async (dataCase) => {
             if (err) {
                 reject(err)
             }
-            console.log(results)
+            
             resolve(cases.uuid)
 
         })
@@ -38,7 +38,7 @@ storageCase.filter = (query) => {
             if (results == undefined || results.length == 0) {
                 reject(404)
             }
-            console.log(results)
+            
             resolve(results)
         })
     })
@@ -65,7 +65,7 @@ storageCase.get = async (getCase) => {
     let allcases = new Cases()
 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAC_Case', [], (err, results, fields) => {
+        pool.query('SELECT * FROM PAC_Case;', [], (err, results, fields) => {
 
             if (err) {
                 reject(err)
@@ -77,7 +77,7 @@ storageCase.get = async (getCase) => {
 
 storageCase.getid = async (uuid) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM PAC_Case WHERE uuid = ?`, [uuid],
+        pool.query(`SELECT * FROM PAC_Case WHERE uuid = ?;`, [uuid],
             (err, results, fields) => {
                 if (err) {
                     reject(err)
@@ -96,7 +96,7 @@ storageCase.getstage = async (getStage) => {
     let allstages = new Stage()
 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAC_Stage', [], (err, results, fields) => {
+        pool.query('SELECT * FROM PAC_Stage;', [], (err, results, fields) => {
 
             if (err) {
                 reject(err)
@@ -122,7 +122,7 @@ storageCase.getpersonuser = async (getpersonuser) => {
 
 storageCase.getpersonpatient = async (getpersonuser) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT pap.uuid, ppa.patientNumber, pap.firstName AS name FROM PAS_Person pap
+        pool.query(`SELECT pap.id, pap.uuid, ppa.patientNumber FROM PAS_Person pap
                     INNER JOIN PAS_PersonPatient ppa ON pap.uuid = ppa.uuid;`, (err, results, fields) => {
 
             if (err) {
