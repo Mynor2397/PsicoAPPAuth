@@ -125,7 +125,7 @@ handCase.getstage = async (req, res) => {
                 data: result
             })
     } catch (error) {
-        
+
         return res
             .status(http.StatusInternalServerError)
             .json({
@@ -200,6 +200,34 @@ handCase.filter = async (req, res) => {
             })
     }
 
+}
+
+handCase.getManyByFilter = async (req, res) => {
+    let value = req.query
+
+    try {
+        let results = await CaseService.getManyByFilter(value.filter)
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+    } catch (error) {
+        if (error == 404) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningun registro encontrado",
+                    data: []
+                })
+        }
+
+        respondError(res, err)
+        return
+    }
+    return res.json({ value: value.value })
 }
 
 

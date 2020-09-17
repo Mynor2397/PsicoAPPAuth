@@ -21,7 +21,7 @@ storageCase.create = async (dataCase) => {
             if (err) {
                 reject(err)
             }
-            
+
             resolve(cases.uuid)
 
         })
@@ -38,7 +38,7 @@ storageCase.filter = (query) => {
             if (results == undefined || results.length == 0) {
                 reject(404)
             }
-            
+
             resolve(results)
         })
     })
@@ -72,6 +72,25 @@ storageCase.get = async (getCase) => {
             }
             resolve(results);
         })
+    })
+}
+
+storageCase.getManyByFilter = async (value) => {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT * FROM PsicoAppTemp.grid_casos 
+                    WHERE uuid like ? OR caseNumber like ?;`,
+            [value, value], (err, results, fields) => {
+
+                if (err) {
+                    reject(err)
+                }
+
+                if (results == undefined || results.length == 0) {
+                    reject(404)
+                }
+
+                resolve(results)
+            })
     })
 }
 

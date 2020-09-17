@@ -22,3 +22,8 @@ GET {{host}}case/filter/3
 #desistidos
 GET {{host}}case/filter/4
 
+###
+# Obtiene los registros por consulta aleatoria, nombre o id
+# el filtro está unicamente por id o por numero de caso
+GET {{host}}cases/byfilter?filter=2020
+

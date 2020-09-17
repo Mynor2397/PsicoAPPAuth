@@ -98,5 +98,8 @@ CaseService.filter = async (FilterCase) => {
 
 }
 
+CaseService.getManyByFilter = async (value) => {
+    return await StoreCase.getManyByFilter(value + '%')
+}
 
 module.exports = CaseService
