@@ -52,4 +52,8 @@ PersonService.religion = async () => {
 PersonService.cities = async () => {
     return await StorePerson.cities()
 }
+
+PersonService.gridStagePerson = async (stage) => {
+    return await StorePerson.gridStagePerson(stage)
+}
 module.exports = PersonService;

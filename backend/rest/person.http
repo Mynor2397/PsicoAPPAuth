@@ -113,3 +113,12 @@ Content-Type: application/json
 # algun elemento para su posterior selección
 GET http://localhost:4000/city/all
 Content-Type: application/json
+
+
+####
+# Retorna registros por estado active o desactive de person
+# 0 = borrado o desactivado
+# 1 = activado 
+# http://localhost:4000/persons/grid/:stage = 0 || 1
+
+GET {{host}}s/grid/0

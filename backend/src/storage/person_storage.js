@@ -158,4 +158,18 @@ storagePerson.cities = async () => {
         })
     })
 }
+
+storagePerson.gridStagePerson = async (stage) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAS_Person WHERE active = ?;', [stage], (err, results, fields) => {
+            if (err) reject(err);
+
+            if (results == undefined || results.length == 0) {
+                reject(404)
+            }
+
+            resolve(results)
+        })
+    })
+}
 module.exports = storagePerson;
