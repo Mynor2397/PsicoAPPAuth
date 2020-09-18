@@ -55,7 +55,7 @@ storagePerson.get = async (uuid) => {
 storagePerson.update = async (data) => {
     let person = new Person()
     person = data
-
+    console.log(person.secondName);
     if (person.uuidReligion == '' || person.uuidReligion == undefined) {
         person.uuidReligion = null
     }
@@ -149,6 +149,20 @@ storagePerson.cities = async () => {
             if (err) {
                 reject(err)
             }
+
+            if (results == undefined || results.length == 0) {
+                reject(404)
+            }
+
+            resolve(results)
+        })
+    })
+}
+
+storagePerson.gridStagePerson = async (stage) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAS_Person WHERE active = ?;', [stage], (err, results, fields) => {
+            if (err) reject(err);
 
             if (results == undefined || results.length == 0) {
                 reject(404)

@@ -9,6 +9,7 @@ router.put('/personupd/:id', uploadFileS3.single('attachment'), uploadFile, rexP
 router.delete('/person/:id', pController.deletePerson)
 router.get('/persons/all', pController.allPersons)
 router.get('/getonly/:id', pController.personwithfulldata)
+router.get('/persons/grid/:stage', pController.gridStagePerson)
 
 router.get('/religion/all', pController.religion)
 router.get('/city/all', pController.cities)
