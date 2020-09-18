@@ -10,7 +10,7 @@ input[type="search"], button[type="submit"]
 }
 input[type="search"]
 {
-       width: 76%;
+       width: 40%;
        border: none;
        z-index:2;
        @include from(m){width:90%}

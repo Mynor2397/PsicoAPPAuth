@@ -124,7 +124,7 @@ const GridCasos = () => {
                                             </div>
                                             <footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
                                                 <p className="s-10">{data.stage}</p>
-                                                <Link to={'/updatecasos/' + data.caseNumber} className="button s-to-right">Editar</Link>
+                                                <Link to={'/updatecasos/' + data.uuid} className="button s-to-right">Editar</Link>
                                             </footer>
                                         </article>
                                     </div>

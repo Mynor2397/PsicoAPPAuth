@@ -4,7 +4,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const EtapaDiagnostico = ({
   currentStep,
-  handleChange,
+  handleChangediag,
+  uuidDSM5Array,
   uuidDSM5,
   descriptionOfProblem,
   descriptionOfProblemFile
@@ -19,14 +20,14 @@ const EtapaDiagnostico = ({
             <select className="select-css"
               value={uuidDSM5 || 0}
               name="uuidDSM5"
-              onChange={handleChange}
+              onChange={handleChangediag}
             >
               <option value="0">Seleccionar un valor</option>
-              {/* {
-                uuidDSM5.map(({ uuid, name }) => (
+              {
+                uuidDSM5Array.map(({ uuid, name }) => (
                   <option key={uuid} value={uuid}>{name}</option>
                 ))
-              } */}
+              }
             </select>
       </div>
       <div className="ed-item xl-50">
@@ -39,17 +40,17 @@ const EtapaDiagnostico = ({
 						const data = {
 							value: editor.getData(),
 							is: true,
-							name: 'descriptionOfProblem'
+              name: 'descriptionOfProblem'
 						}
-						handleChange(data)
+						handleChangediag(data)
 					}}
 				/>
 		
 				<div className="input-group mb-3">
 					<div className="custom-file">
 						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='premorbidPersonalityFile'
-							onChange={handleChange}
+							name='descriptionOfProblemFile'
+							onChange={(e) => handleChangediag(e)}
 							/>
 						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
 							{

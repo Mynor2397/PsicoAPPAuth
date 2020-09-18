@@ -42,6 +42,10 @@ class Etapas extends Component {
       uuidTestType:'',
       testingApplication:'',
       testingApplicationFile:'', 
+      uuidDSM5Array: [],
+      uuidDSM5: '',
+      descriptionOfProblem:'',
+      descriptionOfProblemFile:''
     }
   }
 
@@ -84,6 +88,11 @@ class Etapas extends Component {
         })
       })
       .catch(err => console.log(err))
+
+      fetch('http://localhost:4000/diagnostic/getdsm')
+      .then(res => res.json())
+      .then(data => this.setState({uuidDSM5Array: data.data}))
+      .catch(err=>console.log(err))
   }
 
   handleChange = event => {
@@ -134,14 +143,49 @@ class Etapas extends Component {
     }
 
   }
-   
-  handleSubmit = event => {
-    event.preventDefault()
-    const { email, username, password } = this.state
-    alert(`Your registration detail: \n 
-           Email: ${email} \n 
-           Username: ${username} \n
-           Password: ${password}`)
+  InsertDiag = () => {
+    const {uuidDSM5,descriptionOfProblem,descriptionOfProblemFile} = this.state
+    if(uuidDSM5 && descriptionOfProblem && descriptionOfProblemFile) {
+      const formData = new FormData()
+      formData.append('uuidDSM5',uuidDSM5)
+      formData.append('descriptionOfProblem',descriptionOfProblem)
+      formData.append('descriptionOfProblemFile',descriptionOfProblemFile)
+      const url = `http://localhost:4000/diagnostic/create/${this.state.idCase}`
+      fetch(url,{
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+    }
+  }
+
+  handleChangediag = event => {
+    if(event.is) {
+      const {name, value} = event
+      if (value) {
+        this.setState({
+          [name]: value
+        })
+      }
+    }else {
+      const {name, value} = event.target
+      
+      if(name === 'descriptionOfProblemFile'){
+        const file = event.target.files[0]
+        this.setState({
+          [name]: file
+        })
+
+      }else {
+        this.setState({
+          [name]: value
+        })
+      }
+      
+    }
+  
   }
   
   _next = () => {
@@ -239,7 +283,11 @@ nextButton(){
             />
             <EtapaDiagnostico 
               currentStep={this.state.currentStep} 
-              handleChange={this.handleChange}
+              handleChangediag={this.handleChangediag}
+              uuidDSM5Array={this.state.uuidDSM5Array}
+              uuidDSM5={this.state.uuidDSM5}
+              descriptionOfProblem={this.state.descriptionOfProblem}
+              descriptionOfProblemFile={this.state.descriptionOfProblemFile}
             />
 
             <EtapaIntermedia
