@@ -8,7 +8,7 @@ trigger:
       - master
   paths:
     include:
-    - ./backend
+    - backend
 
 resources:
 - repo: self
