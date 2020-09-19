@@ -1,62 +1,27 @@
-
-@import "~ed-grid/ed-grid";
-
-input[type="search"], button[type="submit"]
-{
-    position: relative;
-    width: 10%;
-    height: 40px;
-    padding: 0;
-}
-input[type="search"]
-{
-       width: 40%;
-       border: none;
-       z-index:2;
-       @include from(m){width:90%}
-
-}
-fieldset {
-    width: 100%;
-    background: #2B3AF2;
-    border: 1px solid #333;
-    border-radius: 5px;
-}
-
-
-button[type="submit"]
-{
-    width: 20%;
+.pantient-btncreat {
+    color: white;
+    background: var(--color);
     border: none;
-    background: #2B3AF2;
-    transform: translate(-50px,0);
-    transition-duration: .3s;
-    @include from(m){width:10%}
+    padding: .5rem 1rem;
+    border-radius: 5px; 
+    text-align: center;
 }
-.fa-search{
-    color: hsl(0, 24%, 96%);
+.card-filter {
+    border: thin solid rgba($color: #000000, $alpha: .3);
+    border-radius: 5px;
+    font-size: 1rem;
 }
-input[type="search"]:focus {
-    outline: none;
+.btn-filter {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: .5rem;
+    text-align: left;
+    font-size: 1rem;
 }
-input[type="search"]:focus + button[type="submit"]{
-    transform: translate(0,0);
-    transition-duration: .3s;
-}
-input[type="search"]:focus + button[type="submit"] .fa {
-    transform: translate(0,0);
-    transition: all .1s ease-in-out;
-}
-section[type="head"]{
-    height: 55px;
-    background: #2B3AF2;
-}
-.flex{
-    display: flex;
-    justify-content: flex-end;
-    }
-.colorbtn{
-    background: '#2B3AF2' !important; 
-    margin-right: 1rem;
+
+.select {
+    background-color:  var(--color) ;
     color: white;
 }
