@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator');
-const DiagnosticSer = require('../services/diagnosedproblems_service')
+const DiagnosticSer = require('../services/diagnosedproblem_service')
 const DiagnosedProblems = require('../models/diagnosedproblems.model')
 const { deleteFromS3 } = require('../middlewares/uploadfile')
 const respondError = require('./respond');
