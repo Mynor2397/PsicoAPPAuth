@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/main.js",
+    "start": "node src/main.js",
     "test": "jest"
   },
   "author": "",
