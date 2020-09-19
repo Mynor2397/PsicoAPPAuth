@@ -85,10 +85,6 @@ storageCase.getManyByFilter = async (value) => {
                     reject(err)
                 }
 
-                if (results == undefined || results.length == 0) {
-                    reject(404)
-                }
-
                 resolve(results)
             })
     })
