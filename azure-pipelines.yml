@@ -29,6 +29,6 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '/backend/backpsicoapp.dockerfile'
+        dockerfile: './backend/backpsicoapp.dockerfile'
         tags: |
           $(tag)
