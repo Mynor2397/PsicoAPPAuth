@@ -42,7 +42,7 @@ stages:
         runOptions: 'commands'
         commands: |
           docker ps -a -q --filter "name=backpsicoapp" | grep -q . && docker stop backpsicoapp && docker rm -fv backpsicoapp || exit 0
-          docker login -u "$(DHA)" -p "$(DHP)" docker.io
+          docker login -u '$(DHA)'' -p '$(DHP)' docker.io
           docker pull psicoapp/backpsicoapp:$(tag)
           docker run --name psicoapp -p 4000:4000 -d psicoapp/backpsicoapp:$(tag)
         readyTimeout: '20000'
