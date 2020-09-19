@@ -33,6 +33,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Psicoapp docker hub'
-        repository: 'psicoapp/backpsicoappbackpsicoapp'
+        repository: 'psicoapp/backpsicoapp'
         command: 'buildAndPush'
         Dockerfile: './backend/backpsicoapp.dockerfile'
