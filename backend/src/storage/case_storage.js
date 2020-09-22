@@ -33,7 +33,6 @@ storageCase.filter = (query) => {
         pool.query(query, (err, results, fields) => {
             if (err) {
                 reject(err.errno)
-                console.log(err)
             }
             if (results == undefined || results.length == 0) {
                 reject(404)
