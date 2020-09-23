@@ -5,6 +5,7 @@ import './Styles.pantient.scss'
 import './Style.step.scss'
 import Navbar from '../Navbar/Navbar';
 import { Redirect } from 'react-router-dom';
+import { URLI } from '../../config/option';
 
 export default class MasterForm extends React.Component {
 
@@ -50,18 +51,18 @@ export default class MasterForm extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4000/city/all')
+    fetch(`${URLI}city/all`)
       .then(res => res.json())
       .then(data => this.setState({ City: data.data }))
       .catch(err => console.log(err))
 
-    fetch('http://localhost:4000/religion/all')
+    fetch(`${URLI}religion/all`)
       .then(res => res.json())
       .then(data => this.setState({ Religion: data.data }))
       .catch(err => console.log(err))
 
     if(this.state.IdPantient !== '1') {
-      fetch(`http://localhost:4000/getonly/${this.state.IdPantient}`)
+      fetch(`${URLI}getonly/${this.state.IdPantient}`)
       .then(res => res.json())
       .then(data =>{
 
@@ -77,7 +78,6 @@ export default class MasterForm extends React.Component {
 
         this.setState({ Edad: this.EdadF(newBornDate) })
 
-        // "Día: "+fecha.getDate()+"\nMes: "+(fecha.getMonth()+1)+"\nAño: "+fecha.getFullYear());
        this.setState({
         idSuccess: '',
         uuidPerson: data.data[0].uuidPerson,
@@ -203,7 +203,7 @@ export default class MasterForm extends React.Component {
       formData.append('active',this.state.active)
       formData.append('changeFile',this.state.changeFile)
 
-      fetch(`http://localhost:4000/personupd/${this.state.IdPantient}`, {
+      fetch(`${URLI}personupd/${this.state.IdPantient}`, {
         method: 'PUT',
         body: formData
       })
@@ -217,7 +217,7 @@ export default class MasterForm extends React.Component {
       })
       .catch(err => console.log(err))
     }else {
-      fetch('http://localhost:4000/person/create', {
+      fetch(`${URLI}person/create`, {
         method: 'POST',
         body: formData
       })
@@ -277,7 +277,7 @@ export default class MasterForm extends React.Component {
     if (currentStep < 3) {
       return (
         <button
-          className="btn btn-primary float-right"
+          className="button"
           type="button" onClick={this._next}>
           Siguiente
         </button>
@@ -290,15 +290,19 @@ export default class MasterForm extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <div className="ed-container mt-6">
+        <div className="ed-container mt-8">
           <div className="ed-item">
-            <h1>Crear pacientes</h1>
+            {
+              this.state.IdPantient === '1'
+              ? <h1>Crear pacientes</h1>
+              : <h1>Actualizar pacientes</h1>
+            }
             {
               this.state.Edad >= 18 
               ?
-                <p>Etapa {this.state.currentStep-1} </p>  
+                <p>Paso {this.state.currentStep-1} </p>  
               :
-                <p>Etapa {this.state.currentStep} </p>
+                <p>Paso {this.state.currentStep} </p>
             }
           </div>
         </div>
@@ -347,8 +351,11 @@ export default class MasterForm extends React.Component {
                 comment={this.state.comment}
                 attachment={this.state.attachment}
               />
-              {this.previousButton()}
-              {this.nextButton()}
+
+              <div className="ed-item">
+                {this.previousButton()}
+                {this.nextButton()}
+              </div>
 
             </form>
 

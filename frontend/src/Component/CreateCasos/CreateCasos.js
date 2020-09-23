@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useHistory } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import {URLI} from '../../config/option'
+import { useHistory } from 'react-router-dom';
 import './Casos.scss'
 
 const CreateCasos = () => {
@@ -24,7 +25,7 @@ const CreateCasos = () => {
 			reasonForConsultation: ckeditorComment
 		}
 
-		fetch(`http://localhost:4000/case/create`, {
+		fetch(`${URLI}case/create`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -42,12 +43,12 @@ const CreateCasos = () => {
 	}
 	
 	useEffect(() => {
-		fetch('http://localhost:4000/personuser')
+		fetch(`${URLI}personuser`)
 		.then(rest => rest.json())
 		.then(data => setOwnerUser(data.data))
 		.catch(err => console.log(err))
 
-		fetch('http://localhost:4000/stage/allstages')
+		fetch(`${URLI}stage/allstages`)
 		.then(rest => rest.json())
 		.then(data => setStage(data.data))
 		.catch(err => console.log(err))
@@ -56,7 +57,7 @@ const CreateCasos = () => {
 	}, [])
 		
 	useEffect(() => {
-		fetch('http://localhost:4000/personpatient')
+		fetch(`${URLI}/personpatient`)
 		.then(rest => rest.json())
 		.then(data => setPersonPatient(data.data))
 		.catch(err => console.log(err))

@@ -3,6 +3,7 @@ import Search from '../helpers/Search'
 import Navbar from '../Navbar/Navbar'
 import './estilos.scss'
 import { Link } from 'react-router-dom'
+import { URLI } from '../../config/option'
 
 const GridCasos = () => {
 
@@ -11,7 +12,7 @@ const GridCasos = () => {
 	const [pantient, setPantien] = useState([])
 
 	const handleSearch = (e) => {
-		fetch(`http://localhost:4000/cases/byfilter?filter=${e.target.value}`)
+		fetch(`${URLI}cases/byfilter?filter=${e.target.value}`)
 			.then(res => res.json())
 			.then(data => setPantien(data.data))
 			.catch(err => console.log(err))
@@ -19,15 +20,14 @@ const GridCasos = () => {
 
 	useEffect(() => {
 		let url = ''
-		if (Filter === 0 || Filter === 4 || pantient) {
-			url = `http://localhost:4000/case/filter/${Filter}`
+		
+		if (Filter === 0 || Filter === 4) {
+			url = `${URLI}case/filter/${Filter}`
 		}
 
 		if (Filter === 1 || Filter === 2) {
-			url = `http://localhost:4000/case/filter/${Filter}/${Radio}`
+			url = `${URLI}case/filter/${Filter}/${Radio}`
 		}
-
-		console.log(url)
 
 		fetch(url)
 			.then(res => res.json())
@@ -35,7 +35,6 @@ const GridCasos = () => {
 
 	}, [Filter, Radio])
 
-	console.log(pantient)
 
 	return (
 		<>
@@ -64,15 +63,10 @@ const GridCasos = () => {
 					<div className="card-filter">
 						<div className="ed-item ed-container">
 							<button type="button" className={Radio === 1? 'btn-filter select' : 'btn-filter'} onClick={() => setRadio(1)} >Ascendente</button>
-							{/* <input type="submit" onChange={(e) => setRadio(e.target.value)} name="c" htmlFor="check" value="1" />
-							<label id="check">Ascendente</label> */}
 						</div>
 						<div className="ed-item ed-container">
 							<button type="button" className={Radio === 2? 'btn-filter select' : 'btn-filter'} onClick={() => setRadio(2)} >Descendente</button>
-							{/* <input type="radio" onChange={(e) => setRadio(e.target.value)} name="c" htmlFor="check1" value="2" />
-							<label id="check1">Descendente</label> */}
 						</div>
-						
 					</div>
 				</div>
 			</section>

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Link } from 'react-router-dom'
 import './Styles.pantient.scss'
+import { URLI } from '../../config/option'
+import Search from '../helpers/Search'
 
 
 const Pantient = () => {
@@ -17,7 +19,7 @@ const Pantient = () => {
 	},[])
 
 	const getPantient = async () => {
-		fetch('http://localhost:4000/persons/all')
+		fetch(`${URLI}persons/all`)
 		.then(res => res.json())
 		.then( data => setPantient(data.data))
 		.catch( err => console.error(err))
@@ -25,7 +27,7 @@ const Pantient = () => {
 
 	const handleDelete = (id,e) => {
 		console.log(id)
-		const url = `http://localhost:4000/person/${id}`
+		const url = `${URLI}person/${id}`
 		fetch(url , {
 			method: 'DELETE'
 		})
@@ -39,33 +41,24 @@ const Pantient = () => {
 			.catch( err => console.error(err))
 	}
 
+	const handleSearch = (e) => {
+		console.log(e.target.value)
+	}
+
 	return (
 		<>	
 			<Navbar />
-			<section className="ed-container mt-6">
+			<section className="ed-container mt-8">
 				<div className="ed-item ed-container">
-					<div className="ed-item s-50">
+					<div className="ed-item">
 						<h1 className="pantient-title">Pacientes</h1>
+					</div>
+					<div className="ed-item s-50">
+						<Search handleSearch={handleSearch} />
 					</div>
 					<div className="ed-item s-50 flex flex-right flex-center">
 						<Link to="/createpantient" className="pantient-btncreate">Crear Paciente</Link>
 					</div>
-				</div>
-			</section>
-			
-			<section className="container">
-				<div className="item">
-					<select className=" search-order">
-						<option value="0" className="search-order__option">Order</option>
-						<option value="1" className="search-order__option">Ascendente</option>
-						<option value="2" className="search-order__option">Descendente</option>
-					</select>	
-					<input
-						className="search-pantient" 
-						type="search"
-						placeholder="Buscar Pacientes"
-					/>
-					<img className="icon-search" src="./search.svg" alt="search"/>
 				</div>
 			</section>
 
