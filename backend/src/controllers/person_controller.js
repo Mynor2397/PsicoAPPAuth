@@ -293,6 +293,33 @@ handPerson.gridStagePerson = async (req, res) => {
 
 }
 
+handPerson.gridWithIDPerson = async (req, res) => {
+    let id = req.params.id
+try {
+    let results = await PersonService.gridWithIDPerson(id)
+    return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: results
+            })
+
+} catch (error) {
+    if (error == http.StatusNotFound) {
+        return res
+            .status(http.StatusNotFound)
+            .json({
+                ok: false,
+                message: "Ningún registro encontrado!",
+                data: []
+            })
+    }
+
+    respondError(res, error)
+    return
+}
+}
+
 handPerson.downloadnAttachmen = async (req, res) => {
     if (req.params.filename) {
         let URL = await s3.getFile(req.params.filename)

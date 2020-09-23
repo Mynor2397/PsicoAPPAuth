@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const StorageDiagnosedProblem = require('../storage/diagnosedproblem_storage')
-const DiagnosedProblem = require('../models/diagnosedproblems.model')
+const DiagnosedProblem = require('../models/diagnosedproblem.model')
 
 const ServiceDiagnosedProblem = {}
 

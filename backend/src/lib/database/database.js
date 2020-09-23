@@ -19,7 +19,7 @@ pool.getConnection((err, connection) => {
     }
 
     if (connection) connection.release();
-    console.log('MySQL database is connected');
+    console.log('Connection successfully to MySQL');
     return;
 });
 

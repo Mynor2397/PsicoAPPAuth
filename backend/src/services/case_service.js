@@ -12,7 +12,7 @@ CaseService.create = async (dataCase) => {
     cases = dataCase
 
     cases.uuid = uuid.v4()
-    cases.caseNumber = await nId.generate('PAC_Case', 'PSACase')
+    cases.caseNumber = await nId.generate('PAC_Case', 'PSACSE')
     cases.creationDate = new Date()
     cases.desisted = 1
 
@@ -51,8 +51,6 @@ CaseService.getpersonpatient = async (getPersonP) => {
 
 CaseService.filter = async (FilterCase) => {
     let CaseFilter = FilterCase
-
-
 
     var query = `SELECT * FROM grid_casos `
 

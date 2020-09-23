@@ -56,4 +56,8 @@ PersonService.cities = async () => {
 PersonService.gridStagePerson = async (stage) => {
     return await StorePerson.gridStagePerson(stage)
 }
+
+PersonService.gridWithIDPerson = async(ID) => {
+    return await StorePerson.gridWithIDPerson(ID + '%')
+}
 module.exports = PersonService;

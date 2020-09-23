@@ -10,6 +10,7 @@ router.delete('/person/:id', pController.deletePerson)
 router.get('/persons/all', pController.allPersons)
 router.get('/getonly/:id', pController.personwithfulldata)
 router.get('/persons/grid/:stage', pController.gridStagePerson)
+router.get('/persons/gridbyid/:id', pController.gridWithIDPerson)
 
 router.get('/religion/all', pController.religion)
 router.get('/city/all', pController.cities)

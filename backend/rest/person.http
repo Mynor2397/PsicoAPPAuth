@@ -1,5 +1,5 @@
-@host = http://localhost:4000/person
-
+@host = http://138.197.215.60:4000
+@hosdev = http://localhost:4000
 ###
 # Para crear un registro de person
 # En este caso  necesita consultas auxiliares, que estan más abajo
@@ -121,4 +121,10 @@ Content-Type: application/json
 # 1 = activado 
 # http://localhost:4000/persons/grid/:stage = 0 || 1
 
-GET {{host}}s/grid/0
+GET {{host}}/persons/grid/0
+
+###
+# Retorna registros que coincidan con el id de todos los registros de personas
+# en la base de datos
+# como ejemplo: id = 2020-PAS28-00024
+GET {{host}}/persons/gridbyid/:id
