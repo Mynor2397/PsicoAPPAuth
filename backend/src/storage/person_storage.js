@@ -175,7 +175,7 @@ storagePerson.gridStagePerson = async (stage) => {
 
 storagePerson.gridWithIDPerson = (ID) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM fulldataperson WHERE id LIKE ?;', [ID], (err, results, fields)=>{
+        pool.query('SELECT * FROM fulldataperson WHERE id LIKE ? AND active = 1;', [ID], (err, results, fields)=>{
             if (err) reject(err);
             
             if (results == undefined || results.length == 0) {
