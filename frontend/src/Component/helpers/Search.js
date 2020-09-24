@@ -16,7 +16,6 @@ const Search = ({handleSearch}) => {
       <FontAwesomeIcon className="iconss" icon={faSearch}></FontAwesomeIcon>
       
     </section>
-    
   )
 }
 

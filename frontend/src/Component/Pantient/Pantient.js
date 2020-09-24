@@ -8,10 +8,6 @@ import Search from '../helpers/Search'
 
 const Pantient = () => {
 
-	localStorage.removeItem('step1')
-	localStorage.removeItem('step2')
-	localStorage.removeItem('step3')
-
 	const [pantient, setPantient] = useState([])
 
 	useEffect(()=> {
@@ -21,7 +17,9 @@ const Pantient = () => {
 	const getPantient = async () => {
 		fetch(`${URLI}persons/all`)
 		.then(res => res.json())
-		.then( data => setPantient(data.data))
+		.then( data => {setPantient(data.data)
+			console.log(data.data)
+		})
 		.catch( err => console.error(err))
 	}
 
@@ -43,6 +41,15 @@ const Pantient = () => {
 
 	const handleSearch = (e) => {
 		console.log(e.target.value)
+
+		if(e.target.value) {
+			fetch(`${URLI}persons/gridbyid/${e.target.value}`)
+			.then(rest => rest.json())
+			.then(data => setPantient(data.data))
+		}else {
+			getPantient()
+		}
+
 	}
 
 	return (
@@ -64,6 +71,8 @@ const Pantient = () => {
 
 			<div className="ed-container">
 		    {
+					pantient.length !== 0
+					?
 					pantient.map(({id, mobilePhone, addressLine1, email, active}) => (
 						<div key={id} className="ed-item m-50 l-1-3">
 							<article className="s-shadow-bottom">
@@ -82,6 +91,12 @@ const Pantient = () => {
 							</article>
 						</div>
 					))
+					:
+					<div className="ed-item">
+						<p className="alert">
+						Ningún registro encontrado!
+						</p> 
+					</div>
 				}
 			</div>
 		</>
