@@ -1,4 +1,4 @@
-@host = http://localhost:4000/
+@host = http://138.197.215.60:4000/
 
 ###
 #todos los casos
@@ -14,11 +14,16 @@ GET {{host}}case/filter/1/2
 GET {{host}}case/filter/2/1
 ###
 #Fecha de creacion descendente
-GET {{host}}case/filter/2/1
+GET {{host}}case/filter/2/2
 ###
 #Pendientes de asignar
 GET {{host}}case/filter/3
 ###
 #desistidos
 GET {{host}}case/filter/4
+
+###
+# Obtiene los registros por consulta aleatoria, nombre o id
+# el filtro está unicamente por id o por numero de caso
+GET {{host}}cases/byfilter?filter=2020
 

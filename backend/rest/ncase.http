@@ -1,4 +1,4 @@
-@host = http://localhost:4000/
+@host = http://138.197.215.60:4000
 # Hace un post a la tabla PAC_Case
 POST {{host}}case/create
 Content-Type: application/json
@@ -42,10 +42,10 @@ Content-Type: application/json
 
 ###
 # Get a todos los campos de la tabla personuser
-GET {{host}}personuser
+GET {{host}}/personuser
 Content-Type: application/json
 
 ###
 #GET a todos los campos de la tabla personpatient 
-GET {{host}}personpatient
+GET {{host}}/personpatient
 Content-Type: application/json

@@ -238,7 +238,7 @@ END $
 --
 
 -- PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR REGISTRO
-DROP PROCEDURE registerperson;
+DROP PROCEDURE updateperson;
 
 delimiter $ CREATE PROCEDURE `updateperson` (
     in _uuidPerson varchar(36),
@@ -364,6 +364,7 @@ VIEW `fulldataperson` AS
         `pe`.`uuid` AS `uuidPerson`,
         `pe`.`id` AS `id`,
         `pe`.`firstName` AS `firstName`,
+        `pe`.`secondName` AS `secondName`,
         `pe`.`lastName` AS `lastName`,
         `pe`.`secondLastName` AS `secondLastName`,
         `pe`.`marriedName` AS `marriedName`,
