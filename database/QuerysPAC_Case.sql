@@ -128,3 +128,31 @@ _uuidDSM5,
 _descriptionOfProblem,
 _descriptionOfProblemFile
 );
+
+///
+Grid casos por paciente
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`%` 
+    SQL SECURITY DEFINER
+VIEW `gridcase` AS
+    SELECT 
+        `ca`.`uuid` AS `uuidCase`,
+        `ca`.`caseNumber` AS `caseNumber`,
+        `ca`.`uuidAssignedUser` AS `uuidAssignedUser`,
+        `pau`.`id` AS `idAssignedUser`,
+        `pau`.`firstName` AS `nameAssignedUser`,
+        `pau`.`lastName` AS `lastNameUser`,
+        `ca`.`uuidOwnerUser` AS `uuidOwnerUser`,
+        `own`.`id` AS `idOwnerUser`,
+        `ca`.`uuidPersonPatient` AS `uuidPersonPatient`,
+        `pep`.`id` AS `idPersonPatient`,
+        `ca`.`creationDate` AS `creationDate`,
+        `ca`.`uuidStage` AS `uuidStage`,
+        `ca`.`reasonForConsultation` AS `reasonForConsultation`,
+        `ca`.`desisted` AS `desisted`
+    FROM
+        (((`PAC_Case` `ca`
+        JOIN `PAS_Person` `pau` ON ((`pau`.`uuid` = `ca`.`uuidAssignedUser`)))
+        JOIN `PAS_Person` `own` ON ((`own`.`uuid` = `ca`.`uuidOwnerUser`)))
+        JOIN `PAS_Person` `pep` ON ((`pep`.`uuid` = `ca`.`uuidPersonPatient`)))

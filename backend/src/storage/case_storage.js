@@ -64,7 +64,7 @@ storageCase.get = async (getCase) => {
     let allcases = new Cases()
 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAC_Case;', [], (err, results, fields) => {
+        pool.query('SELECT * FROM gridcase;', [], (err, results, fields) => {
 
             if (err) {
                 reject(err)
@@ -91,7 +91,7 @@ storageCase.getManyByFilter = async (value) => {
 
 storageCase.getid = async (uuid) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM PAC_Case WHERE uuid = ?;`, [uuid],
+        pool.query(`SELECT * FROM gridcase WHERE uuidCase = ?;`, [uuid],
             (err, results, fields) => {
                 if (err) {
                     reject(err)
