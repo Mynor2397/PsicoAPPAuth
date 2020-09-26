@@ -32,3 +32,13 @@ stages:
           repository: 'psicoapp / frontpsicoapp'
           command: 'buildAndPush'
           Dockerfile: './frontend/Dockerfile'
+      - task: SSH@0
+        inputs:
+          sshEndpoint: 'psicoappumg'
+          runOptions: 'commands'
+          commands: |
+            docker -a -q --filter "name=frontpsicoapp" | grep -q . && stop frontpsicoapp && docker rm -fv frontpsicoapp || exit 0
+            docker login -u "$(DHA)" -p "$(DHP)" docker.io
+            docker pull psicoapp/frontpsicoapp:$(tag)
+            docker run --name psicoapp -p 8080:80 -d psicoapp/frontpsicoapp:$(tag)
+          readyTimeout: '20000'
