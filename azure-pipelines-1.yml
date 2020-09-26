@@ -38,7 +38,7 @@ stages:
           runOptions: 'commands'
           commands: |
             docker ps -a -q --filter "name=frontpsicoapp" | grep -q . && stop frontpsicoapp && docker rm -fv frontpsicoapp || exit 0
-            echo "$(DHA)" | docker login --username '$(DHA)' --password-stdin 2>/dev/null
+            echo "$(DHP)" | docker login --username '$(DHA)' --password-stdin 2>/dev/null
             docker pull psicoapp/frontpsicoapp:$(tag)
             docker run --name psicoapp -p 8080:80 -d psicoapp/frontpsicoapp:$(tag)
           readyTimeout: '20000'
