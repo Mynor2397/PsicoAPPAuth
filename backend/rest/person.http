@@ -99,7 +99,7 @@ DELETE {{host}}/2020-PAS27-00018
 
 ###
 # Retorna registros 
-GET http://localhost:4000/persons/all
+GET {{host}}/persons/all
 Content-Type: application/json
 
 ###
@@ -127,4 +127,4 @@ GET {{host}}/persons/grid/0
 # Retorna registros que coincidan con el id de todos los registros de personas
 # en la base de datos
 # como ejemplo: id = 2020-PAS28-00024
-GET {{host}}/persons/gridbyid/:id
+GET {{host}}/persons/gridbyid/2020-PAS28

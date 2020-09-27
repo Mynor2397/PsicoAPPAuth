@@ -1,6 +1,8 @@
-@host = http://localhost:4000/
+@host = http://138.197.215.60:4000/
+
+@hostdev = http://localhost:4000/
 # Hace un post a la tabla PAC_Case
-POST {{host}}case/create
+POST {{hostdev}}case/create
 Content-Type: application/json
 
 {
@@ -13,7 +15,7 @@ Content-Type: application/json
 
 ###
 #Hace una actualización a la tabla en base al uuid
-PUT {{host}}case/update/uuidcase3
+PUT {{hostdev}}case/update/uuidcase3
 Content-Type: application/json
 
 {
@@ -27,25 +29,25 @@ Content-Type: application/json
 
 ###
 #Get de todos los casos de la tabla pac_case
-GET {{host}}case/allcases
+GET {{hostdev}}case/allcases
 Content-Type: application/json
 
 ###
 #Get en base al uuid de la persona
-GET {{host}}case/viewcase/uuidcase3
+GET {{hostdev}}case/viewcase/uuidcase3
 Content-Type: application/json
 
 ###
 #GET a todos los estados que puede tener una tabla
-GET {{host}}stage/allstages
+GET {{hostdev}}stage/allstages
 Content-Type: application/json
 
 ###
 # Get a todos los campos de la tabla personuser
-GET {{host}}personuser
+GET {{hostdev}}personuser
 Content-Type: application/json
 
 ###
 #GET a todos los campos de la tabla personpatient 
-GET {{host}}personpatient
+GET {{hostdev}}/personpatient
 Content-Type: application/json
