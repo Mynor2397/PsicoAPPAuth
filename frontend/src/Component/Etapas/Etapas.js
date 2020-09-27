@@ -1,9 +1,13 @@
-import React, {Component} from 'react' 
+import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar'
 import EtapaDiagnostico from './wizard/EtapaDiagnostico'
 import EtapaInicial from './wizard/EtapaInicial'
 import EtapaIntermedia from './wizard/EtapaIntermedia'
+
+
+import {URLI} from '../../config/option'
 import './Etapas.scss'
+import General from './wizard/General'
 
 class Etapas extends Component {
   constructor(props) {
@@ -11,47 +15,47 @@ class Etapas extends Component {
     this.state = {
       idCase: props.match.params.idCasos,
       currentStep: 1,
-      premorbidPersonality:'',
-      premorbidPersonalityFile:'',
-      currentProblem:'',
-      currentProblemFile:'',
-      healthHistory:'',
-      healthHistoryFile:'',
-      sexualHistory:'',
-      sexualHistoryFile:'',
-      growthHistory:'',
-      growthHistoryFile:'',
-      perinatalHistory:'',
-      perinatalHistoryFile:'',
-      familyHistory:'',
-      familyHistoryFile:'',
-      genogramFile:'',
-      schoolHistory:'',
-      schoolHistoryFile:'',
-      workHistory:'',
-      workHistoryFile:'',
-      mentalEvaluationTest:'',
-      mentalEvaluationTestFile:'',
-      clinicalInterpretation:'',
-      clinicalInterpretationFile:'',
-      interpreationOfEvidence:'',
-      interpreationOfEvidenceFile:'',
-      therapeuticContract:'',
-      therapeuticContractFile:'',
-      uuidTestingApplication:'',
-      uuidTestType:'',
-      testingApplication:'',
-      testingApplicationFile:'', 
+      premorbidPersonality: '',
+      premorbidPersonalityFile: '',
+      currentProblem: '',
+      currentProblemFile: '',
+      healthHistory: '',
+      healthHistoryFile: '',
+      sexualHistory: '',
+      sexualHistoryFile: '',
+      growthHistory: '',
+      growthHistoryFile: '',
+      perinatalHistory: '',
+      perinatalHistoryFile: '',
+      familyHistory: '',
+      familyHistoryFile: '',
+      genogramFile: '',
+      schoolHistory: '',
+      schoolHistoryFile: '',
+      workHistory: '',
+      workHistoryFile: '',
+      mentalEvaluationTest: '',
+      mentalEvaluationTestFile: '',
+      clinicalInterpretation: '',
+      clinicalInterpretationFile: '',
+      interpreationOfEvidence: '',
+      interpreationOfEvidenceFile: '',
+      therapeuticContract: '',
+      therapeuticContractFile: '',
+      uuidTestingApplication: '',
+      uuidTestType: '',
+      testingApplication: '',
+      testingApplicationFile: '',
       uuidDSM5Array: [],
       uuidDSM5: '',
-      descriptionOfProblem:'',
-      descriptionOfProblemFile:''
+      descriptionOfProblem: '',
+      descriptionOfProblemFile: ''
     }
   }
 
   componentDidMount() {
     console.log('hola')
-    const url = `http://localhost:4000/caseinitial/only/${this.state.idCase}`
+    const url = `${URLI}caseinitial/only/${this.state.idCase}`
     fetch(url)
       .then(rest => rest.json())
       .then(data => {
@@ -89,16 +93,16 @@ class Etapas extends Component {
       })
       .catch(err => console.log(err))
 
-      fetch('http://localhost:4000/diagnostic/getdsm')
+    fetch(`${URLI}diagnostic/getdsm`)
       .then(res => res.json())
-      .then(data => this.setState({uuidDSM5Array: data.data}))
-      .catch(err=>console.log(err))
+      .then(data => this.setState({ uuidDSM5Array: data.data }))
+      .catch(err => console.log(err))
   }
 
   handleChange = event => {
-    const url = `http://localhost:4000/caseinitial/create/${this.state.idCase}`
-    if(event.is) {
-      const {name, value} = event
+    const url = `${URLI}caseinitial/create/${this.state.idCase}`
+    if (event.is) {
+      const { name, value } = event
       if (value) {
         this.setState({
           [name]: value
@@ -109,145 +113,164 @@ class Etapas extends Component {
         }
         console.log(data)
         fetch(url, {
-          method:'POST',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
         })
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err))
+      }
+    } else {
+      const { name } = event.target
+      const file = event.target.files[0]
+
+      const formData = new FormData()
+
+      formData.append([name], file)
+      console.log(formData.get([name]))
+
+      this.setState({
+        [name]: file
+      })
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
         .then(res => res.json())
         .then(data => console.log(data))
         .catch(err => console.log(err))
-      }
-    }else {
-      const {name} = event.target
-      const file = event.target.files[0]
-      
-      const formData = new FormData()
-
-      formData.append([name],file)
-      console.log(formData.get([name]))
-      
-      this.setState({
-        [name]: file
-      })    
-
-      fetch(url, {
-        method:'POST',
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
 
     }
 
   }
   InsertDiag = () => {
-    const {uuidDSM5,descriptionOfProblem,descriptionOfProblemFile} = this.state
-    if(uuidDSM5 && descriptionOfProblem && descriptionOfProblemFile) {
+    const { uuidDSM5, descriptionOfProblem, descriptionOfProblemFile } = this.state
+    if (uuidDSM5 && descriptionOfProblem && descriptionOfProblemFile) {
       const formData = new FormData()
-      formData.append('uuidDSM5',uuidDSM5)
-      formData.append('descriptionOfProblem',descriptionOfProblem)
-      formData.append('descriptionOfProblemFile',descriptionOfProblemFile)
-      const url = `http://localhost:4000/diagnostic/create/${this.state.idCase}`
-      fetch(url,{
+      formData.append('uuidDSM5', uuidDSM5)
+      formData.append('descriptionOfProblem', descriptionOfProblem)
+      formData.append('descriptionOfProblemFile', descriptionOfProblemFile)
+      const url = `${URLI}diagnostic/create/${this.state.idCase}`
+      fetch(url, {
         method: 'POST',
         body: formData
       })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
     }
   }
 
   handleChangediag = event => {
-    if(event.is) {
-      const {name, value} = event
+    if (event.is) {
+      const { name, value } = event
       if (value) {
         this.setState({
           [name]: value
         })
       }
-    }else {
-      const {name, value} = event.target
-      
-      if(name === 'descriptionOfProblemFile'){
+    } else {
+      const { name, value } = event.target
+
+      if (name === 'descriptionOfProblemFile') {
         const file = event.target.files[0]
         this.setState({
           [name]: file
         })
 
-      }else {
+      } else {
         this.setState({
           [name]: value
         })
       }
-      
+
     }
-  
+
   }
-  
+
   _next = () => {
     let currentStep = this.state.currentStep
-    currentStep = currentStep >= 2? 3: currentStep + 1
+    currentStep = currentStep >= 3 ? 4 : currentStep + 1
     this.setState({
       currentStep: currentStep
     })
   }
-    
+
   _prev = () => {
     let currentStep = this.state.currentStep
-    currentStep = currentStep <= 1? 1: currentStep - 1
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1
     this.setState({
       currentStep: currentStep
     })
   }
 
-/*
-* the functions for our button
-*/
-previousButton() {
-  let currentStep = this.state.currentStep;
-  if(currentStep !==1){
-    return (
-      <button 
-        className="btn btn-secondary" 
-        type="button" onClick={this._prev}>
-      Previous
-      </button>
-    )
+  previousButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep !== 1) {
+      return (
+        <button
+          className="btn btn-secondary"
+          type="button" onClick={this._prev}>
+          Previous
+        </button>
+      )
+    }
+    return null;
   }
-  return null;
-}
 
-nextButton(){
-  let currentStep = this.state.currentStep;
-  if(currentStep <3){
-    return (
-      <button 
-        className="btn btn-primary float-right" 
-        type="button" onClick={this._next}>
-      Next
-      </button>        
-    )
+  nextButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep < 4) {
+      return (
+        <button
+          className="btn btn-primary float-right"
+          type="button" onClick={this._next}>
+          Next
+        </button>
+      )
+    }
+    return null;
   }
-  return null;
-}
-  
-  render() {    
+
+  render() {
+    const navegacion = (id) => {
+      console.log(this.state.currentStep)
+      if (id === 1) this.setState({ currentStep: 1 })
+      if (id === 2) this.setState({ currentStep: 2 })
+      if (id === 3) this.setState({ currentStep: 3 })
+      if (id === 4) this.setState({ currentStep: 4 })
+    }
     return (
       <>
-      <Navbar />
-      <div className="ed-container mt-6">
-        <div className="ed-item">
-          <h1>Etapas</h1>
-          <p>Step {this.state.currentStep} </p> 
-        </div>
-        <div className="ed-item ed-container mb-6">
-          {/* <form onSubmit={this.handleSubmit}> */}
-            <EtapaInicial 
+        <Navbar />
+        <div className="ed-container mt-88">
+          <div className="ed-item ed-container">
+            <div className="ed-item flex">
+              <button className={this.state.currentStep === 1 ? 'menu-wizard2 paso2' : 'menu-wizard2'} onClick={() => navegacion(1)} >
+                General
+                </button>
+              <button className={this.state.currentStep === 2 ? 'menu-wizard2 paso2' : 'menu-wizard2'} onClick={() => navegacion(2)} >
+                Etapa Inicial
+                </button>
+              <button className={this.state.currentStep === 3 ? 'menu-wizard2 paso2' : 'menu-wizard2'} onClick={() => navegacion(3)} >
+                Etapa de Diagnostico
+                </button>
+              <button className={this.state.currentStep === 4 ? 'menu-wizard2 paso2' : 'menu-wizard2'} onClick={() => navegacion(4)} >
+                Etapa intermedia
+              </button>
+            </div>
+          </div>
+          <div className="ed-item ed-container mb-6 mt-1">
+            <General 
               currentStep={this.state.currentStep} 
+              idCase={this.state.idCase} 
+            />
+            <EtapaInicial
+              currentStep={this.state.currentStep}
               handleChange={this.handleChange}
               premorbidPersonality={this.state.premorbidPersonality}
               premorbidPersonalityFile={this.state.premorbidPersonalityFile}
@@ -281,8 +304,8 @@ nextButton(){
               testingApplication={this.state.testingApplication}
               testingApplicationFile={this.state.testingApplicationFile}
             />
-            <EtapaDiagnostico 
-              currentStep={this.state.currentStep} 
+            <EtapaDiagnostico
+              currentStep={this.state.currentStep}
               handleChangediag={this.handleChangediag}
               uuidDSM5Array={this.state.uuidDSM5Array}
               uuidDSM5={this.state.uuidDSM5}
@@ -291,7 +314,7 @@ nextButton(){
             />
 
             <EtapaIntermedia
-              currentStep={this.state.currentStep} 
+              currentStep={this.state.currentStep}
               handleChange={this.handleChange}
             />
             <div className="ed-item">
@@ -299,9 +322,8 @@ nextButton(){
               {this.nextButton()}
 
             </div>
-          {/* </form> */}
+          </div>
         </div>
-      </div>
       </>
     );
   }

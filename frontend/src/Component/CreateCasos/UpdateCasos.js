@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Navbar from '../Navbar/Navbar';
+import {URLI} from '../../config/option'
 import './Casos.scss'
 
 
@@ -34,22 +35,22 @@ export default class UpdateCasos extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4000/personpatient')
+    fetch(`${URLI}personpatient`)
 		.then(rest => rest.json())
 		.then(data => this.setState({ personPatient:data.data}))
     .catch(err => console.log(err))
     
-    fetch('http://localhost:4000/personuser')
+    fetch(`${URLI}personuser`)
 		.then(rest => rest.json())
 		.then(data => this.setState({ownerUser:data.data}))
 		.catch(err => console.log(err))
 
-		fetch('http://localhost:4000/stage/allstages')
+		fetch(`${URLI}stage/allstages`)
 		.then(rest => rest.json())
 		.then(data => this.setState({stage: data.data}) )
     .catch(err => console.log(err))
 
-    fetch(`http://localhost:4000/case/viewcase/${this.state.idCasos}`)
+    fetch(`${URLI}case/viewcase/${this.state.idCasos}`)
 		.then(rest => rest.json())
 		.then(data => this.setState({Cases: {
       uuid: data.data[0].uuid,
@@ -83,7 +84,7 @@ export default class UpdateCasos extends Component {
   
  
   
-      fetch(`http://localhost:4000/case/update/${this.state.idCasos}`, {
+      fetch(`${URLI}case/update/${this.state.idCasos}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -104,7 +105,7 @@ export default class UpdateCasos extends Component {
       <Navbar />
       <div className="ed-grid mt-6">
         <div className="ed-item">
-          <h1>Crear caso</h1>
+          <h1>Actualizar caso</h1>
           <hr/>
         </div>
         <div className="ed-item">

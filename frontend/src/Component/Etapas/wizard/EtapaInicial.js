@@ -38,7 +38,7 @@ const EtapaInicial = ({
 	testingApplication,
 	testingApplicationFile
 }) => {
-	if (currentStep !== 1) {
+	if (currentStep !== 2) {
 		return null
 	}
 	return (

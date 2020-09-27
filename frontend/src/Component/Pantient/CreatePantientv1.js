@@ -287,10 +287,6 @@ export default class MasterForm extends React.Component {
     return null;
   }
 
-  navegacion() {
-    console.log('hola')
-  }
-
   render() {
     const navegacion = (id) => {
       console.log(this.state.currentStep)

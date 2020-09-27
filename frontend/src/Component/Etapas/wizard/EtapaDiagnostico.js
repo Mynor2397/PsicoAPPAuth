@@ -10,7 +10,7 @@ const EtapaDiagnostico = ({
   descriptionOfProblem,
   descriptionOfProblemFile
 }) => {
-  if (currentStep !== 2) {
+  if (currentStep !== 3) {
     return null
   }
   return (
