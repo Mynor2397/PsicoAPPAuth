@@ -8,7 +8,7 @@ const EtapaIntermedia = ({
     return null
   }
   return (
-      <h1>Etapa Intermedia</h1>
+      <h1 className="ed-item">Etapa Intermedia</h1>
   )
 }
 

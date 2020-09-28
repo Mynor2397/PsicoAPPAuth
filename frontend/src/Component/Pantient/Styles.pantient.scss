@@ -70,7 +70,7 @@
     width: 20%;
   }
   @include from(l) {
-    width: 40%;
+    width: 20%;
   }
 }
 
@@ -89,6 +89,10 @@
   margin-right: 1rem;
 
   @include from(m) {
+    width: 20%;
+  }
+
+  @include from(l) {
     width: 20%;
   }
 }
@@ -206,7 +210,7 @@
     bottom: 0;
     left: 0;
     z-index: 99;
-    height: $height - 20px;
+    height: $height;
     margin: 0;
     padding: 0;
     display: block;

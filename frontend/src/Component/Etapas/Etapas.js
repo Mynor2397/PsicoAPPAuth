@@ -147,23 +147,6 @@ class Etapas extends Component {
     }
 
   }
-  InsertDiag = () => {
-    const { uuidDSM5, descriptionOfProblem, descriptionOfProblemFile } = this.state
-    if (uuidDSM5 && descriptionOfProblem && descriptionOfProblemFile) {
-      const formData = new FormData()
-      formData.append('uuidDSM5', uuidDSM5)
-      formData.append('descriptionOfProblem', descriptionOfProblem)
-      formData.append('descriptionOfProblemFile', descriptionOfProblemFile)
-      const url = `${URLI}diagnostic/create/${this.state.idCase}`
-      fetch(url, {
-        method: 'POST',
-        body: formData
-      })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
-    }
-  }
 
   handleChangediag = event => {
     if (event.is) {
@@ -213,9 +196,9 @@ class Etapas extends Component {
     if (currentStep !== 1) {
       return (
         <button
-          className="btn btn-secondary"
+          className="button11 mt-1"
           type="button" onClick={this._prev}>
-          Previous
+          Regresar
         </button>
       )
     }
@@ -227,9 +210,9 @@ class Etapas extends Component {
     if (currentStep < 4) {
       return (
         <button
-          className="btn btn-primary float-right"
+          className="button1 mt-1"
           type="button" onClick={this._next}>
-          Next
+          Siguiente
         </button>
       )
     }
@@ -247,7 +230,7 @@ class Etapas extends Component {
     return (
       <>
         <Navbar />
-        <div className="ed-container mt-88">
+        <div className="ed-container mt-5">
           <div className="ed-item ed-container">
             <div className="ed-item flex">
               <button className={this.state.currentStep === 1 ? 'menu-wizard2 paso2' : 'menu-wizard2'} onClick={() => navegacion(1)} >
@@ -305,6 +288,7 @@ class Etapas extends Component {
               testingApplicationFile={this.state.testingApplicationFile}
             />
             <EtapaDiagnostico
+               idCase={this.state.idCase} 
               currentStep={this.state.currentStep}
               handleChangediag={this.handleChangediag}
               uuidDSM5Array={this.state.uuidDSM5Array}
