@@ -121,4 +121,33 @@ handDiagnosedProblem.getdsm = async (req, res) => {
         return
     }
 }
+
+handDiagnosedProblem.getdiagnosed = async (req, res) => {
+
+    try {
+        let result = await DiagnosticSer.getdiagnosed(req.params.uuid)
+
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: result
+            })
+                
+    } catch (error) {
+
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "No hay casos relacionados"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
 module.exports = handDiagnosedProblem;

@@ -94,4 +94,19 @@ StorageDiagnosedProblem.getdsm = async () => {
         })
     })
 }
+
+StorageDiagnosedProblem.getdiagnosed = async (uuid) => {
+    console.log(uuid);
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM PAC_DiagnosedProblems WHERE uuidCaseDiagnosticStage = ?;', [uuid], (err, results, fields) => {
+            if (err) reject(err);
+            
+            if(results.length == 0){
+                reject(404)
+            }
+            
+            resolve(results)
+        })
+    })
+}
 module.exports = StorageDiagnosedProblem;

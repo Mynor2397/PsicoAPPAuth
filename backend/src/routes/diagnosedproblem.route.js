@@ -7,4 +7,5 @@ router.post('/diagnostic/create/:uuid', uploadFileS3.single('descriptionOfProble
 router.put('/diagnostic/update/:uuid', uploadFileS3.single('descriptionOfProblemFile'), rexNewDiagnostic, uploadFile, Diagnostic.update)
 router.get('/diagnostic/get', Diagnostic.getAll)
 router.get('/diagnostic/getdsm', Diagnostic.getdsm)
+router.get('/diagnostic/get/:uuid', Diagnostic.getdiagnosed)
 module.exports = router;

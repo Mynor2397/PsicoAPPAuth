@@ -28,3 +28,7 @@ Content-Type: application/json
 ###
 GET {{host}}/diagnostic/getdsm
 Content-Type: application/json
+
+###
+GET  {{host}}/diagnostic/get/e7731510-56c9-43a2-8985-5cd39c9a16c6
+Content-Type: application/json
