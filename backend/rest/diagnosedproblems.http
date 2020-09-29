@@ -6,8 +6,19 @@ Content-Type: application/json
 
 {
     "uuidDSM5":"T001",
-    "descriptionOfProblem":"Este es el texto asociado al archivo",
-    "descriptionOfProblemFile":"Y esto es el archivo"
+    "descriptionOfProblem":"Prueba de Post",
+    "descriptionOfProblemFile":""
+}
+
+###
+PUT {{host}}/diagnostic/update/uuid6
+Content-Type: application/json
+
+{
+    "uuidDiagnosedProblems": "d2b54b5c-841b-4f5c-8833-afebd4497025",
+    "uuidDSM5":"T002",
+    "descriptionOfProblem":"Esta es una actualización del texto",
+    "descriptionOfProblemFile":""
 }
 
 ###
@@ -16,4 +27,8 @@ Content-Type: application/json
 
 ###
 GET {{host}}/diagnostic/getdsm
+Content-Type: application/json
+
+###
+GET  {{host}}/diagnostic/get/e7731510-56c9-43a2-8985-5cd39c9a16c6
 Content-Type: application/json
