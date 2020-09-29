@@ -264,7 +264,7 @@ export default class MasterForm extends React.Component {
     if (currentStep !== 1) {
       return (
         <button
-          className="button11"
+          className="button11 mt-11"
           type="button" onClick={this._prev}>
           Regresar
         </button>
@@ -278,7 +278,7 @@ export default class MasterForm extends React.Component {
     if (currentStep < 3) {
       return (
         <button
-          className="button1"
+          className="button1 mt-11"
           type="button" onClick={this._next}>
           Siguiente
         </button>
@@ -371,7 +371,7 @@ export default class MasterForm extends React.Component {
           />
 
           <Step3
-            IdPantient={this.state.IdPantient ? 'Actualizar Paciente' : 'Crear Pacientes'}
+            IdPantient={this.state.IdPantient !== '1' ? 'Actualizar Paciente' : 'Crear Pacientes'}
             currentStep={this.state.currentStep}
             idSuccess={this.state.idSuccess}
             handleChange={this.handleChange}
@@ -683,23 +683,6 @@ function Step2({
             value={secondLastNameExtra}
           />
         </div>
-        <div className="ed-item">
-          <CKEditor
-            editor={ClassicEditor}
-            data=''
-            onInit={editor => {
-            }}
-            onChange={(event, editor) => {
-              const data = {
-                value: editor.getData(),
-                is: true,
-                name: 'comment'
-              }
-
-              handleChange(data)
-            }}
-          />
-        </div>
       </div>
     </>
   );
@@ -798,9 +781,9 @@ const Step3 = ({
           }}
         />
       </div>
-      <div className="ed-item ed-container flex-center">
-        <div className="ed-item m-80 mt11">
-            <div className="forms">
+      <div className="ed-item ed-container flex-center mt-11">
+        <div className="ed-item m-80 ">
+            <div className="forms mt-11">
               <div className="file-upload-wrapper" data-text= {
                 attachment
                   ? attachment.name || `Archivo.${attachment.slice((attachment.lastIndexOf(".") - 1 >>> 0) + 2)}`
@@ -812,15 +795,15 @@ const Step3 = ({
         </div>
         {
           IdPantient === 'Actualizar Paciente'
-          ? <div className="ed-item m-20 mt11 flex flex-right">
-            <Link to='#' className="button11 btn-link" onClick={()=> handleArchivo()}>Descargar Archivo</Link>
+          ? <div className="ed-item m-20  flex flex-right">
+            <Link to='#' className="button11 mt-11 btn-link" onClick={()=> handleArchivo()}>Descargar Archivo</Link>
           </div> 
           : null
         }
   
       </div>
-      <div className="ed-item mt11">
-        <button className="button1">
+      <div className="ed-item mt-11">
+        <button className="button1 mt-11">
           {
             IdPantient 
           }
