@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ###
 # Get a todos los campos de la tabla personuser
-GET {{hostdev}}personuser
+GET {{host}}personuser
 Content-Type: application/json
 
 ###
