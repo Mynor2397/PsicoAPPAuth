@@ -3,5 +3,23 @@ img {
   display: block;
   max-width: 100%;
 }
+.mt-8 {
+  margin-top: 8rem;
+}
+.flex {
+  display: flex;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+.flex-center {
+  align-items: center;
+}
+.mt1 {
+  margin-bottom: 2rem;
+}
+
 
 @import "~ed-grid/ed-grid";

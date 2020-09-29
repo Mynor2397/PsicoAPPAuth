@@ -13,13 +13,14 @@ const Routes  = () => {
             <Switch>
                 <Route path='/gridcasos' component={GridCasos}  />
                 <Route path='/pantient' component={Pantient}  />
+                <Route path='/createpantient/:idpantients?' component={CreatePantientv1}  />
+                <Route path='/updatepantient/:idpantients' component={CreatePantientv1} />
                 <Route path='/createcasos' component={CreateCasos}  />
                 <Route path='/updatecasos/:idcases' component={UpdateCasos}  />
                 <Route path='/etapas/:idCasos' component={Etapas}  />
-                <Route path='/createpantient' component={CreatePantientv1}  />
-                <Route path='/updatepantient/:idpantients' component={CreatePantientv1}  />
+                {/* <Route path='/updatecase/:idpantients' component={UpdateCasos}  /> */}
                 <Route path="/" > 
-                    <Redirect to="/createcasos" />
+                    <Redirect to="/gridcasos" />
                 </Route>
             </Switch>
         </BrowserRouter>
