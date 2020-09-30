@@ -14,8 +14,9 @@ StorageCaseInitial.update = async (Query, Value, ID, NameFile) => {
                 })
             }
             resolve({
-                results: `Actualización satisfactoria`,
+                results: Value,
                 fileToDelete: NameFile
+                
             })
         })
     })
@@ -53,9 +54,7 @@ StorageCaseInitial.extractFieldFile = async (Query, NameFile, ID) => {
             if (err) {
                 reject(err)
             }
-            console.log(err);
-            console.log(results);
-
+            
             if (results.length) {
                 if (results.length > 0) {
                     let fileFromDB = results[0]
