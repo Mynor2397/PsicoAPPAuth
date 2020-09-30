@@ -53,6 +53,8 @@ StorageCaseInitial.extractFieldFile = async (Query, NameFile, ID) => {
             if (err) {
                 reject(err)
             }
+            console.log(err);
+            console.log(results);
 
             if (results.length) {
                 if (results.length > 0) {
@@ -60,7 +62,7 @@ StorageCaseInitial.extractFieldFile = async (Query, NameFile, ID) => {
                     resolve(Object.values(fileFromDB)[0])
                 }
             }
-            
+
             reject({
                 error: 404,
                 fileToDelete: NameFile
