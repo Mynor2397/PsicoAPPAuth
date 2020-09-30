@@ -1,6 +1,6 @@
-@host = http://localhost:4000
+@hostdev = http://localhost:4000
 
-
+@host = http://138.197.215.60:4000
 ###
 POST {{host}}/caseinitial/create
 Content-Type: application/json
@@ -45,7 +45,7 @@ GET {{host}}/caseinitial/all
 Content-Type: application/json
 
 ###
-GET {{host}}/caseinitial/only/uuid6
+GET {{host}}/caseinitial/only/0c30b731-7d63-4cb6-80bb-8c1c44878cf5
 Content-Type: application/json
 
 
