@@ -46,11 +46,7 @@ rexFiles.fieldsForQuery = [
     'interpreationOfEvidence',
     'interpreationOfEvidenceFile',
     'therapeuticContract',
-    'therapeuticContractFile',
-    'uuidTestingApplication',
-    'uuidTestType',
-    'testingApplication',
-    'testingApplicationFile'
+    'therapeuticContractFile'
 ]
 
 module.exports = rexFiles;

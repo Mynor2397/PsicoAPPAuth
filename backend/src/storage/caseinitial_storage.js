@@ -14,8 +14,9 @@ StorageCaseInitial.update = async (Query, Value, ID, NameFile) => {
                 })
             }
             resolve({
-                results: `Actualización satisfactoria`,
+                results: Value,
                 fileToDelete: NameFile
+                
             })
         })
     })
@@ -33,15 +34,15 @@ StorageCaseInitial.getAll = async () => {
 
 
 StorageCaseInitial.getOnly = async (UUID) => {
-    
+
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAC_CaseInitialStage WHERE uuid = ?;', [UUID], (err, results, fields) => {
             if (err) reject(err);
-            
-            if(results.length == 0){
+
+            if (results.length == 0) {
                 reject(404)
             }
-            
+
             resolve(results)
         })
     })
@@ -53,16 +54,18 @@ StorageCaseInitial.extractFieldFile = async (Query, NameFile, ID) => {
             if (err) {
                 reject(err)
             }
-
-            if (results.length > 0) {
-                let fileFromDB = results[0]
-                resolve(Object.values(fileFromDB)[0])
+            
+            if (results.length) {
+                if (results.length > 0) {
+                    let fileFromDB = results[0]
+                    resolve(Object.values(fileFromDB)[0])
+                }
             }
+
             reject({
                 error: 404,
                 fileToDelete: NameFile
             })
-
         })
     })
 }

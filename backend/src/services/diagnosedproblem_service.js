@@ -34,4 +34,8 @@ ServiceDiagnosedProblem.getdsm = async () => {
     return await StorageDiagnosedProblem.getdsm()
 }
 
+ServiceDiagnosedProblem.getdiagnosed = async (uuid) => {
+    return await StorageDiagnosedProblem.getdiagnosed(uuid)
+}
+
 module.exports = ServiceDiagnosedProblem;
