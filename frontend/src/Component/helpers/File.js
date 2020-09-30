@@ -4,7 +4,7 @@ import './File.scss'
 const Files = ({file, label, handleChange,name}) => {
   return (
     <>
-      <label className="label">{label}</label>
+    <label className="label">{label}</label>
       <div className="forms">
         <div className="file-upload-wrapper" data-text={
           file

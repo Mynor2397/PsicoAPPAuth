@@ -1,11 +1,12 @@
 import React from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import './Styles.pantient.scss'
-import './Style.step.scss'
 import Navbar from '../Navbar/Navbar';
 import { Redirect, Link } from 'react-router-dom';
 import { URLI } from '../../config/option';
+
+import './Style.step.scss'
+import './Styles.pantient.scss'
 
 export default class MasterForm extends React.Component {
 
@@ -704,6 +705,7 @@ const Step3 = ({
   if (currentStep !== 3) {
     return null
   }
+  
   const handleArchivo = ()=> {
     fetch(`${URLI}attachment/${attachment}`)
     .then(rest => rest.json())
@@ -714,6 +716,7 @@ const Step3 = ({
     })
     .catch(err => console.log(err))
   }
+
   return (
     <>
       <div className="ed-item">
@@ -799,8 +802,7 @@ const Step3 = ({
             <Link to='#' className="button11 mt-11 btn-link" onClick={()=> handleArchivo()}>Descargar Archivo</Link>
           </div> 
           : null
-        }
-  
+        }  
       </div>
       <div className="ed-item mt-11">
         <button className="button1 mt-11">
