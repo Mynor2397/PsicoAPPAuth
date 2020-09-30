@@ -9,6 +9,7 @@ const General = ({ currentStep, idCase }) => {
   const history = new useHistory()
 
   const [caseInf, setCaseInf] = useState({})
+ 
   const [assignedUser, setAssignedUser] = useState([])
   const [pantient, setPantient] = useState([])
   const [ckeditorComment, setCkeditorComment] = useState('')
@@ -24,8 +25,8 @@ const General = ({ currentStep, idCase }) => {
       .then(rest => rest.json())
       .then(data => {
         const assigned = []
-        data.data.map(({ uuid, userName }) => {
-          assigned.push({ label: userName, value: uuid })
+        data.data.map(({ uuid, firstName, lastName }) => {
+          assigned.push({ label: `${firstName} ${lastName}`, value: uuid })
         })
         setAssignedUser(assigned)
       })
@@ -52,7 +53,10 @@ const General = ({ currentStep, idCase }) => {
   function cases() {
     fetch(`${URLI}case/viewcase/${idCase}`)
       .then(rest => rest.json())
-      .then(data => setCaseInf(data.data[0]))
+      .then(data => {
+        setCkeditorComment(data.data[0].reasonForConsultation)
+        setCaseInf(data.data[0])
+        })
       .catch(err => console.log(err))
   }
 
@@ -164,7 +168,7 @@ const General = ({ currentStep, idCase }) => {
               </label>
           <CKEditor
             editor={ClassicEditor}
-            data={`${caseInf.reasonForConsultation}`}
+            data={ckeditorComment}
             onChange={(event, editor) => {
               const data = editor.getData();
               setCkeditorComment(data)

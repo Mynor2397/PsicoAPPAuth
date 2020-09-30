@@ -78,9 +78,10 @@ const EtapaInicial = ({
 			</div>
 
 			<div className="ed-item xl-50 ed-container borderinicial">
+				<div className="ed-item">
 				<label htmlFor="#">
 					Problema Actual
-					</label>
+				</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={currentProblem}
@@ -95,6 +96,7 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
+				</div>
 				<div className="ed-item s-80 m-80">
 					<Files
 						file={currentProblemFile}

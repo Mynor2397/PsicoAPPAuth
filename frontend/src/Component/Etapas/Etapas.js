@@ -141,7 +141,11 @@ class Etapas extends Component {
         body: formData
       })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => { 
+          this.setState({
+            [name]: data.data
+          })
+        })
         .catch(err => console.log(err))
 
     }

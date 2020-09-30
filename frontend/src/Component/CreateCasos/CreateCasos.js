@@ -51,8 +51,8 @@ const CreateCasos = () => {
 		.then(data => {
 			const assignedUser = []
 
-			data.data.map(({uuid,userName}) => {
-				assignedUser.push({label:userName,value:uuid})
+			data.data.map(({uuid,firstName, lastName}) => {
+				assignedUser.push({label:`${firstName} ${lastName}`,value:uuid})
 			})
 			setAssignedUser(assignedUser)
 		})
@@ -87,9 +87,10 @@ const CreateCasos = () => {
 				<form onSubmit={handleSubmit} className="form">
 					<div className="ed-item">
 						<label htmlFor="">
-							Asignar Psicologo
+							Asignar Psicólogo
 						</label>
 						<SelectU 
+							placeholder="Seleccionar Psicólogo"
 							options={AssignedUser} 
 							onChange={opt => setUuidAssignedUser(opt.value)}
 						/>
@@ -100,6 +101,7 @@ const CreateCasos = () => {
 							Asignar Paciente
 						</label>
 						<SelectU 
+							placeholder="Seleccionar paciente"
 							options={personPatient} 
 							onChange={opt => setUuidPersonPatient(opt.value)}
 						/>
