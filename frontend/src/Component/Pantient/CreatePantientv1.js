@@ -69,9 +69,16 @@ export default class MasterForm extends React.Component {
 
           const bornDateParser = new Date(data.data[0].bornDate)
 
-          const dia = bornDateParser.getDate()
-          const mes = bornDateParser.getMonth() + 1
+          let dia = bornDateParser.getDate()
+          let mes = bornDateParser.getMonth() + 1
           const anio = bornDateParser.getFullYear()
+          
+          if(dia <10) {
+            dia = `0${dia}`
+          }
+          if(mes <10) {
+            mes = `0${mes}`
+          }
 
           const newBornDate = `${anio}-${mes}-${dia}`
 
