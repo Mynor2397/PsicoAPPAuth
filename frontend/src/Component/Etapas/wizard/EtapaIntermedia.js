@@ -4,11 +4,11 @@ const EtapaIntermedia = ({
   currentStep,
   handleChange
 }) => {
-  if (currentStep !== 3) {
+  if (currentStep !== 4) {
     return null
   }
   return (
-      <h1>Etapa Intermedia</h1>
+      <h1 className="ed-item">Etapa Intermedia</h1>
   )
 }
 

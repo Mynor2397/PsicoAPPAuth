@@ -2,13 +2,11 @@ import React, {useState, useEffect} from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Link } from 'react-router-dom'
 import './Styles.pantient.scss'
+import { URLI } from '../../config/option'
+import Search from '../helpers/Search'
 
 
 const Pantient = () => {
-
-	localStorage.removeItem('step1')
-	localStorage.removeItem('step2')
-	localStorage.removeItem('step3')
 
 	const [pantient, setPantient] = useState([])
 
@@ -17,15 +15,17 @@ const Pantient = () => {
 	},[])
 
 	const getPantient = async () => {
-		fetch('http://localhost:4000/persons/all')
+		fetch(`${URLI}persons/all`)
 		.then(res => res.json())
-		.then( data => setPantient(data.data))
+		.then( data => {setPantient(data.data)
+			console.log(data.data)
+		})
 		.catch( err => console.error(err))
 	}
 
 	const handleDelete = (id,e) => {
 		console.log(id)
-		const url = `http://localhost:4000/person/${id}`
+		const url = `${URLI}person/${id}`
 		fetch(url , {
 			method: 'DELETE'
 		})
@@ -39,38 +39,40 @@ const Pantient = () => {
 			.catch( err => console.error(err))
 	}
 
+	const handleSearch = (e) => {
+		console.log(e.target.value)
+
+		if(e.target.value) {
+			fetch(`${URLI}persons/gridbyid/${e.target.value}`)
+			.then(rest => rest.json())
+			.then(data => setPantient(data.data))
+		}else {
+			getPantient()
+		}
+
+	}
+
 	return (
 		<>	
 			<Navbar />
-			<section className="ed-container mt-6">
+			<section className="ed-container mt-8">
 				<div className="ed-item ed-container">
-					<div className="ed-item s-50">
+					<div className="ed-item">
 						<h1 className="pantient-title">Pacientes</h1>
+					</div>
+					<div className="ed-item s-50">
+						<Search handleSearch={handleSearch} />
 					</div>
 					<div className="ed-item s-50 flex flex-right flex-center">
 						<Link to="/createpantient" className="pantient-btncreate">Crear Paciente</Link>
 					</div>
 				</div>
 			</section>
-			
-			<section className="container">
-				<div className="item">
-					<select className=" search-order">
-						<option value="0" className="search-order__option">Order</option>
-						<option value="1" className="search-order__option">Ascendente</option>
-						<option value="2" className="search-order__option">Descendente</option>
-					</select>	
-					<input
-						className="search-pantient" 
-						type="search"
-						placeholder="Buscar Pacientes"
-					/>
-					<img className="icon-search" src="./search.svg" alt="search"/>
-				</div>
-			</section>
 
 			<div className="ed-container">
 		    {
+					pantient.length !== 0
+					?
 					pantient.map(({id, mobilePhone, addressLine1, email, active}) => (
 						<div key={id} className="ed-item m-50 l-1-3">
 							<article className="s-shadow-bottom">
@@ -89,6 +91,12 @@ const Pantient = () => {
 							</article>
 						</div>
 					))
+					:
+					<div className="ed-item">
+						<p className="alert">
+						Ningún registro encontrado!
+						</p> 
+					</div>
 				}
 			</div>
 		</>

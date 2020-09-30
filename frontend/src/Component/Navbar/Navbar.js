@@ -9,40 +9,24 @@ const Navbar = () => {
     <header className="ed-header s-bg-grey s-py-2">
       <div className="ed-grid lg-grid-5">
         <div className="s-cross-center s-main-center lg-main-start">
-          <img className="logo" src="https://ed.team/static/images/logo.svg" alt='Logo'/>
+          <h1 className="logo">Psicología</h1>
         </div>
         <nav className="nav lg-cols-4 s-cross-center ed-grid full">
           <ul className="menu s-main-distribute lg-to-right s-mb-0 s-pl-0 s-py-1">
             <li className="lg-mr-3">  
-              <Link className="link s-column s-cross-center active" to="/"> 
+              <Link className="link s-column s-cross-center active" to="/gridcasos"> 
                 <svg className="icon to-lg  s-mb-0">
                   <use href="#home"></use>
                 </svg>
-                <span>Inicio</span>
+                <span>Casos</span>
               </Link>
             </li>
             <li className="lg-mr-3">
-              <Link className="link s-column s-cross-center" to="/">
+              <Link className="link s-column s-cross-center" to="/pantient">
                 <svg className="icon to-lg s-mb-0">
                   <use href="#studies"></use>
                 </svg>
-                <span>Estudios</span>
-              </Link>
-            </li>
-            <li className="lg-mr-3">
-              <Link className="link s-column s-cross-center" to="/">
-                <svg className="icon to-lg s-mb-0">
-                  <use href="#courses"></use>
-                </svg>
-                  <span>Cursos</span>
-              </Link>
-            </li>
-            <li>
-              <Link className="link s-column s-cross-center" to="/">
-                <svg className="icon to-lg s-mb-0">
-                  <use href="#notes"></use>
-                </svg>
-                <span>Notas</span>
+                <span>Pacientes</span>
               </Link>
             </li>
           </ul>

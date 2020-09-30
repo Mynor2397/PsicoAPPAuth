@@ -1,6 +1,7 @@
 import React from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Files from '../../helpers/File';
 
 
 const EtapaInicial = ({
@@ -38,12 +39,15 @@ const EtapaInicial = ({
 	testingApplication,
 	testingApplicationFile
 }) => {
-	if (currentStep !== 1) {
+	if (currentStep !== 2) {
 		return null
 	}
 	return (
 		<>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Personalidad
+				</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={premorbidPersonality}
@@ -58,25 +62,18 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='premorbidPersonalityFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								premorbidPersonalityFile 
-								? premorbidPersonalityFile.name || premorbidPersonalityFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={premorbidPersonalityFile}
+					label="Personalidad (adjunto)"
+					name="premorbidPersonalityFile"
+					handleChange={handleChange}
+				/>
 			</div>
 
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Problema Actual
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={currentProblem}
@@ -91,25 +88,20 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='currentProblemFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								currentProblemFile 
-								? currentProblemFile.name || currentProblemFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+				<Files
+					file={currentProblemFile}
+					label="Problema Actual (Adjunto)"
+					name="currentProblemFile"
+					handleChange={handleChange}
+				/>
+
 			</div>
-			
-			<div className="ed-item xl-50">
+
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historial de salud
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={healthHistory}
@@ -124,24 +116,18 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='healthHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								healthHistoryFile 
-								? healthHistoryFile.name || healthHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+				<Files
+					file={healthHistoryFile}
+					label="Historial de salud (Adjunto)"
+					name="healthHistoryFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historial Sexual
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={sexualHistory}
@@ -156,24 +142,17 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='sexualHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								sexualHistoryFile 
-								? sexualHistoryFile.name || sexualHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={sexualHistoryFile}
+					label="Historial Sexual (Adjunto)"
+					name="sexualHistoryFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historia de Crecimiento
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={growthHistory}
@@ -188,24 +167,17 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='growthHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								growthHistoryFile 
-								? growthHistoryFile.name || growthHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={growthHistoryFile}
+					label="Historia de Crecimiento (Adjunto)"
+					name="growthHistoryFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historia Perinatal
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={perinatalHistory}
@@ -220,24 +192,17 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='perinatalHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								perinatalHistoryFile 
-								? perinatalHistoryFile.name || perinatalHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={perinatalHistoryFile}
+					label="Historia Perinatal (Adjunto)"
+					name="perinatalHistoryFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historia Familiar
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={familyHistory}
@@ -252,41 +217,26 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='familyHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								familyHistoryFile 
-								? familyHistoryFile.name || familyHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={familyHistoryFile}
+					label="Historia Familiar (Adjunto)"
+					name="familyHistoryFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='genogramFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								genogramFile 
-								? genogramFile.name || genogramFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+			<div className="ed-item xl-50 borderinicial">
+				<Files
+					file={genogramFile}
+					label="Archivo del Genograma"
+					name="genogramFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Historia Escolar
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={schoolHistory}
@@ -301,24 +251,20 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='schoolHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								schoolHistoryFile 
-								? schoolHistoryFile.name || schoolHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+				<Files
+					file={schoolHistoryFile}
+					label="Historia Escolar (Adjunto)"
+					name="schoolHistoryFile"
+					handleChange={handleChange}
+				/>
+
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+
+					Historial de trabajo
+				</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={workHistory}
@@ -333,24 +279,21 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='workHistoryFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								workHistoryFile 
-								? workHistoryFile.name || workHistoryFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+
+				<Files
+					file={workHistoryFile}
+					label="Historial de trabajo (Adjunto)"
+					name="workHistoryFile"
+					handleChange={handleChange}
+				/>
+
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+
+					Prueba de evaluación mental
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={mentalEvaluationTest}
@@ -365,24 +308,18 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='mentalEvaluationTestFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								mentalEvaluationTestFile 
-								? mentalEvaluationTestFile.name || mentalEvaluationTestFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+				<Files
+					file={mentalEvaluationTestFile}
+					label="Prueba de evaluación mental (Adjunto)"
+					name="mentalEvaluationTestFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Interpretación Clínica
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={clinicalInterpretation}
@@ -397,24 +334,17 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='clinicalInterpretationFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								clinicalInterpretationFile 
-								? clinicalInterpretationFile.name || clinicalInterpretationFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={clinicalInterpretationFile}
+					label="Interpretación Clínica (Adjuntos)"
+					name="clinicalInterpretationFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Interpretación de evidencia 
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={interpreationOfEvidence}
@@ -429,24 +359,18 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='interpreationOfEvidenceFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								interpreationOfEvidenceFile 
-								? interpreationOfEvidenceFile.name || interpreationOfEvidenceFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+
+				<Files
+					file={interpreationOfEvidenceFile}
+					label="Interpretación de evidencia (Adjunto)"
+					name="interpreationOfEvidenceFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Contrato terapéutico
+				</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={therapeuticContract}
@@ -461,24 +385,17 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='therapeuticContractFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								therapeuticContractFile 
-								? therapeuticContractFile.name || therapeuticContractFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={therapeuticContractFile}
+					label="Contrato terapéutico (Adjunto)"
+					name="therapeuticContractFile"
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="ed-item xl-50">
+			<div className="ed-item xl-50 borderinicial">
+				<label htmlFor="#">
+					Aplicación de pruebas
+					</label>
 				<CKEditor
 					editor={ClassicEditor}
 					data={testingApplication}
@@ -493,24 +410,13 @@ const EtapaInicial = ({
 						handleChange(data)
 					}}
 				/>
-		
-				<div className="input-group mb-3">
-					<div className="custom-file">
-						<input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" 
-							name='testingApplicationFile'
-							onChange={handleChange}
-							/>
-						<label className="custom-file-label" htmlFor="inputGroupFile01"> 
-							{
-								testingApplicationFile 
-								? testingApplicationFile.name || testingApplicationFile
-								:'Selecciones archivo' 
-							}
-						</label>
-					</div>
-				</div>
+				<Files
+					file={testingApplicationFile}
+					label="Aplicación de pruebas (Adjunto)"
+					name="testingApplicationFile"
+					handleChange={handleChange}
+				/>
 			</div>
-
 		</>
 	)
 }
