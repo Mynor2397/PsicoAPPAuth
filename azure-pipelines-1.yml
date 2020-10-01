@@ -37,7 +37,7 @@ stages:
           sshEndpoint: 'psicoappumg'
           runOptions: 'commands'
           commands: |
-            docker ps -a -q --filter "name=frontpsicoapp" | grep -q . && stop frontpsicoapp && docker rm -fv frontpsicoapp || exit 0
+            docker ps -a -q --filter "name=frontpsicoapp" | grep -q . && docker stop frontpsicoapp && docker rm -fv frontpsicoapp || exit 0
             echo "$(DHP)" | docker login --username '$(DHA)' --password-stdin 2>/dev/null
             docker pull psicoapp/frontpsicoapp:$(tag)
             docker run --name frontpsicoapp -p 8080:80 -d psicoapp/frontpsicoapp:$(tag)
