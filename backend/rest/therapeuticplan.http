@@ -1,15 +1,20 @@
 @host = http://localhost:4000/psicoapp/v1/therapeuticplan
 
-###
+### Creacion de actividad del plan terapeutico
 POST {{host}}/uuid6
 Content-Type: application/json
 
 {
-    "aspectToWork": "Escritura",
-    "objetives": "Aprender a Escribir",
-    "goals": "Que el niño escriba",
-    "focus": "Introductorio",
-    "techniques": "Aprestamiento"
+        "aspectToWork": "Escritura",
+        "aspectToWorkFile": "Escritura File",
+        "objetives": "Aprender a Escribir", 
+        "objetivesFile": "Aprender a Escribir File",
+        "goals": "Que el niño escriba",
+        "goalsFile": "Que el niño escriba File",
+        "focus": "Introductorio",
+        "focusFile": "Introductorio File",
+        "techniques": "Aprestamiento",
+        "techniquesFile": "Aprestamiento"
 }
 
 ###

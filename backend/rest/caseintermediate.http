@@ -1,8 +1,11 @@
 
 @host = http://localhost:4000
+
+### Para mandar archivo o texto del plan terapeutico
 POST {{host}}/caseintermediate/create/uuid6
 Content-Type: application/json
 
 {
-    "therapeuticPlanFile": "plan terapeutico"
+    "therapeuticPlan": "plan terapeutico texto",
+    "therapeuticPlanFile": "plan terapeutico archivo"
 }
