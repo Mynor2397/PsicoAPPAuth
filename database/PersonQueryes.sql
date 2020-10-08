@@ -395,3 +395,48 @@ VIEW `fulldataperson` AS
         ((`PAS_Person` `pe`
         JOIN `PAA_Address` `adr` ON ((`pe`.`uuid` = `adr`.`uuidPerson`)))
         JOIN `PAS_PersonHistory` `ph` ON ((`pe`.`uuid` = `ph`.`uuidPerson`)))
+
+
+--
+--
+-- create user
+--
+--
+
+DROP PROCEDURE IF EXISTS createuser;
+
+delimiter $ CREATE PROCEDURE `createuser` (
+    in _uuidPerson varchar(36),
+    in _uuidRole VARCHAR(36),
+    in _userName VARCHAR(320),
+    in _email VARCHAR(320)
+) BEGIN DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN SHOW ERRORS
+LIMIT
+    1;
+
+ROLLBACK;
+
+END;
+
+DECLARE EXIT HANDLER FOR SQLWARNING BEGIN SHOW WARNINGS
+LIMIT
+    1;
+
+ROLLBACK;
+
+END;
+
+START TRANSACTION;
+
+INSERT INTO
+    PAS_Person(uuid, uuidRole)
+VALUES
+    (_uuidPerson, uuidRole);
+
+INSERT INTO
+    PAS_PersonUser(uuid, userName, email)
+VALUES
+    (_uuidPerson, _userName, _email);
+COMMIT;
+
+END $ ----------

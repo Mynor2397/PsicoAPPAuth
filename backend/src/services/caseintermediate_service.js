@@ -29,7 +29,7 @@ CaseIntermediateService.generateQuery = async (DataForQuery, id) => {
         }
     }
     
-    console.log(QuerySelect)
+
     return await StorageCaseIntermediate.extractFieldFile(QuerySelect, value, id)
         .then((NameFile) => {
             return StorageCaseIntermediate.update(Query, value, id, NameFile)
