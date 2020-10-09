@@ -7,7 +7,7 @@ const userController = {}
 const credentials = {
     clientId: '420807577452-hbfjt9iilrqtuvopipot93ck917at4th.apps.googleusercontent.com',
     clientSecret: 'yvADMIJEWLRh_NZ0-Xh6jHaK',
-    redirectUri: "http://localhost:4000/auth/google/callback"
+    redirectUri: "http://www.psicoapp.online:4000/auth/google/callback"
 }
 
 const oAuth2Client = new google.auth.OAuth2(credentials)
