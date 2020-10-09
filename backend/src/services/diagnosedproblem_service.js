@@ -38,4 +38,8 @@ ServiceDiagnosedProblem.getdiagnosed = async (uuid) => {
     return await StorageDiagnosedProblem.getdiagnosed(uuid)
 }
 
+ServiceDiagnosedProblem.getsinglediagnosed = async (uuid) => {
+    return await StorageDiagnosedProblem.getsinglediagnosed(uuid)
+}
+
 module.exports = ServiceDiagnosedProblem;
