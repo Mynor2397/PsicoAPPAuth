@@ -17,13 +17,8 @@ ServiceDiagnosedProblem.update = async (DataUpdate, UUID) => {
     let data = new DiagnosedProblem()
     data = DataUpdate;
 
-    return await StorageDiagnosedProblem.getNameFile(UUID, data.descriptionOfProblemFile)
-        .then((nameFileDB) => {
-            return StorageDiagnosedProblem.update(data, UUID, nameFileDB)
-        })
-        .catch(err => {
-            return new Promise((resolve, reject) => reject(err))
-        })
+
+    return await StorageDiagnosedProblem.update(data, UUID)
 }
 
 ServiceDiagnosedProblem.getall = async () => {

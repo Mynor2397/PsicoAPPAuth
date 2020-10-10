@@ -16,12 +16,14 @@ class Diagnosedproblems {
         uuidDSM5,
         descriptionOfProblem,
         descriptionOfProblemFile,
+        changefile
     ) {
         this.uuidDiagnosedProblems = uuidDiagnosedProblems
         this.uuidDiagnosticStage = uuidCaseDiagnosticStage
         this.uuidDSM5 = uuidDSM5
         this.descriptionOfProblem = descriptionOfProblem
         this.descriptionOfProblemFile = descriptionOfProblemFile
+        this.changefile = changefile
     }
 }
 

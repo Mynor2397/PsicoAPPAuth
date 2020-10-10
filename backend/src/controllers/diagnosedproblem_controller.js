@@ -54,7 +54,15 @@ handDiagnosedProblem.update = async (req, res) => {
 
     let AppData = new DiagnosedProblems()
     AppData = req.body
-    AppData.descriptionOfProblemFile = req.filename
+
+    if (req.filename && AppData.changefile) {
+        AppData.descriptionOfProblemFile = req.filename
+        AppData.changefile = AppData.changefile
+    } else {
+        AppData.descriptionOfProblemFile = AppData.changefile
+        AppData.changefile = undefined
+    }
+
     let uuid = req.params.uuid
 
     if (uuid == undefined || uuid == null) {
