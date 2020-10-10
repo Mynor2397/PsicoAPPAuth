@@ -27,10 +27,17 @@ storagePerson.create = (dataPatient) => {
                 if (err) {
                     reject(err.errno)
                 }
-                console.log(results)
-                if (results[0]) {
-                    reject(results[0][0].Code);
+
+                if (results == undefined) {
+                    reject(404)
                 }
+
+                if (results) {
+                    if (results[0]) {
+                        reject(results[0][0].Code);
+                    }
+                }
+
                 resolve(person.id)
             })
     })
@@ -175,9 +182,9 @@ storagePerson.gridStagePerson = async (stage) => {
 
 storagePerson.gridWithIDPerson = (ID) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM fulldataperson WHERE id LIKE ? AND active = 1;', [ID], (err, results, fields)=>{
+        pool.query('SELECT * FROM fulldataperson WHERE id LIKE ? AND active = 1;', [ID], (err, results, fields) => {
             if (err) reject(err);
-            
+
             if (results == undefined || results.length == 0) {
                 reject(404)
             }

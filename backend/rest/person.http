@@ -3,7 +3,7 @@
 ###
 # Para crear un registro de person
 # En este caso  necesita consultas auxiliares, que estan más abajo
-POST {{host}}/create
+POST {{hosdev}}/person/create
 Content-Type: application/json
 
 {
