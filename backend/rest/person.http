@@ -93,7 +93,7 @@ Content-Type: application/json
 80a34667-500d-4175-8a75-d431b008b18d.txt
 
 ###
-# Unicamente lo cambia de estao activo a inactivo como forma de auditoria
+# Unicamente lo cambia de estado activo a inactivo como forma de auditoria
 DELETE {{host}}/2020-PAS27-00018
 
 

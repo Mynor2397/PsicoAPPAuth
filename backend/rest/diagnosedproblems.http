@@ -1,4 +1,6 @@
-@host = http://localhost:4000
+@hostdev = http://localhost:4000
+
+@host = http://138.197.215.60:4000
 
 ###
 POST {{host}}/diagnostic/create/uuid6
@@ -10,6 +12,7 @@ Content-Type: application/json
     "descriptionOfProblemFile":""
 }
 
+// aca se actualizan los datos; changefile es un campo que siempre debe ir y se encargara de devolver el nombre del archivo actual
 ###
 PUT {{host}}/diagnostic/update/uuid6
 Content-Type: application/json
@@ -18,9 +21,11 @@ Content-Type: application/json
     "uuidDiagnosedProblems": "d2b54b5c-841b-4f5c-8833-afebd4497025",
     "uuidDSM5":"T002",
     "descriptionOfProblem":"Esta es una actualización del texto",
-    "descriptionOfProblemFile":""
+    "descriptionOfProblemFile":"",
+    "changefile": ""
 }
 
+//este get traera los datos de la tablas diagnosedproblems y dms5 relacionados
 ###
 GET {{host}}/diagnostic/get
 Content-Type: application/json
@@ -29,6 +34,13 @@ Content-Type: application/json
 GET {{host}}/diagnostic/getdsm
 Content-Type: application/json
 
+
+//este get trae todos los diagnosticos que tenga un paciente
 ###
 GET  {{host}}/diagnostic/get/e7731510-56c9-43a2-8985-5cd39c9a16c6
+Content-Type: application/json
+
+//este get traera el diagnostico relacionado al uuid
+###
+GET {{host}}/diagnostic/getsingle/13bc33c8-bf58-44a8-b840-3a8ad0503c81
 Content-Type: application/json

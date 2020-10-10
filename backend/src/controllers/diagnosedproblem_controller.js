@@ -54,7 +54,15 @@ handDiagnosedProblem.update = async (req, res) => {
 
     let AppData = new DiagnosedProblems()
     AppData = req.body
-    AppData.descriptionOfProblemFile = req.filename
+
+    if (req.filename && AppData.changefile) {
+        AppData.descriptionOfProblemFile = req.filename
+        AppData.changefile = AppData.changefile
+    } else {
+        AppData.descriptionOfProblemFile = AppData.changefile
+        AppData.changefile = undefined
+    }
+
     let uuid = req.params.uuid
 
     if (uuid == undefined || uuid == null) {
@@ -126,6 +134,34 @@ handDiagnosedProblem.getdiagnosed = async (req, res) => {
 
     try {
         let result = await DiagnosticSer.getdiagnosed(req.params.uuid)
+
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                data: result
+            })
+                
+    } catch (error) {
+
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "No hay casos relacionados"
+                })
+        }
+
+        respondError(res, error)
+        return
+    }
+}
+
+handDiagnosedProblem.getsinglediagnosed = async (req, res) => {
+
+    try {
+        let result = await DiagnosticSer.getsinglediagnosed(req.params.uuid)
 
         return res
             .status(http.StatusOK)
