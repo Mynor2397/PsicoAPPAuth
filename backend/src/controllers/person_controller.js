@@ -103,8 +103,19 @@ handPerson.update = async (req, res) => {
         person.changeFile = undefined
     }
 
+    let uuid = req.params.id
+
+    if (uuid == undefined || uuid == null) {
+        deleteFromS3(req.filename)
+        return res
+            .status(http.StatusBadRequest)
+            .json({
+                ok: false
+            })
+    }
+
     try {
-        let results = await PersonService.update(req.params.id, person)
+        let results = await PersonService.update(uuid, person)
         deleteFromS3(results.fileToDelete)
         return res
             .status(http.StatusOK)

@@ -22,7 +22,7 @@ StorageDiagnosedProblem.create = async (DataDiagnostic) => {
     })
 }
 
-StorageDiagnosedProblem.update = async (UpData, UUID, NameFileFromDB) => {
+StorageDiagnosedProblem.update = async (UpData, UUID) => {
     let update = new DiagnosticProblem()
     update = UpData;
     
@@ -33,7 +33,7 @@ StorageDiagnosedProblem.update = async (UpData, UUID, NameFileFromDB) => {
             if(err){
                 reject({
                     error: err,
-                    fileToDelete: update.descriptionOfProblemFile
+                    fileToDelete: update.changefile
                 })
             }
 
@@ -41,13 +41,13 @@ StorageDiagnosedProblem.update = async (UpData, UUID, NameFileFromDB) => {
             if (results.affectedRows < 1) {
                 reject({
                     error: 404,
-                    fileToDelete: update.descriptionOfProblemFile
+                    fileToDelete: update.changefile
                 })
             }
 
             resolve({
                 data: update,
-                fileToDelete: NameFileFromDB
+                fileToDelete: update.changefile
             })
         })
     })
