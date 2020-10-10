@@ -62,7 +62,7 @@ storagePerson.get = async (uuid) => {
 storagePerson.update = async (data) => {
     let person = new Person()
     person = data
-    
+
     if (person.uuidReligion == '' || person.uuidReligion == undefined) {
         person.uuidReligion = null
     }

@@ -51,6 +51,14 @@ handPerson.create = async (req, res) => {
                 })
         }
 
+        if (error == 1406 || error == '1406') {
+            return res
+                .status(http.StatusBadRequest)
+                .json({
+                    ok: false,
+                    message: 'La cantidad de caracteres no es correcta'
+                })
+        }
         respondError(res, error)
         return
     }
@@ -306,29 +314,29 @@ handPerson.gridStagePerson = async (req, res) => {
 
 handPerson.gridWithIDPerson = async (req, res) => {
     let id = req.params.id
-try {
-    let results = await PersonService.gridWithIDPerson(id)
-    return res
+    try {
+        let results = await PersonService.gridWithIDPerson(id)
+        return res
             .status(http.StatusOK)
             .json({
                 ok: true,
                 data: results
             })
 
-} catch (error) {
-    if (error == http.StatusNotFound) {
-        return res
-            .status(http.StatusNotFound)
-            .json({
-                ok: false,
-                message: "Ningún registro encontrado!",
-                data: []
-            })
-    }
+    } catch (error) {
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Ningún registro encontrado!",
+                    data: []
+                })
+        }
 
-    respondError(res, error)
-    return
-}
+        respondError(res, error)
+        return
+    }
 }
 
 handPerson.downloadnAttachmen = async (req, res) => {
