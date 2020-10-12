@@ -103,7 +103,7 @@ handPerson.update = async (req, res) => {
     let person = new Person();
     person = req.body;
 
-    if (req.filename && person.changeFile) {
+    if (req.filename ) {
         person.attachment = req.filename
         person.changeFile = person.changeFile
     } else {
@@ -144,6 +144,15 @@ handPerson.update = async (req, res) => {
                 })
         }
 
+
+        if (error == 1452){
+            return res
+                .status(http.StatusNotFound)
+                .json({
+                    ok: false,
+                    message: "Por favor ingrese un registro asociado correctamente"
+                })
+        }
         respondError(res, error)
         return
     }

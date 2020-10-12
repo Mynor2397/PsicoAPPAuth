@@ -4,10 +4,12 @@ const { google } = require('googleapis')
 
 const userController = {}
 
+
 const credentials = {
     clientId: '420807577452-hbfjt9iilrqtuvopipot93ck917at4th.apps.googleusercontent.com',
     clientSecret: 'yvADMIJEWLRh_NZ0-Xh6jHaK',
     redirectUri: "http://www.psicoapp.online:4000/auth/google/callback"
+    // redirectUri: "http://localhost:4000/auth/google/callback"
 }
 
 const oAuth2Client = new google.auth.OAuth2(credentials)
@@ -25,7 +27,7 @@ function getAuthUrl() {
 
 userController.Login = async (req, res) => {
     const url = getAuthUrl()
-    res.redirect(url)
+    res.send(url)
 }
 
 userController.OAuth2Google = async (req, res) => {

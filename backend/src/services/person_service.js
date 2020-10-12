@@ -16,6 +16,7 @@ PersonService.create = async (DataPatient) => {
     person.dateEvent = new Date()
     person.uuidAddress = uuid.v4()
 
+    console.log(person)
     return await StorePerson.create(person)
 }
 
@@ -29,7 +30,7 @@ PersonService.update = async (_id, Data) => {
     person.id = _id
     person.dateNameUpdated = new Date()
     person.dateEvent = new Date()
-    // console.log(person);
+    
     return await StorePerson.update(person)
 }
 

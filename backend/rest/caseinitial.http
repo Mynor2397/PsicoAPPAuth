@@ -36,8 +36,9 @@ Content-Type: application/json
 }
 
 ###
-GET {{host}}/caseinitial/all
+GET {{hostdev}}/caseinitial/all
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2wiOiJtZW1iZXIiLCJzdWIiOiIxMDM3MzQxODQ4NDU1ODA0NjEyMjYiLCJlbWFpbCI6Im1jYXN0cmlsbG9tQG1pdW1nLmVkdS5ndCIsImlhdCI6MTYwMjQ5MDM5MiwiZXhwIjoxNjAyNDkzOTkyfQ.rdWI5Qs6mah2BzmqdFBXQRQ0RltFUqf6PE5ZriNSA9s
 
 ###
 GET {{host}}/caseinitial/only/0c30b731-7d63-4cb6-80bb-8c1c44878cf5
