@@ -10,7 +10,7 @@ import Files from '../helpers/File'
 
 
 const CrearDiagnostico = () => {
-  const [select, setSelect] = useState(null)
+  const [select, setSelect] = useState('')
   const [getDSM, setDSM] = useState([])
   const [comment, setComment] = useState('')
   const [file, setFile] = useState('')
@@ -34,9 +34,7 @@ const CrearDiagnostico = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(data => data.ok
-        ? history.push(`/etapas/${idDiag}`)
-        : alert('No se aguardado correctamente'))
+      .then(data => console.log(data))
       .catch(err => console.log(err))
   }
 

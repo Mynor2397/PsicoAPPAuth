@@ -13,11 +13,11 @@ const EtapaDiagnostico = ({
   if (currentStep !== 3) {
     return null
   }
-  
+
+
   return (
-    <ListaDiagnosticos idCaso={idCase}/>
+    <ListaDiagnosticos idCaso={idCase} />
   )
-  
 }
 
 export default EtapaDiagnostico

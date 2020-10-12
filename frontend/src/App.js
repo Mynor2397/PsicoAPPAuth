@@ -2,8 +2,8 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Header from './Component/Organisms/Header';
-import Protected from './Routes./Protected';
-import Public from './Routes./Public';
+import Protected from './Routes/Protected';
+import Public from './Routes/Public';
 import Login from './Component/Pages/Login';
 import PagesRol from './Component/Pages/PagesRol';
 import Page404 from './Component/Pages/Page404';
