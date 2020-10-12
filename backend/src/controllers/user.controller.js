@@ -4,7 +4,6 @@ const { google } = require('googleapis')
 
 const userController = {}
 
-const oAuth2Client = new google.auth.OAuth2(credentials)
 
 const credentials = {
     clientId: '420807577452-hbfjt9iilrqtuvopipot93ck917at4th.apps.googleusercontent.com',
@@ -13,6 +12,7 @@ const credentials = {
     redirectUri: "http://localhost:4000/auth/google/callback"
 }
 
+const oAuth2Client = new google.auth.OAuth2(credentials)
 
 function getAuthUrl() {
     return oAuth2Client.generateAuthUrl({
