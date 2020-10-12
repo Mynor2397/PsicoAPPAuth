@@ -38,13 +38,17 @@ const GridCasos = () => {
 
 	return (
 		<>
-			<Navbar />
-			<section className="ed-container flex-center  mt-8">
-				<div className="ed-item  flex-right s-50 l-50">
-					<Search handleSearch={handleSearch}/>
-				</div>
-				<div className="ed-item flex flex-right s-50 l-50">
-					<Link type="button" className="pantient-btncreat" to='/createcasos'>Crear Casos</Link>
+			<section className="ed-container mt-8">
+				<div className="ed-item ed-container">
+					<div className="ed-item">
+						<h1 className="pantient-title">Casos</h1>
+					</div>
+					<div className="ed-item s-60 m-70 l-80">
+						<Search handleSearch={handleSearch} />
+					</div>
+					<div className="ed-item s-40 m-30 l-20">
+						<Link to="/createpantient" className="button full">Crear Paciente</Link>
+					</div>
 				</div>
 			</section>
 
@@ -91,7 +95,7 @@ const GridCasos = () => {
 										</div>
 										<footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
 											<p className="s-10">{data.stage}</p>
-											<Link to={'/etapas/' + data.uuid} className="button s-to-right">Editar</Link>
+											<Link to={'/etapas/' + data.uuid} className="button ghost accent-color s-to-right">Editar</Link>
 										</footer>
 									</article>
 								</div>

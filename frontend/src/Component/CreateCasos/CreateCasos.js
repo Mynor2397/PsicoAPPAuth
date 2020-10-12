@@ -77,7 +77,6 @@ const CreateCasos = () => {
 
 	return (
 		<>
-		<Navbar />
 		<div className="ed-container mt-8">
 			<div className="ed-item">
 				<h1>Crear caso</h1>

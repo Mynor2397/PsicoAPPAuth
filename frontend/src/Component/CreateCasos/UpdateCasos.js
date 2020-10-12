@@ -102,7 +102,6 @@ export default class UpdateCasos extends Component {
 
     return (
       <>
-      <Navbar />
       <div className="ed-grid mt-6">
         <div className="ed-item">
           <h1>Actualizar caso</h1>

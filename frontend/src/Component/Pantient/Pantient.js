@@ -54,17 +54,16 @@ const Pantient = () => {
 
 	return (
 		<>	
-			<Navbar />
 			<section className="ed-container mt-8">
 				<div className="ed-item ed-container">
 					<div className="ed-item">
 						<h1 className="pantient-title">Pacientes</h1>
 					</div>
-					<div className="ed-item s-50">
+					<div className="ed-item s-60">
 						<Search handleSearch={handleSearch} />
 					</div>
-					<div className="ed-item s-50 flex flex-right flex-center">
-						<Link to="/createpantient" className="pantient-btncreate">Crear Paciente</Link>
+					<div className="ed-item s-40">
+						<Link to="/createpantient" className="button full">Crear Paciente</Link>
 					</div>
 				</div>
 			</section>
@@ -85,8 +84,8 @@ const Pantient = () => {
 									</div>
 								</div>
 								<footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
-									<button className="button color-red" onClick={ (e)=>handleDelete(id, e) }>Borrar</button>
-									<Link to={'/updatepantient/'+id} className="button s-to-right">Editar</Link>
+									<button className="button third-color" onClick={ (e)=>handleDelete(id, e) }>Borrar</button>
+									<Link to={'/updatepantient/'+id} className="button ghost accent-color s-to-right">Editar</Link>
 								</footer>
 							</article>
 						</div>

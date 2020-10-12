@@ -9,12 +9,12 @@ const Navbar = () => {
     <header className="ed-header s-bg-grey s-py-2">
       <div className="ed-grid lg-grid-5">
         <div className="s-cross-center s-main-center lg-main-start">
-          <h1 className="logo">Psicología</h1>
+          <img src='./search.svg' className="logo" alt="Psicología"/>
         </div>
         <nav className="nav lg-cols-4 s-cross-center ed-grid full">
           <ul className="menu s-main-distribute lg-to-right s-mb-0 s-pl-0 s-py-1">
             <li className="lg-mr-3">  
-              <Link className="link s-column s-cross-center active" to="/gridcasos"> 
+              <Link className="link s-column s-cross-center" to="/gridcasos"> 
                 <svg className="icon to-lg  s-mb-0">
                   <use href="#home"></use>
                 </svg>

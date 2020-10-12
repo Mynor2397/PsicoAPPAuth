@@ -305,7 +305,6 @@ export default class MasterForm extends React.Component {
 
     return (
       <React.Fragment>
-        <Navbar />
         <div className="ed-container mt-8">
           <div className="ed-item">
             {

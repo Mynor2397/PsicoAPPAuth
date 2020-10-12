@@ -233,7 +233,6 @@ class Etapas extends Component {
     }
     return (
       <>
-        <Navbar />
         <div className="ed-container mt-5">
           <div className="ed-item ed-container">
             <div className="ed-item flex">
