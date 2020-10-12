@@ -8,4 +8,5 @@ router.put('/diagnostic/update/:uuid', uploadFileS3.single('descriptionOfProblem
 router.get('/diagnostic/get', Diagnostic.getAll)
 router.get('/diagnostic/getdsm', Diagnostic.getdsm)
 router.get('/diagnostic/get/:uuid', Diagnostic.getdiagnosed)
+router.get('/diagnostic/getsingle/:uuid', Diagnostic.getsinglediagnosed)
 module.exports = router;

@@ -3,7 +3,6 @@ const pool = require('../lib/database/database');
 const Cases = require('../models/ncase.model');
 const Stage = require('../models/stage.model');
 const PersonU = require('../models/personuser.model');
-const PersonP = require('../models/personpatient.model');
 
 
 

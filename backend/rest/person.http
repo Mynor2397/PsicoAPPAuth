@@ -3,7 +3,7 @@
 ###
 # Para crear un registro de person
 # En este caso  necesita consultas auxiliares, que estan más abajo
-POST {{host}}/create
+POST {{hosdev}}/person/create
 Content-Type: application/json
 
 {
@@ -93,7 +93,7 @@ Content-Type: application/json
 80a34667-500d-4175-8a75-d431b008b18d.txt
 
 ###
-# Unicamente lo cambia de estao activo a inactivo como forma de auditoria
+# Unicamente lo cambia de estado activo a inactivo como forma de auditoria
 DELETE {{host}}/2020-PAS27-00018
 
 
@@ -128,3 +128,40 @@ GET {{host}}/persons/grid/0
 # en la base de datos
 # como ejemplo: id = 2020-PAS28-00024
 GET {{host}}/persons/gridbyid/2020-PAS28
+
+
+
+### 
+### para hacer las pruebas del bug
+POST {{host}}/person/create
+Content-Type: application/json
+
+{
+  "firstName": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondName": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "lastName": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondLastName": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "marriedName": "",
+  "bornDate": "2000-01-01",
+  "mobilePhone": "",
+  "email": "",
+  "uuidReligion": "002",
+  "firstNameFather": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondNameFather": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "lastNameFather": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondLastNameFather": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "firstNameMother": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondNameMother": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "lastNameMother": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondLastNameMother": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "firstNameExtra": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondNameExtra": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "lastNameExtra": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "secondLastNameExtra": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "uuidCity": "003",
+  "addressLine1": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "addressLine2": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "phoneNumber": "C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5",
+  "comment": "<p><i>C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5 C o n t ro l 5 C o n t r o l 5 C o n t r o l 5 Co n t r o l 5 C o n t r o l 5 C o n t r o l 5</i></p>",
+  "attachment": ""
+}
