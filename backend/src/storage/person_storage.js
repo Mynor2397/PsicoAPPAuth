@@ -66,6 +66,7 @@ storagePerson.update = async (data) => {
     if (person.uuidReligion == '' || person.uuidReligion == undefined) {
         person.uuidReligion = null
     }
+
     return new Promise((resolve, reject) => {
         pool.query(`CALL updateperson(?,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,? ,?,?)`,
             [person.uuidPerson, person.id, person.firstName, person.secondName, person.lastName,
@@ -76,9 +77,17 @@ storagePerson.update = async (data) => {
             person.lastNameExtra, person.secondLastNameExtra, person.dateEvent, person.comment, person.attachment,
             person.uuidCity, person.addressLine1, person.addressLine2, person.phoneNumber], (err, results, fields) => {
                 if (err) {
-                    console.log(err);
+
                     reject(err)
                 }
+
+                if (results){
+                    if(results[0]){
+                        reject(results[0][0].Code)
+                    }
+                }
+
+                // console.log(results)
                 resolve({
                     id: person.id,
                     fileToDelete: person.changeFile
