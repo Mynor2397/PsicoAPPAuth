@@ -25,9 +25,9 @@ Content-Type: application/json
     "changefile": ""
 }
 
-//este get traera los datos de la tablas diagnosedproblems y dms5 relacionados
+//este get traera los datos de la tablas diagnosedproblems
 ###
-GET {{host}}/diagnostic/get
+GET {{hostdev}}/diagnostic/get
 Content-Type: application/json
 
 ###
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 //este get trae todos los diagnosticos que tenga un paciente
 ###
-GET  {{host}}/diagnostic/get/e7731510-56c9-43a2-8985-5cd39c9a16c6
+GET  {{hostdev}}/diagnostic/get/e7731510-56c9-43a2-8985-5cd39c9a16c6
 Content-Type: application/json
 
 //este get traera el diagnostico relacionado al uuid

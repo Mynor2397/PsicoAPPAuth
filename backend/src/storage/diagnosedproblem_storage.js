@@ -25,31 +25,31 @@ StorageDiagnosedProblem.create = async (DataDiagnostic) => {
 StorageDiagnosedProblem.update = async (UpData, UUID) => {
     let update = new DiagnosticProblem()
     update = UpData;
-    
+
     return new Promise((resolve, reject) => {
         pool.query(`UPDATE PAC_DiagnosedProblems SET uuidCaseDiagnosticStage = ?,  uuidDSM5 = ?,
         descriptionOfProblem = ?, descriptionOfProblemFile = ? WHERE uuid = ? AND uuidCaseDiagnosticStage = ?;`, [UUID, update.uuidDSM5,
-        update.descriptionOfProblem, update.descriptionOfProblemFile, update.uuidDiagnosedProblems, UUID], (err, results, fields)=>{
-            if(err){
-                reject({
-                    error: err,
+            update.descriptionOfProblem, update.descriptionOfProblemFile, update.uuidDiagnosedProblems, UUID], (err, results, fields) => {
+                if (err) {
+                    reject({
+                        error: err,
+                        fileToDelete: update.changefile
+                    })
+                }
+
+
+                if (results.affectedRows < 1) {
+                    reject({
+                        error: 404,
+                        fileToDelete: update.changefile
+                    })
+                }
+
+                resolve({
+                    data: update,
                     fileToDelete: update.changefile
                 })
-            }
-
-            
-            if (results.affectedRows < 1) {
-                reject({
-                    error: 404,
-                    fileToDelete: update.changefile
-                })
-            }
-
-            resolve({
-                data: update,
-                fileToDelete: update.changefile
             })
-        })
     })
 }
 
@@ -73,10 +73,7 @@ StorageDiagnosedProblem.getNameFile = async (UUID, NameFile) => {
 
 StorageDiagnosedProblem.getall = async () => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT ds.uuid, ds.name, ds.r_description, dc.uuid, dc.uuidCaseDiagnosticStage,
-        dc.uuidDSM5, dc.descriptionOfProblem, dc.descriptionOfProblemFile  FROM PAC_DSM5 ds
-        INNER JOIN PAC_DiagnosedProblems dc
-        WHERE ds.uuid = dc.uuidDSM5;`, (err, results, fields) => {
+        pool.query('SELECT * FROM PAC_DiagnosedProblems', (err, results, fields) => {
             if (err) {
                 reject(err)
             }
@@ -99,30 +96,36 @@ StorageDiagnosedProblem.getdsm = async () => {
 }
 
 StorageDiagnosedProblem.getdiagnosed = async (uuid) => {
-    
+
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAC_DiagnosedProblems WHERE uuidCaseDiagnosticStage = ?;', [uuid], (err, results, fields) => {
+        pool.query(`SELECT ds.uuid, ds.name, ds.r_description, dc.uuid, dc.uuidCaseDiagnosticStage,
+        dc.uuidDSM5, dc.descriptionOfProblem, dc.descriptionOfProblemFile  FROM PAC_DSM5 ds
+        INNER JOIN PAC_DiagnosedProblems dc
+	    ON ds.uuid = dc.uuidDSM5
+	    INNER JOIN PAC_CaseDiagnosticStage cd
+	    ON dc.uuidCaseDiagnosticStage = cd.uuid
+        WHERE cd.uuid = ?;`, [uuid], (err, results, fields) => {
             if (err) reject(err);
-            
-            if(results.length == 0){
+
+            if (results.length == 0) {
                 reject(404)
             }
-            
+
             resolve(results)
         })
     })
 }
 
 StorageDiagnosedProblem.getsinglediagnosed = async (uuid) => {
-    
+
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM PAC_DiagnosedProblems WHERE uuid = ?;', [uuid], (err, results, fields) => {
             if (err) reject(err);
-            
-            if(results.length == 0){
+
+            if (results.length == 0) {
                 reject(404)
             }
-            
+
             resolve(results)
         })
     })
