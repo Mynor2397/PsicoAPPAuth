@@ -26,4 +26,10 @@ rex.rexNewDiagnostic = [
     body('uuidDSM5').not().isEmpty().escape(),
     body('descriptionOfProblem').not().isEmpty().escape()
 ]
+
+rex.rexUserAuth = [
+    body('email').not().isEmpty().escape(),
+    body('googleId').not().isEmpty().escape(),
+    body('name').not().isEmpty().escape()
+]
 module.exports = rex;

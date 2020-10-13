@@ -23,7 +23,7 @@ app.use('/psicoapp/v1', require('./routes/routes'))
 app.use(require('./routes/testingapp.route'))
 app.use(require('./routes/diagnosedproblem.route'))
 
-app.use(require('./routes/auth.google'))
+app.use(require('./routes/auth.route'))
 
 //Starting the server
 app.listen(app.get('port'), () => {
