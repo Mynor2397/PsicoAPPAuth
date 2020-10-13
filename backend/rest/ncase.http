@@ -44,10 +44,10 @@ Content-Type: application/json
 
 ###
 # Get a todos los campos de la tabla personuser
-GET {{host}}personuser
+GET {{hostdev}}personuser
 Content-Type: application/json
 
 ###
 #GET a todos los campos de la tabla personpatient 
-GET {{hostdev}}/personpatient
+GET {{host}}personpatient
 Content-Type: application/json
