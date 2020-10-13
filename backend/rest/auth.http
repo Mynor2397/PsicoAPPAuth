@@ -1,4 +1,10 @@
-@host = localhost:4000/login
+@host = http://localhost:4000/auth/google
 
+POST {{host}}
+Content-Type: application/json
 
-GET {{host}}
+{
+    "email":"mynor2397cas@gmail.com", 
+    "googleId":"1231231890898123", 
+    "name":"Mynor Castrillo"
+}
