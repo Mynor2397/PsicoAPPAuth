@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 
 import Header from './Component/Organisms/Header';
 import Protected from './Routes/Protected';
@@ -34,6 +34,9 @@ function App() {
 
         <Route path="/segurity" exact component={PagesRol} />
 
+        <Route path="/" exact>
+          <Redirect to="/gridcasos" />
+        </Route>
         <Route component={Page404} />
       </Switch>
     </Router>

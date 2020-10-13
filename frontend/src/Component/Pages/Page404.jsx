@@ -2,10 +2,8 @@ import React from 'react'
 
 const Page404 = () => {
 
-  const removeToken = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('rol')  
-    window.location = "/login"
+  const removeToken = () => { 
+    window.location = "/"
   }
 
   return(

@@ -49,7 +49,7 @@ const EtapaInicial = ({
 			<div className="ed-item xl-50 ed-container borderinicial">
 				<div className="ed-item">
 					<label htmlFor="#">
-						Personalidad
+						Personalidad Premórbida
 					</label>
 					<CKEditor
 						editor={ClassicEditor}
@@ -171,7 +171,7 @@ const EtapaInicial = ({
 			<div className="ed-item xl-50 ed-container borderinicial">
 				<div className="ed-item">
 					<label htmlFor="#">
-						Historia de Crecimiento
+						Historia de Desarrollo
 						</label>
 					<CKEditor
 						editor={ClassicEditor}
@@ -191,7 +191,7 @@ const EtapaInicial = ({
 				<div className="ed-item s-80 m-80">
 					<Files
 						file={growthHistoryFile}
-						label="Historia de Crecimiento (Adjunto)"
+						label="Historia de Desarrollo (Adjunto)"
 						name="growthHistoryFile"
 						handleChange={handleChange}
 					/>

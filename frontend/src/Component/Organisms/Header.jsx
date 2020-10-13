@@ -12,7 +12,7 @@ const Header = () => (
       <div className="s-cols-4 lg-cols-1 s-cross-center">
         <NavLink to="/">
           <img
-            src="https://ed.team/static/images/logo.svg"
+            src="/psicologia1.svg"
             alt="EDlogo"
             className="main-logo"
           />

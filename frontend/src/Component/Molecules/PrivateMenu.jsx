@@ -1,11 +1,13 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
 import { GoogleLogout } from 'react-google-login';
+import {URLI} from '../../config/option'
 
-const removeToken = (response) => {
-  // localStorage.removeItem('token')
-  // window.location = "/login"
-  console.log(response)
+const removeToken = () => {
+  localStorage.removeItem('token')
+  localStorage.removeItem('rol')
+  localStorage.removeItem('user')
+  window.location = '/login'
 }
 
 const PrivateMenu = () => {

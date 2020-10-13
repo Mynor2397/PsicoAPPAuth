@@ -38,7 +38,8 @@ const ListaDiagnosticos = ({ idCaso }) => {
         setDiagnosticos([])
       }
     } catch (error) {
-      alert('Servicos desconectado')
+      console.log(error)
+      alert('Servicios desconectado')
     }
   }
 
@@ -136,7 +137,7 @@ const ListaDiagnosticos = ({ idCaso }) => {
         <div className="ed-item">
           <form className="form-modal " ref={modal} onSubmit={handleSubmit}>
             <div className="ed-item ">
-              <button className="button dark-color" onClick={verModal}>X</button>
+              <a className="button dark-color" onClick={verModal}>X</a>
             </div>
             <div className="l-block"></div>
             <div className="ed-item ">
@@ -198,10 +199,15 @@ const ListaDiagnosticos = ({ idCaso }) => {
                     <div className="ed-item">
                       <p>{r_description}</p>
                     </div>
-                    <UploadFile 
-                      istitle={`Archivo.${descriptionOfProblemFile.slice((descriptionOfProblemFile.lastIndexOf(".") - 1 >>> 0) + 2)}`} 
-                      URL={`${URLI}attachment/${descriptionOfProblemFile}`} 
-                    />
+                    {
+                      descriptionOfProblemFile 
+                      ? 
+                      <UploadFile 
+                        istitle={`Archivo.${descriptionOfProblemFile.slice((descriptionOfProblemFile.lastIndexOf(".") - 1 >>> 0) + 2)}`} 
+                        URL={`${URLI}attachment/${descriptionOfProblemFile}`} 
+                      />
+                      : null
+                    }
                   </div>
                   <footer className="s-bg-grey s-cross-center s-pxy-2 s-radius-br s-radius-bl">
                     <button onClick={()=>update(uuid)} className="button ghost accent-color s-to-right">Editar</button>
