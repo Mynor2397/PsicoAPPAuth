@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Navbar from '../Navbar/Navbar';
 import {URLI} from '../../config/option'
 import './Casos.scss'
 

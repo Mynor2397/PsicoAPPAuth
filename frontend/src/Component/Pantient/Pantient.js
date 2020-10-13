@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import Navbar from '../Navbar/Navbar'
 import { Link } from 'react-router-dom'
 import './Styles.pantient.scss'
 import { URLI } from '../../config/option'

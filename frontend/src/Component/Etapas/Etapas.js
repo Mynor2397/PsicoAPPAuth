@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from '../Navbar/Navbar'
 import EtapaDiagnostico from './wizard/EtapaDiagnostico'
 import EtapaInicial from './wizard/EtapaInicial'
 import EtapaIntermedia from './wizard/EtapaIntermedia'

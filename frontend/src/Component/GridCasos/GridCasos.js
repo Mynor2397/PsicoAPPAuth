@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Search from '../helpers/Search'
-import Navbar from '../Navbar/Navbar'
 import './estilos.scss'
 import { Link } from 'react-router-dom'
 import { URLI } from '../../config/option'
@@ -47,7 +46,7 @@ const GridCasos = () => {
 						<Search handleSearch={handleSearch} />
 					</div>
 					<div className="ed-item s-40 m-30 l-20">
-						<Link to="/createpantient" className="button full">Crear Paciente</Link>
+						<Link to="/createcasos" className="button full">Crear Caso</Link>
 					</div>
 				</div>
 			</section>

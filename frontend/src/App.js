@@ -15,7 +15,6 @@ import UpdateCasos from './Component/CreateCasos/UpdateCasos';
 import Etapas from './Component/Etapas/Etapas';
 
 import './App.scss';
-import CrearDiagnostico from './Component/Pages/CrearDiagnostico';
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
         <Protected path='/createpantient/:idpantients?' component={CreatePantientv1} />
         <Protected path='/updatepantient/:idpantients' component={CreatePantientv1} />
         <Protected path='/etapas/:idCasos' component={Etapas} />
-        <Protected path='/creardiagnostico/:idDiag' component={CrearDiagnostico} />
         <Protected path='/createcasos' exact component={CreateCasos}  />
         <Protected path='/updatecasos/:idcases' component={UpdateCasos} />
         

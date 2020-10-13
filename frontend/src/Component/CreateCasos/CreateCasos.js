@@ -4,7 +4,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import SelectU from 'react-select';
 import { useHistory } from 'react-router-dom';
 
-import Navbar from '../Navbar/Navbar';
 import {URLI} from '../../config/option'
 
 import './Casos.scss'

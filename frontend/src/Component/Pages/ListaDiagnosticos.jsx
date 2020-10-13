@@ -188,12 +188,15 @@ const ListaDiagnosticos = ({ idCaso }) => {
         {
           diagnostic.length
             ?
-            diagnostic.map(({ uuid, descriptionOfProblemFile }) => (
+            diagnostic.map(({ uuid, name,r_description, descriptionOfProblemFile }) => (
               <div key={uuid} className="ed-item s-100 m-50 l-1-3">
                 <article className="s-shadow-bottom">
                   <div className="ed-container pd">
                     <div className="ed-item">
-                      <h2>Titulo del diagnostico</h2>
+                      <h2 className="s-center">{name}</h2>
+                    </div>
+                    <div className="ed-item">
+                      <p>{r_description}</p>
                     </div>
                     <UploadFile 
                       istitle={`Archivo.${descriptionOfProblemFile.slice((descriptionOfProblemFile.lastIndexOf(".") - 1 >>> 0) + 2)}`} 
